@@ -1,0 +1,11 @@
+# Local logs
+**.log
+
+# Codeblocks project files
+*.cbp
+*.layout
+*.depend
+
+# Compiled units
+bin/**
+obj/**
