@@ -2,9 +2,8 @@
 **.log
 
 # Codeblocks project files
-*.cbp
-*.layout
-*.depend
+#*.cbp
+#*.depend
 
 # Compiled units
 bin/**

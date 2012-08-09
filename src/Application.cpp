@@ -25,6 +25,13 @@ void Application::createScene(void)
 	// World geometry
 	mSceneMgr->setWorldGeometry("terrain.cfg");
 
+	// CEGUI setup
+  mGUIRenderer = &CEGUI::OgreRenderer::bootstrapSystem();
+
+  // Mouse
+  CEGUI::SchemeManager::getSingleton().create((CEGUI::utf8*)"TaharezLook.scheme");
+  CEGUI::MouseCursor::getSingleton().setImage("TaharezLook", "MouseArrow");
+
   // Create the waypoints
   Waypoint::attach_all(mSceneMgr);
 

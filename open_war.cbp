@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="open_war" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/open_war" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+				</Compiler>
+				<Linker>
+					<Add library="OgreMain" />
+					<Add library="OIS" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/open_war" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-DNDEBUG" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="OgreMain" />
+					<Add library="OIS" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="`pkg-config --cflags OGRE`" />
+			<Add option="`pkg-config --cflags CEGUI`" />
+			<Add option="`pkg-config --cflags OIS`" />
+			<Add option="`pkg-config --cflags ode`" />
+			<Add option="`pkg-config --cflags CEGUI-OGRE`" />
+			<Add option="-fexceptions" />
+			<Add directory="/usr/include/OGRE" />
+			<Add directory="/usr/include/OIS" />
+			<Add directory="/usr/local/share/OGRE/samples/Common/include" />
+			<Add directory="/usr/local/include/CEGUI/RendererModules/Ogre" />
+			<Add directory="./include" />
+		</Compiler>
+		<Linker>
+			<Add option="`pkg-config --libs OGRE`" />
+			<Add option="`pkg-config --libs CEGUI`" />
+			<Add option="`pkg-config --libs OIS`" />
+			<Add option="`pkg-config --libs ode`" />
+			<Add option="`pkg-config --libs CEGUI-OGRE`" />
+			<Add library="GL" />
+		</Linker>
+		<Unit filename="ogre.cfg" />
+		<Unit filename="plugins.cfg" />
+		<Unit filename="plugins_d.cfg" />
+		<Unit filename="resources.cfg" />
+		<Unit filename="resources_d.cfg" />
+		<Unit filename="src/Application.cpp" />
+		<Unit filename="src/Application.hpp" />
+		<Unit filename="src/BaseApplication.cpp" />
+		<Unit filename="src/BaseApplication.h" />
+		<Unit filename="src/OverheadCamera.cpp" />
+		<Unit filename="src/OverheadCamera.hpp" />
+		<Unit filename="src/Soldier.cpp" />
+		<Unit filename="src/Soldier.hpp" />
+		<Unit filename="src/Waypoint.cpp" />
+		<Unit filename="src/Waypoint.hpp" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/platform.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

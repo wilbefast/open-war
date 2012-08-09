@@ -1,0 +1,3821 @@
+# depslib dependency file v1.0
+1330781925 source:/home/william/Documents/Programming/OGRE/test2/main.cpp
+	<Ogre.h>
+	"platform.h"
+	"Application.hpp"
+
+1261455198 /usr/include/OGRE/Ogre.h
+	"OgrePrerequisites.h"
+	"OgreAnimation.h"
+	"OgreAnimationState.h"
+	"OgreAnimationTrack.h"
+	"OgreAny.h"
+	"OgreArchive.h"
+	"OgreArchiveManager.h"
+	"OgreAxisAlignedBox.h"
+	"OgreBillboardChain.h"
+	"OgreBillboardSet.h"
+	"OgreBone.h"
+	"OgreCamera.h"
+	"OgreConfigFile.h"
+	"OgreControllerManager.h"
+	"OgreDataStream.h"
+	"OgreEntity.h"
+	"OgreException.h"
+	"OgreFrustum.h"
+	"OgreGpuProgram.h"
+	"OgreGpuProgramManager.h"
+	"OgreHardwareBufferManager.h"
+	"OgreHardwareIndexBuffer.h"
+	"OgreHardwarePixelBuffer.h"
+	"OgreHardwareOcclusionQuery.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwarePixelBuffer.h"
+	"OgreHighLevelGpuProgram.h"
+	"OgreHighLevelGpuProgramManager.h"
+	"OgreKeyFrame.h"
+	"OgreLight.h"
+	"OgreLogManager.h"
+	"OgreManualObject.h"
+	"OgreMaterial.h"
+	"OgreMaterialManager.h"
+	"OgreMaterialSerializer.h"
+	"OgreMath.h"
+	"OgreMatrix3.h"
+	"OgreMatrix4.h"
+	"OgreMesh.h"
+	"OgreMeshManager.h"
+	"OgreMeshSerializer.h"
+	"OgreOverlay.h"
+	"OgreOverlayContainer.h"
+	"OgreOverlayElement.h"
+	"OgreOverlayManager.h"
+	"OgreParticleAffector.h"
+	"OgreParticleEmitter.h"
+	"OgreParticleSystemManager.h"
+	"OgrePass.h"
+	"OgrePatchMesh.h"
+	"OgrePatchSurface.h"
+	"OgreProfiler.h"
+	"OgreRadixSort.h"
+	"OgreRenderQueueInvocation.h"
+	"OgreRenderQueueListener.h"
+	"OgreRenderSystem.h"
+	"OgreRenderTargetListener.h"
+	"OgreRenderTexture.h"
+	"OgreRenderWindow.h"
+	"OgreResourceBackgroundQueue.h"
+	"OgreResourceGroupManager.h"
+	"OgreRibbonTrail.h"
+	"OgreRoot.h"
+	"OgreSceneManager.h"
+	"OgreSceneManagerEnumerator.h"
+	"OgreSceneNode.h"
+	"OgreSimpleRenderable.h"
+	"OgreSkeleton.h"
+	"OgreSkeletonInstance.h"
+	"OgreSkeletonManager.h"
+	"OgreSkeletonSerializer.h"
+	"OgreStaticGeometry.h"
+	"OgreString.h"
+	"OgreStringConverter.h"
+	"OgreStringVector.h"
+	"OgreSubEntity.h"
+	"OgreSubMesh.h"
+	"OgreTechnique.h"
+	"OgreTextureManager.h"
+	"OgreTextureUnitState.h"
+	"OgreUserDefinedObject.h"
+	"OgreVector2.h"
+	"OgreViewport.h"
+	"OgreCompositor.h"
+	"OgreCompositorManager.h"
+	"OgreCompositorChain.h"
+	"OgreCompositorInstance.h"
+	"OgreCompositionTechnique.h"
+	"OgreCompositionPass.h"
+	"OgreCompositionTargetPass.h"
+	"OgreWindowEventUtilities.h"
+	"OgreShadowCameraSetup.h"
+	"OgreShadowCameraSetupFocused.h"
+	"OgreShadowCameraSetupLiSPSM.h"
+	"OgreShadowCameraSetupPlaneOptimal.h"
+	"OgreShadowCameraSetupPSSM.h"
+
+1261455198 /usr/include/OGRE/OgrePrerequisites.h
+	"OgrePlatform.h"
+	<string>
+	"OgreStdHeaders.h"
+	"OgreMemoryAllocatorConfig.h"
+
+1261455198 /usr/include/OGRE/OgrePlatform.h
+	"OgreConfig.h"
+	<_mingw.h>
+	"config.h"
+
+1261455198 /usr/include/OGRE/OgreConfig.h
+	"config.h"
+
+1261455198 /usr/include/OGRE/OgreStdHeaders.h
+	<cassert>
+	<cstdio>
+	<cstdlib>
+	<ctime>
+	<cstring>
+	<cstdarg>
+	<cmath>
+	<vector>
+	<map>
+	<string>
+	<set>
+	<list>
+	<deque>
+	<queue>
+	<bitset>
+	<tr1/unordered_map>
+	<tr1/unordered_set>
+	<ext/hash_map>
+	<ext/hash_set>
+	<unordered_map>
+	<unordered_set>
+	<hash_set>
+	<hash_map>
+	<algorithm>
+	<functional>
+	<limits>
+	<fstream>
+	<iostream>
+	<iomanip>
+	<sstream>
+	<sys/types.h>
+	<sys/stat.h>
+	<unistd.h>
+	<unistd.h>
+	<dlfcn.h>
+	<unistd.h>
+	<sys/param.h>
+	<CoreFoundation/CoreFoundation.h>
+	<boost/thread/tss.hpp>
+	<boost/thread/recursive_mutex.hpp>
+	<boost/thread/condition.hpp>
+	<boost/thread/thread.hpp>
+
+1261455198 /usr/include/OGRE/OgreMemoryAllocatorConfig.h
+	"OgrePrerequisites.h"
+	"OgreMemoryAllocatedObject.h"
+	"OgreMemorySTLAllocator.h"
+	"OgreMemoryNedAlloc.h"
+	"OgreMemoryStdAlloc.h"
+
+1261455198 /usr/include/OGRE/OgreMemoryAllocatedObject.h
+	"OgrePrerequisites.h"
+
+1261455198 /usr/include/OGRE/OgreMemorySTLAllocator.h
+	"OgrePrerequisites.h"
+
+1261455198 /usr/include/OGRE/OgreMemoryNedAlloc.h
+
+1261455198 /usr/include/OGRE/OgreMemoryStdAlloc.h
+	<memory>
+	<limits>
+	"OgreAlignedAllocator.h"
+	"OgreMemoryTracker.h"
+
+1261455198 /usr/include/OGRE/OgreAlignedAllocator.h
+
+1261455198 /usr/include/OGRE/OgreMemoryTracker.h
+	<tr1/unordered_map>
+	<ext/hash_map>
+
+1261455198 /usr/include/OGRE/OgreAnimation.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreIteratorWrappers.h"
+	"OgreAnimable.h"
+	"OgreAnimationTrack.h"
+	"OgreAnimationState.h"
+
+1261455198 /usr/include/OGRE/OgreString.h
+	"OgrePrerequisites.h"
+	<tr1/unordered_map>
+	<ext/hash_map>
+
+1261455198 /usr/include/OGRE/OgreIteratorWrappers.h
+	"OgrePrerequisites.h"
+
+1261455198 /usr/include/OGRE/OgreAnimable.h
+	"OgrePrerequisites.h"
+	"OgreVector2.h"
+	"OgreVector3.h"
+	"OgreVector4.h"
+	"OgreQuaternion.h"
+	"OgreColourValue.h"
+	"OgreSharedPtr.h"
+	"OgreStringVector.h"
+	"OgreException.h"
+	"OgreAny.h"
+
+1261455198 /usr/include/OGRE/OgreVector2.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+
+1261455198 /usr/include/OGRE/OgreMath.h
+	"OgrePrerequisites.h"
+
+1261455198 /usr/include/OGRE/OgreVector3.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+	"OgreQuaternion.h"
+
+1261455198 /usr/include/OGRE/OgreQuaternion.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+
+1261455198 /usr/include/OGRE/OgreVector4.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1261455198 /usr/include/OGRE/OgreColourValue.h
+	"OgrePrerequisites.h"
+
+1261455198 /usr/include/OGRE/OgreSharedPtr.h
+	"OgrePrerequisites.h"
+
+1261455198 /usr/include/OGRE/OgreStringVector.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSharedPtr.h"
+
+1261455198 /usr/include/OGRE/OgreException.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	<exception>
+
+1261455198 /usr/include/OGRE/OgreAny.h
+	"OgrePrerequisites.h"
+	"OgreException.h"
+	"OgreString.h"
+	<algorithm>
+	<typeinfo>
+
+1261455198 /usr/include/OGRE/OgreAnimationTrack.h
+	"OgrePrerequisites.h"
+	"OgreSimpleSpline.h"
+	"OgreRotationalSpline.h"
+	"OgreKeyFrame.h"
+	"OgreAnimable.h"
+	"OgrePose.h"
+
+1261455198 /usr/include/OGRE/OgreSimpleSpline.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreMatrix4.h"
+
+1261455198 /usr/include/OGRE/OgreMatrix4.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreMatrix3.h"
+	"OgreVector4.h"
+	"OgrePlane.h"
+
+1261455198 /usr/include/OGRE/OgreMatrix3.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1261455198 /usr/include/OGRE/OgrePlane.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1261455198 /usr/include/OGRE/OgreRotationalSpline.h
+	"OgrePrerequisites.h"
+	"OgreQuaternion.h"
+
+1261455198 /usr/include/OGRE/OgreKeyFrame.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreQuaternion.h"
+	"OgreAny.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreIteratorWrappers.h"
+
+1261455198 /usr/include/OGRE/OgreHardwareVertexBuffer.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreSharedPtr.h"
+	"OgreColourValue.h"
+
+1261455198 /usr/include/OGRE/OgreHardwareBuffer.h
+	"OgrePrerequisites.h"
+
+1261455198 /usr/include/OGRE/OgrePose.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreVector3.h"
+	"OgreIteratorWrappers.h"
+
+1261455198 /usr/include/OGRE/OgreAnimationState.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreController.h"
+	"OgreIteratorWrappers.h"
+
+1261455198 /usr/include/OGRE/OgreController.h
+	"OgrePrerequisites.h"
+	"OgreSharedPtr.h"
+
+1261455198 /usr/include/OGRE/OgreArchive.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreDataStream.h"
+	"OgreSharedPtr.h"
+	"OgreStringVector.h"
+	<ctime>
+
+1261455198 /usr/include/OGRE/OgreDataStream.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSharedPtr.h"
+	<istream>
+
+1261455198 /usr/include/OGRE/OgreArchiveManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+
+1261455198 /usr/include/OGRE/OgreResourceManager.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreResourceGroupManager.h"
+	"OgreIteratorWrappers.h"
+	"OgreCommon.h"
+	"OgreDataStream.h"
+	"OgreStringVector.h"
+	"OgreScriptLoader.h"
+
+1261455198 /usr/include/OGRE/OgreResource.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSharedPtr.h"
+	"OgreStringInterface.h"
+	"OgreAtomicWrappers.h"
+
+1261455198 /usr/include/OGRE/OgreStringInterface.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreCommon.h"
+
+1261455198 /usr/include/OGRE/OgreCommon.h
+	"OgreString.h"
+	<utility>
+	<vector>
+	<map>
+
+1261455198 /usr/include/OGRE/OgreAtomicWrappers.h
+	<signal.h>
+	"OgrePrerequisites.h"
+	"OgreException.h"
+	<windows.h>
+	<intrin.h>
+
+1261455198 /usr/include/OGRE/OgreResourceGroupManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreCommon.h"
+	"OgreDataStream.h"
+	"OgreResource.h"
+	"OgreArchive.h"
+	"OgreIteratorWrappers.h"
+	<ctime>
+
+1261455198 /usr/include/OGRE/OgreSingleton.h
+	"OgrePrerequisites.h"
+
+1261455198 /usr/include/OGRE/OgreScriptLoader.h
+	"OgrePrerequisites.h"
+	"OgreDataStream.h"
+	"OgreStringVector.h"
+
+1261455198 /usr/include/OGRE/OgreAxisAlignedBox.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreMatrix4.h"
+
+1261455198 /usr/include/OGRE/OgreBillboardChain.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+
+1261455198 /usr/include/OGRE/OgreMovableObject.h
+	"OgrePrerequisites.h"
+	"OgreRenderQueue.h"
+	"OgreAxisAlignedBox.h"
+	"OgreSphere.h"
+	"OgreShadowCaster.h"
+	"OgreFactoryObj.h"
+	"OgreAnimable.h"
+	"OgreAny.h"
+	"OgreUserDefinedObject.h"
+
+1261455198 /usr/include/OGRE/OgreRenderQueue.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+
+1261455198 /usr/include/OGRE/OgreSphere.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1261455198 /usr/include/OGRE/OgreShadowCaster.h
+	"OgrePrerequisites.h"
+	"OgreRenderable.h"
+
+1261455198 /usr/include/OGRE/OgreRenderable.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreRenderOperation.h"
+	"OgreMatrix4.h"
+	"OgreMaterial.h"
+	"OgrePlane.h"
+	"OgreGpuProgram.h"
+	"OgreVector4.h"
+	"OgreException.h"
+	"OgreAny.h"
+
+1261455198 /usr/include/OGRE/OgreRenderOperation.h
+	"OgrePrerequisites.h"
+	"OgreVertexIndexData.h"
+
+1261455198 /usr/include/OGRE/OgreVertexIndexData.h
+	"OgrePrerequisites.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwareIndexBuffer.h"
+
+1261455198 /usr/include/OGRE/OgreHardwareIndexBuffer.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreSharedPtr.h"
+
+1261455198 /usr/include/OGRE/OgreMaterial.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreIteratorWrappers.h"
+	"OgreCommon.h"
+	"OgreColourValue.h"
+	"OgreBlendMode.h"
+
+1261455198 /usr/include/OGRE/OgreBlendMode.h
+	"OgrePrerequisites.h"
+	"OgreColourValue.h"
+
+1261455198 /usr/include/OGRE/OgreGpuProgram.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreSharedPtr.h"
+	"OgreIteratorWrappers.h"
+	"OgreSerializer.h"
+	"OgreRenderOperation.h"
+
+1261455198 /usr/include/OGRE/OgreSerializer.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreDataStream.h"
+
+1261455198 /usr/include/OGRE/OgreFactoryObj.h
+	"OgrePrerequisites.h"
+
+1261455198 /usr/include/OGRE/OgreUserDefinedObject.h
+	"OgrePrerequisites.h"
+
+1261455198 /usr/include/OGRE/OgreBillboardSet.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreRadixSort.h"
+	"OgreCommon.h"
+
+1261455198 /usr/include/OGRE/OgreRadixSort.h
+	"OgrePrerequisites.h"
+
+1261455198 /usr/include/OGRE/OgreBone.h
+	"OgrePrerequisites.h"
+	"OgreNode.h"
+
+1261455198 /usr/include/OGRE/OgreNode.h
+	"OgrePrerequisites.h"
+	"OgreMatrix3.h"
+	"OgreMatrix4.h"
+	"OgreQuaternion.h"
+	"OgreString.h"
+	"OgreRenderable.h"
+	"OgreIteratorWrappers.h"
+
+1261455198 /usr/include/OGRE/OgreCamera.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreMovableObject.h"
+	"OgreMatrix4.h"
+	"OgreVector3.h"
+	"OgrePlane.h"
+	"OgreQuaternion.h"
+	"OgreCommon.h"
+	"OgreFrustum.h"
+	"OgreRay.h"
+	"OgrePlaneBoundedVolume.h"
+
+1261455198 /usr/include/OGRE/OgreFrustum.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreAxisAlignedBox.h"
+	"OgreVertexIndexData.h"
+	"OgreMovablePlane.h"
+
+1261455198 /usr/include/OGRE/OgreMovablePlane.h
+	"OgrePrerequisites.h"
+	"OgrePlane.h"
+	"OgreMovableObject.h"
+
+1261455198 /usr/include/OGRE/OgreRay.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgrePlaneBoundedVolume.h"
+
+1261455198 /usr/include/OGRE/OgrePlaneBoundedVolume.h
+	"OgrePrerequisites.h"
+	"OgreAxisAlignedBox.h"
+	"OgreSphere.h"
+	"OgreMath.h"
+	"OgrePlane.h"
+
+1261455198 /usr/include/OGRE/OgreConfigFile.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreStringVector.h"
+	"OgreIteratorWrappers.h"
+	"OgreDataStream.h"
+
+1261455198 /usr/include/OGRE/OgreControllerManager.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreSingleton.h"
+	"OgreController.h"
+	"OgrePredefinedControllers.h"
+	"OgreTextureUnitState.h"
+	"OgreSharedPtr.h"
+
+1261455198 /usr/include/OGRE/OgrePredefinedControllers.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreController.h"
+	"OgreFrameListener.h"
+	"OgreGpuProgram.h"
+
+1261455198 /usr/include/OGRE/OgreFrameListener.h
+	"OgrePrerequisites.h"
+
+1261455198 /usr/include/OGRE/OgreTextureUnitState.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreBlendMode.h"
+	"OgreMatrix4.h"
+	"OgreIteratorWrappers.h"
+	"OgreString.h"
+	"OgreTexture.h"
+
+1261455198 /usr/include/OGRE/OgreTexture.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreResource.h"
+	"OgreImage.h"
+
+1261455198 /usr/include/OGRE/OgreImage.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgrePixelFormat.h"
+	"OgreDataStream.h"
+
+1261455198 /usr/include/OGRE/OgrePixelFormat.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+
+1261455198 /usr/include/OGRE/OgreEntity.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreString.h"
+	"OgreMovableObject.h"
+	"OgreQuaternion.h"
+	"OgreVector3.h"
+	"OgreHardwareBufferManager.h"
+	"OgreMesh.h"
+	"OgreRenderable.h"
+
+1261455198 /usr/include/OGRE/OgreHardwareBufferManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwareIndexBuffer.h"
+	"OgreRenderToVertexBuffer.h"
+
+1261455198 /usr/include/OGRE/OgreRenderToVertexBuffer.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreRenderOperation.h"
+
+1261455198 /usr/include/OGRE/OgreMesh.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreVertexIndexData.h"
+	"OgreAxisAlignedBox.h"
+	"OgreVertexBoneAssignment.h"
+	"OgreIteratorWrappers.h"
+	"OgreProgressiveMesh.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreSkeleton.h"
+	"OgreAnimationTrack.h"
+	"OgrePose.h"
+	"OgreDataStream.h"
+
+1261455198 /usr/include/OGRE/OgreVertexBoneAssignment.h
+	"OgrePrerequisites.h"
+
+1261455198 /usr/include/OGRE/OgreProgressiveMesh.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwareIndexBuffer.h"
+	"OgreRenderOperation.h"
+
+1261455198 /usr/include/OGRE/OgreSkeleton.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreQuaternion.h"
+	"OgreVector3.h"
+	"OgreIteratorWrappers.h"
+	"OgreStringVector.h"
+
+1261455198 /usr/include/OGRE/OgreGpuProgramManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreException.h"
+	"OgreGpuProgram.h"
+	"OgreSingleton.h"
+
+1261455198 /usr/include/OGRE/OgreHardwarePixelBuffer.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreSharedPtr.h"
+	"OgrePixelFormat.h"
+	"OgreImage.h"
+
+1261455198 /usr/include/OGRE/OgreHardwareOcclusionQuery.h
+	"OgrePrerequisites.h"
+
+1261455198 /usr/include/OGRE/OgreHighLevelGpuProgram.h
+	"OgrePrerequisites.h"
+	"OgreGpuProgram.h"
+
+1261455198 /usr/include/OGRE/OgreHighLevelGpuProgramManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+	"OgreException.h"
+	"OgreHighLevelGpuProgram.h"
+
+1261455198 /usr/include/OGRE/OgreLight.h
+	"OgrePrerequisites.h"
+	"OgreColourValue.h"
+	"OgreVector3.h"
+	"OgreVector4.h"
+	"OgreString.h"
+	"OgreMovableObject.h"
+	"OgrePlaneBoundedVolume.h"
+	"OgreShadowCameraSetup.h"
+
+1261455198 /usr/include/OGRE/OgreShadowCameraSetup.h
+	"OgrePrerequisites.h"
+	"OgreMovablePlane.h"
+	"OgreSharedPtr.h"
+
+1261455198 /usr/include/OGRE/OgreLogManager.h
+	"OgrePrerequisites.h"
+	"OgreLog.h"
+	"OgreSingleton.h"
+	"OgreString.h"
+
+1261455198 /usr/include/OGRE/OgreLog.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+
+1261455198 /usr/include/OGRE/OgreManualObject.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreResourceGroupManager.h"
+
+1261455198 /usr/include/OGRE/OgreMaterialManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreResourceManager.h"
+	"OgreMaterial.h"
+	"OgreStringVector.h"
+	"OgreMaterialSerializer.h"
+
+1261455198 /usr/include/OGRE/OgreMaterialSerializer.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreBlendMode.h"
+	"OgreTextureUnitState.h"
+	"OgreGpuProgram.h"
+	"OgreStringVector.h"
+
+1261455198 /usr/include/OGRE/OgreMeshManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+	"OgreVector3.h"
+	"OgreHardwareBuffer.h"
+	"OgreMesh.h"
+	"OgrePatchMesh.h"
+
+1261455198 /usr/include/OGRE/OgrePatchMesh.h
+	"OgrePrerequisites.h"
+	"OgreMesh.h"
+	"OgrePatchSurface.h"
+
+1261455198 /usr/include/OGRE/OgrePatchSurface.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreString.h"
+	"OgreRenderOperation.h"
+	"OgreAxisAlignedBox.h"
+
+1261455198 /usr/include/OGRE/OgreMeshSerializer.h
+	"OgrePrerequisites.h"
+	"OgreMeshSerializerImpl.h"
+	"OgreSerializer.h"
+
+1261455198 /usr/include/OGRE/OgreMeshSerializerImpl.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSerializer.h"
+	"OgreMaterial.h"
+	"OgreMesh.h"
+	"OgreEdgeListBuilder.h"
+
+1261455198 /usr/include/OGRE/OgreEdgeListBuilder.h
+	"OgrePrerequisites.h"
+	"OgreVector4.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreRenderOperation.h"
+
+1261455198 /usr/include/OGRE/OgreOverlay.h
+	"OgrePrerequisites.h"
+	"OgreSceneNode.h"
+	"OgreIteratorWrappers.h"
+	"OgreMatrix4.h"
+
+1261455198 /usr/include/OGRE/OgreSceneNode.h
+	"OgrePrerequisites.h"
+	"OgreNode.h"
+	"OgreIteratorWrappers.h"
+	"OgreAxisAlignedBox.h"
+
+1261455198 /usr/include/OGRE/OgreOverlayContainer.h
+	"OgrePrerequisites.h"
+	"OgreOverlayElement.h"
+	"OgreIteratorWrappers.h"
+
+1261455198 /usr/include/OGRE/OgreOverlayElement.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreRenderable.h"
+	"OgreUTFString.h"
+	"OgreStringInterface.h"
+	"OgreOverlayElementCommands.h"
+	"OgreColourValue.h"
+	"OgreRectangle.h"
+
+1261455198 /usr/include/OGRE/OgreUTFString.h
+	"OgrePrerequisites.h"
+	<iterator>
+	<string>
+	<stdexcept>
+
+1261455198 /usr/include/OGRE/OgreOverlayElementCommands.h
+	"OgrePrerequisites.h"
+	"OgreStringInterface.h"
+
+1261455198 /usr/include/OGRE/OgreRectangle.h
+	"OgrePrerequisites.h"
+
+1261455198 /usr/include/OGRE/OgreOverlayManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreStringVector.h"
+	"OgreOverlay.h"
+	"OgreScriptLoader.h"
+
+1261455198 /usr/include/OGRE/OgreParticleAffector.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreStringInterface.h"
+
+1261455198 /usr/include/OGRE/OgreParticleEmitter.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreVector3.h"
+	"OgreColourValue.h"
+	"OgreStringInterface.h"
+	"OgreParticleEmitterCommands.h"
+	"OgreParticle.h"
+
+1261455198 /usr/include/OGRE/OgreParticleEmitterCommands.h
+	"OgrePrerequisites.h"
+	"OgreStringInterface.h"
+
+1261455198 /usr/include/OGRE/OgreParticle.h
+	"OgrePrerequisites.h"
+	"OgreBillboard.h"
+
+1261455198 /usr/include/OGRE/OgreBillboard.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreColourValue.h"
+	"OgreCommon.h"
+
+1261455198 /usr/include/OGRE/OgreParticleSystemManager.h
+	"OgrePrerequisites.h"
+	"OgreParticleSystem.h"
+	"OgreFrameListener.h"
+	"OgreSingleton.h"
+	"OgreIteratorWrappers.h"
+	"OgreScriptLoader.h"
+	"OgreResourceGroupManager.h"
+
+1261455198 /usr/include/OGRE/OgreParticleSystem.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreString.h"
+	"OgreParticleIterator.h"
+	"OgreStringInterface.h"
+	"OgreMovableObject.h"
+	"OgreRadixSort.h"
+	"OgreController.h"
+
+1261455198 /usr/include/OGRE/OgreParticleIterator.h
+	"OgrePrerequisites.h"
+
+1261455198 /usr/include/OGRE/OgrePass.h
+	"OgrePrerequisites.h"
+	"OgreGpuProgram.h"
+	"OgreColourValue.h"
+	"OgreBlendMode.h"
+	"OgreCommon.h"
+	"OgreLight.h"
+	"OgreTextureUnitState.h"
+
+1261455198 /usr/include/OGRE/OgreProfiler.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreString.h"
+	"OgreOverlay.h"
+
+1261455198 /usr/include/OGRE/OgreRenderQueueInvocation.h
+	"OgrePrerequisites.h"
+	"OgreRenderQueueSortingGrouping.h"
+	"OgreIteratorWrappers.h"
+
+1261455198 /usr/include/OGRE/OgreRenderQueueSortingGrouping.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+	"OgreMaterial.h"
+	"OgreTechnique.h"
+	"OgrePass.h"
+	"OgreRadixSort.h"
+
+1261455198 /usr/include/OGRE/OgreTechnique.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+	"OgreBlendMode.h"
+	"OgreCommon.h"
+	"OgrePass.h"
+	"OgreIteratorWrappers.h"
+	"OgreRenderSystemCapabilities.h"
+
+1261455198 /usr/include/OGRE/OgreRenderSystemCapabilities.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreStringConverter.h"
+	"OgreStringVector.h"
+	"OgreResource.h"
+	"OgreLogManager.h"
+
+1261455198 /usr/include/OGRE/OgreStringConverter.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+	"OgreString.h"
+	"OgreStringVector.h"
+
+1261455198 /usr/include/OGRE/OgreRenderQueueListener.h
+	"OgrePrerequisites.h"
+	"OgreRenderQueue.h"
+
+1261455198 /usr/include/OGRE/OgreRenderSystem.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreTextureUnitState.h"
+	"OgreCommon.h"
+	"OgreRenderOperation.h"
+	"OgreRenderSystemCapabilities.h"
+	"OgreRenderTarget.h"
+	"OgreRenderTexture.h"
+	"OgreFrameListener.h"
+	"OgreConfigOptionMap.h"
+	"OgreGpuProgram.h"
+	"OgrePlane.h"
+	"OgreIteratorWrappers.h"
+
+1261455198 /usr/include/OGRE/OgreRenderTarget.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreTextureManager.h"
+	"OgreViewport.h"
+	"OgreTimer.h"
+
+1261455198 /usr/include/OGRE/OgreTextureManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreTexture.h"
+	"OgreSingleton.h"
+
+1261455198 /usr/include/OGRE/OgreViewport.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreColourValue.h"
+
+1261455198 /usr/include/OGRE/OgreTimer.h
+	"OgrePrerequisites.h"
+	"OgrePlatform.h"
+	"WIN32/OgreTimerImp.h"
+	"GLX/OgreTimerImp.h"
+	"OSX/OgreTimerImp.h"
+
+1261455198 /usr/include/OGRE/GLX/OgreTimerImp.h
+	"../OgrePrerequisites.h"
+
+1261455198 /usr/include/OGRE/OgreRenderTexture.h
+	"OgrePrerequisites.h"
+	"OgreRenderTarget.h"
+
+1261455198 /usr/include/OGRE/OgreConfigOptionMap.h
+	"OgrePrerequisites.h"
+	"OgreStringVector.h"
+	"OgreString.h"
+
+1261455198 /usr/include/OGRE/OgreRenderTargetListener.h
+	"OgrePrerequisites.h"
+
+1261455198 /usr/include/OGRE/OgreRenderWindow.h
+	"OgrePrerequisites.h"
+	"OgreRenderTarget.h"
+
+1261455198 /usr/include/OGRE/OgreResourceBackgroundQueue.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreSingleton.h"
+	"OgreResource.h"
+
+1261455198 /usr/include/OGRE/OgreRibbonTrail.h
+	"OgrePrerequisites.h"
+	"OgreBillboardChain.h"
+	"OgreNode.h"
+	"OgreIteratorWrappers.h"
+	"OgreFrameListener.h"
+	"OgreControllerManager.h"
+
+1261455198 /usr/include/OGRE/OgreRoot.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreString.h"
+	"OgreSceneManagerEnumerator.h"
+	"OgreResourceGroupManager.h"
+	<exception>
+
+1261455198 /usr/include/OGRE/OgreSceneManagerEnumerator.h
+	"OgrePrerequisites.h"
+	"OgreSceneManager.h"
+	"OgreSingleton.h"
+	"OgreIteratorWrappers.h"
+
+1261455198 /usr/include/OGRE/OgreSceneManager.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSceneNode.h"
+	"OgrePlane.h"
+	"OgreQuaternion.h"
+	"OgreColourValue.h"
+	"OgreCommon.h"
+	"OgreSceneQuery.h"
+	"OgreAutoParamDataSource.h"
+	"OgreAnimationState.h"
+	"OgreRenderQueue.h"
+	"OgreRenderQueueSortingGrouping.h"
+	"OgreRectangle2D.h"
+	"OgrePixelFormat.h"
+	"OgreResourceGroupManager.h"
+	"OgreTexture.h"
+	"OgreShadowCameraSetup.h"
+	"OgreShadowTextureManager.h"
+	"OgreCamera.h"
+	"OgreInstancedGeometry.h"
+
+1261455198 /usr/include/OGRE/OgreSceneQuery.h
+	"OgrePrerequisites.h"
+	"OgreAxisAlignedBox.h"
+	"OgreSphere.h"
+	"OgreRay.h"
+	"OgreRenderOperation.h"
+	"OgrePlaneBoundedVolume.h"
+
+1261455198 /usr/include/OGRE/OgreAutoParamDataSource.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreMatrix4.h"
+	"OgreVector4.h"
+	"OgreLight.h"
+	"OgreColourValue.h"
+
+1261455198 /usr/include/OGRE/OgreRectangle2D.h
+	"OgrePrerequisites.h"
+	"OgreSimpleRenderable.h"
+
+1261455198 /usr/include/OGRE/OgreSimpleRenderable.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreAxisAlignedBox.h"
+	"OgreMaterial.h"
+
+1261455198 /usr/include/OGRE/OgreShadowTextureManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgrePixelFormat.h"
+	"OgreTexture.h"
+	"OgreIteratorWrappers.h"
+
+1261455198 /usr/include/OGRE/OgreInstancedGeometry.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreSimpleRenderable.h"
+	"OgreSkeleton.h"
+	"OgreSkeletonInstance.h"
+	"OgreAnimationTrack.h"
+	"OgreBone.h"
+	"OgreIteratorWrappers.h"
+
+1261455198 /usr/include/OGRE/OgreSkeletonInstance.h
+	"OgrePrerequisites.h"
+	"OgreSkeleton.h"
+
+1261455198 /usr/include/OGRE/OgreSkeletonManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+
+1261455198 /usr/include/OGRE/OgreSkeletonSerializer.h
+	"OgrePrerequisites.h"
+	"OgreSkeleton.h"
+	"OgreSerializer.h"
+
+1261455198 /usr/include/OGRE/OgreStaticGeometry.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+
+1261455198 /usr/include/OGRE/OgreSubEntity.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreRenderable.h"
+	"OgreHardwareBufferManager.h"
+
+1261455198 /usr/include/OGRE/OgreSubMesh.h
+	"OgrePrerequisites.h"
+	"OgreVertexIndexData.h"
+	"OgreMaterial.h"
+	"OgreRenderOperation.h"
+	"OgreVertexBoneAssignment.h"
+	"OgreProgressiveMesh.h"
+	"OgreAnimationTrack.h"
+
+1261455198 /usr/include/OGRE/OgreCompositor.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+	"OgreResource.h"
+
+1261455198 /usr/include/OGRE/OgreCompositorManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreCompositor.h"
+	"OgreRectangle2D.h"
+	"OgreCompositorSerializer.h"
+	"OgreRenderSystem.h"
+
+1261455198 /usr/include/OGRE/OgreCompositorSerializer.h
+	"OgrePrerequisites.h"
+	"OgreDataStream.h"
+
+1261455198 /usr/include/OGRE/OgreCompositorChain.h
+	"OgrePrerequisites.h"
+	"OgreRenderTargetListener.h"
+	"OgreRenderQueueListener.h"
+	"OgreCompositorInstance.h"
+	"OgreCompositor.h"
+
+1261455198 /usr/include/OGRE/OgreCompositorInstance.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreTexture.h"
+	"OgreRenderQueue.h"
+
+1261455198 /usr/include/OGRE/OgreCompositionTechnique.h
+	"OgrePrerequisites.h"
+	"OgrePixelFormat.h"
+	"OgreIteratorWrappers.h"
+
+1261455198 /usr/include/OGRE/OgreCompositionPass.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreRenderSystem.h"
+	"OgreRenderQueue.h"
+
+1261455198 /usr/include/OGRE/OgreCompositionTargetPass.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+
+1261455198 /usr/include/OGRE/OgreWindowEventUtilities.h
+	"OgrePrerequisites.h"
+	"OgrePlatform.h"
+	<windows.h>
+
+1261455198 /usr/include/OGRE/OgreShadowCameraSetupFocused.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetup.h"
+	"OgrePolygon.h"
+	"OgreConvexBody.h"
+
+1261455198 /usr/include/OGRE/OgrePolygon.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1261455198 /usr/include/OGRE/OgreConvexBody.h
+	"OgrePrerequisites.h"
+	"OgrePolygon.h"
+
+1261455198 /usr/include/OGRE/OgreShadowCameraSetupLiSPSM.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetupFocused.h"
+
+1261455198 /usr/include/OGRE/OgreShadowCameraSetupPlaneOptimal.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetup.h"
+
+1261455198 /usr/include/OGRE/OgreShadowCameraSetupPSSM.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetupLiSPSM.h"
+
+1330779567 /home/william/Documents/Programming/OGRE/test2/platform.h
+	"windows.h"
+
+1330783905 /home/william/Documents/Programming/OGRE/test2/Application.hpp
+	"ExampleApplication.h"
+
+1330780343 /usr/include/OGRE/ExampleApplication.h
+	"Ogre.h"
+	"OgreConfigFile.h"
+	"ExampleFrameListener.h"
+	<CoreFoundation/CoreFoundation.h>
+
+1330780343 /usr/include/OGRE/ExampleFrameListener.h
+	"Ogre.h"
+	"OgreStringConverter.h"
+	"OgreException.h"
+	<OIS/OIS.h>
+
+1336242686 source:/home/william/Documents/Programming/OGRE/anim_test/main.cpp
+	<Ogre.h>
+	"platform.h"
+	"Application.hpp"
+
+1330779567 /home/william/Documents/Programming/OGRE/anim_test/platform.h
+	"windows.h"
+
+1336217210 /home/william/Documents/Programming/OGRE/anim_test/Application.hpp
+	"BaseApplication.h"
+	<deque>
+
+1293845836 /home/william/Documents/Programming/OGRE/anim_test/BaseApplication.h
+	<OgreCamera.h>
+	<OgreEntity.h>
+	<OgreLogManager.h>
+	<OgreRoot.h>
+	<OgreViewport.h>
+	<OgreSceneManager.h>
+	<OgreRenderWindow.h>
+	<OgreConfigFile.h>
+	<OISEvents.h>
+	<OISInputManager.h>
+	<OISKeyboard.h>
+	<OISMouse.h>
+	<SdkTrays.h>
+	<SdkCameraMan.h>
+
+1241309269 /usr/include/OIS/OISEvents.h
+	"OISPrereqs.h"
+
+1241309269 /usr/include/OIS/OISPrereqs.h
+	<vector>
+	<string>
+	<map>
+	"OISConfig.h"
+
+1241309269 /usr/include/OIS/OISConfig.h
+
+1241309269 /usr/include/OIS/OISInputManager.h
+	"OISPrereqs.h"
+
+1241309269 /usr/include/OIS/OISKeyboard.h
+	"OISObject.h"
+	"OISEvents.h"
+
+1241309269 /usr/include/OIS/OISObject.h
+	"OISPrereqs.h"
+	"OISInterface.h"
+
+1241309269 /usr/include/OIS/OISInterface.h
+	"OISPrereqs.h"
+
+1241309269 /usr/include/OIS/OISMouse.h
+	"OISObject.h"
+	"OISEvents.h"
+
+1293845837 source:/home/william/Documents/Programming/OGRE/TutorialFramework/BaseApplication.cpp
+	"BaseApplication.h"
+
+1293845836 /home/william/Documents/Programming/OGRE/TutorialFramework/BaseApplication.h
+	<OgreCamera.h>
+	<OgreEntity.h>
+	<OgreLogManager.h>
+	<OgreRoot.h>
+	<OgreViewport.h>
+	<OgreSceneManager.h>
+	<OgreRenderWindow.h>
+	<OgreConfigFile.h>
+	<OISEvents.h>
+	<OISInputManager.h>
+	<OISKeyboard.h>
+	<OISMouse.h>
+	<SdkTrays.h>
+	<SdkCameraMan.h>
+
+1326562839 /usr/local/include/OGRE/OgreCamera.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreMovableObject.h"
+	"OgreMatrix4.h"
+	"OgreVector3.h"
+	"OgrePlane.h"
+	"OgreQuaternion.h"
+	"OgreCommon.h"
+	"OgreFrustum.h"
+	"OgreRay.h"
+	"OgrePlaneBoundedVolume.h"
+
+1326562839 /usr/local/include/OGRE/OgrePrerequisites.h
+	"OgrePlatform.h"
+	<string>
+	"Threading/OgreThreadDefines.h"
+	"OgreStdHeaders.h"
+	"OgreMemoryAllocatorConfig.h"
+
+1326562839 /usr/local/include/OGRE/OgrePlatform.h
+	"OgreConfig.h"
+	<_mingw.h>
+
+1326562839 /usr/local/include/OGRE/OgreConfig.h
+	"OgreBuildSettings.h"
+
+1336214848 /usr/local/include/OGRE/OgreBuildSettings.h
+
+1326562839 /usr/local/include/OGRE/Threading/OgreThreadDefines.h
+	"OgreThreadDefinesNone.h"
+	"OgreThreadDefinesBoost.h"
+	"OgreThreadDefinesPoco.h"
+	"OgreThreadDefinesTBB.h"
+
+1326562839 /usr/local/include/OGRE/Threading/OgreThreadDefinesBoost.h
+
+1326562839 /usr/local/include/OGRE/OgreStdHeaders.h
+	<cassert>
+	<cstdio>
+	<cstdlib>
+	<ctime>
+	<cstring>
+	<cstdarg>
+	<cmath>
+	<vector>
+	<map>
+	<string>
+	<set>
+	<list>
+	<deque>
+	<queue>
+	<bitset>
+	<tr1/unordered_map>
+	<tr1/unordered_set>
+	<ext/hash_map>
+	<ext/hash_set>
+	<unordered_map>
+	<unordered_set>
+	<hash_set>
+	<hash_map>
+	<algorithm>
+	<functional>
+	<limits>
+	<fstream>
+	<iostream>
+	<iomanip>
+	<sstream>
+	<sys/types.h>
+	<sys/stat.h>
+	<unistd.h>
+	<unistd.h>
+	<dlfcn.h>
+	<unistd.h>
+	<sys/param.h>
+	<CoreFoundation/CoreFoundation.h>
+	"Threading/OgreThreadHeaders.h"
+
+1326562839 /usr/local/include/OGRE/Threading/OgreThreadHeaders.h
+	"OgreThreadHeadersBoost.h"
+	"OgreThreadHeadersPoco.h"
+	"OgreThreadHeadersTBB.h"
+
+1326562839 /usr/local/include/OGRE/Threading/OgreThreadHeadersBoost.h
+	<boost/thread/tss.hpp>
+	<boost/thread/recursive_mutex.hpp>
+	<boost/thread/condition.hpp>
+	<boost/thread/thread.hpp>
+	<boost/thread/shared_mutex.hpp>
+	<boost/thread/locks.hpp>
+
+1326562839 /usr/local/include/OGRE/OgreMemoryAllocatorConfig.h
+	"OgreMemoryAllocatedObject.h"
+	"OgreMemoryAllocatedObject.h"
+	"OgreMemorySTLAllocator.h"
+	"OgreMemoryNedPooling.h"
+	"OgreMemoryNedAlloc.h"
+	"OgreMemoryStdAlloc.h"
+
+1326562839 /usr/local/include/OGRE/OgreMemoryAllocatedObject.h
+	"OgrePrerequisites.h"
+
+1326562839 /usr/local/include/OGRE/OgreMemorySTLAllocator.h
+	"OgrePrerequisites.h"
+	"OgreHeaderPrefix.h"
+	"OgreHeaderSuffix.h"
+
+1326562839 /usr/local/include/OGRE/OgreHeaderPrefix.h
+	"OgrePrerequisites.h"
+
+1326562839 /usr/local/include/OGRE/OgreHeaderSuffix.h
+	"OgrePrerequisites.h"
+
+1326562839 /usr/local/include/OGRE/OgreMemoryNedPooling.h
+
+1326562839 /usr/local/include/OGRE/OgreMemoryNedAlloc.h
+
+1326562839 /usr/local/include/OGRE/OgreMemoryStdAlloc.h
+	<memory>
+	<limits>
+	"OgreAlignedAllocator.h"
+	"OgreMemoryTracker.h"
+
+1326562839 /usr/local/include/OGRE/OgreAlignedAllocator.h
+
+1326562839 /usr/local/include/OGRE/OgreMemoryTracker.h
+	<tr1/unordered_map>
+	<ext/hash_map>
+
+1326562839 /usr/local/include/OGRE/OgreString.h
+	"OgrePrerequisites.h"
+	<tr1/unordered_map>
+	<ext/hash_map>
+
+1326562839 /usr/local/include/OGRE/OgreMovableObject.h
+	"OgrePrerequisites.h"
+	"OgreRenderQueue.h"
+	"OgreAxisAlignedBox.h"
+	"OgreSphere.h"
+	"OgreShadowCaster.h"
+	"OgreFactoryObj.h"
+	"OgreAnimable.h"
+	"OgreAny.h"
+	"OgreUserObjectBindings.h"
+
+1326562839 /usr/local/include/OGRE/OgreRenderQueue.h
+	"OgreHeaderPrefix.h"
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+	"OgreHeaderSuffix.h"
+
+1326562839 /usr/local/include/OGRE/OgreIteratorWrappers.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrapper.h"
+	"OgreIteratorRange.h"
+
+1326562839 /usr/local/include/OGRE/OgreIteratorWrapper.h
+
+1326562839 /usr/local/include/OGRE/OgreIteratorRange.h
+	<boost/range.hpp>
+
+1326562839 /usr/local/include/OGRE/OgreAxisAlignedBox.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreMatrix4.h"
+
+1326562839 /usr/local/include/OGRE/OgreVector3.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+	"OgreQuaternion.h"
+
+1326562839 /usr/local/include/OGRE/OgreMath.h
+	"OgrePrerequisites.h"
+
+1326562839 /usr/local/include/OGRE/OgreQuaternion.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+
+1326562839 /usr/local/include/OGRE/OgreMatrix4.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreMatrix3.h"
+	"OgreVector4.h"
+	"OgrePlane.h"
+
+1326562839 /usr/local/include/OGRE/OgreMatrix3.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1326562839 /usr/local/include/OGRE/OgreVector4.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1326562839 /usr/local/include/OGRE/OgrePlane.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1326562839 /usr/local/include/OGRE/OgreSphere.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1326562839 /usr/local/include/OGRE/OgreShadowCaster.h
+	"OgrePrerequisites.h"
+	"OgreRenderable.h"
+
+1326562839 /usr/local/include/OGRE/OgreRenderable.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreRenderOperation.h"
+	"OgreMatrix4.h"
+	"OgreMaterial.h"
+	"OgrePlane.h"
+	"OgreGpuProgram.h"
+	"OgreVector4.h"
+	"OgreException.h"
+	"OgreUserObjectBindings.h"
+
+1326562839 /usr/local/include/OGRE/OgreCommon.h
+	"OgreString.h"
+	<utility>
+	<sstream>
+
+1326562839 /usr/local/include/OGRE/OgreRenderOperation.h
+	"OgrePrerequisites.h"
+	"OgreVertexIndexData.h"
+
+1326562839 /usr/local/include/OGRE/OgreVertexIndexData.h
+	"OgrePrerequisites.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwareIndexBuffer.h"
+
+1326562839 /usr/local/include/OGRE/OgreHardwareVertexBuffer.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreSharedPtr.h"
+	"OgreColourValue.h"
+
+1326562839 /usr/local/include/OGRE/OgreHardwareBuffer.h
+	"OgrePrerequisites.h"
+
+1326562839 /usr/local/include/OGRE/OgreSharedPtr.h
+	"OgrePrerequisites.h"
+
+1326562839 /usr/local/include/OGRE/OgreColourValue.h
+	"OgrePrerequisites.h"
+
+1326562839 /usr/local/include/OGRE/OgreHardwareIndexBuffer.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreSharedPtr.h"
+
+1326562839 /usr/local/include/OGRE/OgreMaterial.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreIteratorWrappers.h"
+	"OgreCommon.h"
+	"OgreColourValue.h"
+	"OgreBlendMode.h"
+
+1326562839 /usr/local/include/OGRE/OgreResource.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSharedPtr.h"
+	"OgreStringInterface.h"
+	"OgreAtomicWrappers.h"
+
+1326562839 /usr/local/include/OGRE/OgreStringInterface.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreCommon.h"
+
+1326562839 /usr/local/include/OGRE/OgreAtomicWrappers.h
+	<signal.h>
+	"OgrePrerequisites.h"
+	"OgreException.h"
+	<windows.h>
+	<intrin.h>
+
+1326562839 /usr/local/include/OGRE/OgreException.h
+	"OgrePrerequisites.h"
+	"OgreHeaderPrefix.h"
+	"OgreString.h"
+	<exception>
+	"OgreHeaderSuffix.h"
+
+1326562839 /usr/local/include/OGRE/OgreBlendMode.h
+	"OgrePrerequisites.h"
+	"OgreColourValue.h"
+
+1326562839 /usr/local/include/OGRE/OgreGpuProgram.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreSharedPtr.h"
+	"OgreIteratorWrappers.h"
+	"OgreSerializer.h"
+	"OgreRenderOperation.h"
+	"OgreGpuProgramParams.h"
+
+1326562839 /usr/local/include/OGRE/OgreSerializer.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreDataStream.h"
+
+1326562839 /usr/local/include/OGRE/OgreDataStream.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSharedPtr.h"
+	<istream>
+
+1326562839 /usr/local/include/OGRE/OgreGpuProgramParams.h
+	"OgrePrerequisites.h"
+	"OgreSharedPtr.h"
+	"OgreIteratorWrappers.h"
+	"OgreSerializer.h"
+	"OgreRenderOperation.h"
+	"OgreAny.h"
+
+1326562839 /usr/local/include/OGRE/OgreAny.h
+	"OgrePrerequisites.h"
+	"OgreException.h"
+	"OgreString.h"
+	<algorithm>
+	<typeinfo>
+
+1326562839 /usr/local/include/OGRE/OgreUserObjectBindings.h
+	"OgrePrerequisites.h"
+	"OgreAny.h"
+
+1326562839 /usr/local/include/OGRE/OgreFactoryObj.h
+	"OgrePrerequisites.h"
+
+1326562839 /usr/local/include/OGRE/OgreAnimable.h
+	"OgrePrerequisites.h"
+	"OgreVector2.h"
+	"OgreVector3.h"
+	"OgreVector4.h"
+	"OgreQuaternion.h"
+	"OgreColourValue.h"
+	"OgreSharedPtr.h"
+	"OgreStringVector.h"
+	"OgreException.h"
+	"OgreAny.h"
+
+1326562839 /usr/local/include/OGRE/OgreVector2.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+
+1326562839 /usr/local/include/OGRE/OgreStringVector.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSharedPtr.h"
+
+1326562839 /usr/local/include/OGRE/OgreFrustum.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreAxisAlignedBox.h"
+	"OgreVertexIndexData.h"
+	"OgreMovablePlane.h"
+
+1326562839 /usr/local/include/OGRE/OgreMovablePlane.h
+	"OgrePrerequisites.h"
+	"OgrePlane.h"
+	"OgreMovableObject.h"
+
+1326562839 /usr/local/include/OGRE/OgreRay.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgrePlaneBoundedVolume.h"
+
+1326562839 /usr/local/include/OGRE/OgrePlaneBoundedVolume.h
+	"OgrePrerequisites.h"
+	"OgreAxisAlignedBox.h"
+	"OgreSphere.h"
+	"OgreMath.h"
+	"OgrePlane.h"
+
+1326562839 /usr/local/include/OGRE/OgreEntity.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreString.h"
+	"OgreMovableObject.h"
+	"OgreQuaternion.h"
+	"OgreVector3.h"
+	"OgreHardwareBufferManager.h"
+	"OgreMesh.h"
+	"OgreRenderable.h"
+	"OgreResourceGroupManager.h"
+
+1326562839 /usr/local/include/OGRE/OgreHardwareBufferManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwareIndexBuffer.h"
+	"OgreRenderToVertexBuffer.h"
+
+1326562839 /usr/local/include/OGRE/OgreSingleton.h
+	"OgrePrerequisites.h"
+	"OgreHeaderPrefix.h"
+	"OgreHeaderSuffix.h"
+
+1326562839 /usr/local/include/OGRE/OgreRenderToVertexBuffer.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreRenderOperation.h"
+
+1326562839 /usr/local/include/OGRE/OgreMesh.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreVertexIndexData.h"
+	"OgreAxisAlignedBox.h"
+	"OgreVertexBoneAssignment.h"
+	"OgreIteratorWrappers.h"
+	"OgreProgressiveMesh.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreSkeleton.h"
+	"OgreAnimationTrack.h"
+	"OgrePose.h"
+	"OgreDataStream.h"
+
+1326562839 /usr/local/include/OGRE/OgreVertexBoneAssignment.h
+	"OgrePrerequisites.h"
+
+1326562839 /usr/local/include/OGRE/OgreProgressiveMesh.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwareIndexBuffer.h"
+	"OgreRenderOperation.h"
+
+1326562839 /usr/local/include/OGRE/OgreSkeleton.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreQuaternion.h"
+	"OgreVector3.h"
+	"OgreIteratorWrappers.h"
+	"OgreStringVector.h"
+
+1326562839 /usr/local/include/OGRE/OgreAnimationTrack.h
+	"OgrePrerequisites.h"
+	"OgreSimpleSpline.h"
+	"OgreRotationalSpline.h"
+	"OgreKeyFrame.h"
+	"OgreAnimable.h"
+	"OgrePose.h"
+
+1326562839 /usr/local/include/OGRE/OgreSimpleSpline.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreMatrix4.h"
+
+1326562839 /usr/local/include/OGRE/OgreRotationalSpline.h
+	"OgrePrerequisites.h"
+	"OgreQuaternion.h"
+
+1326562839 /usr/local/include/OGRE/OgreKeyFrame.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreQuaternion.h"
+	"OgreAny.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreIteratorWrappers.h"
+
+1326562839 /usr/local/include/OGRE/OgrePose.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreVector3.h"
+	"OgreIteratorWrappers.h"
+
+1326562839 /usr/local/include/OGRE/OgreResourceGroupManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreCommon.h"
+	"OgreDataStream.h"
+	"OgreResource.h"
+	"OgreArchive.h"
+	"OgreIteratorWrappers.h"
+	<ctime>
+
+1326562839 /usr/local/include/OGRE/OgreArchive.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreDataStream.h"
+	"OgreSharedPtr.h"
+	"OgreStringVector.h"
+	"OgreException.h"
+	<ctime>
+
+1326562839 /usr/local/include/OGRE/OgreLogManager.h
+	"OgrePrerequisites.h"
+	"OgreLog.h"
+	"OgreSingleton.h"
+	"OgreString.h"
+
+1326562839 /usr/local/include/OGRE/OgreLog.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+
+1326562839 /usr/local/include/OGRE/OgreRoot.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreString.h"
+	"OgreSceneManagerEnumerator.h"
+	"OgreResourceGroupManager.h"
+	"OgreLodStrategyManager.h"
+	"OgreWorkQueue.h"
+	<exception>
+
+1326562839 /usr/local/include/OGRE/OgreSceneManagerEnumerator.h
+	"OgrePrerequisites.h"
+	"OgreSceneManager.h"
+	"OgreSingleton.h"
+	"OgreIteratorWrappers.h"
+
+1326562839 /usr/local/include/OGRE/OgreSceneManager.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSceneNode.h"
+	"OgrePlane.h"
+	"OgreQuaternion.h"
+	"OgreColourValue.h"
+	"OgreCommon.h"
+	"OgreSceneQuery.h"
+	"OgreAutoParamDataSource.h"
+	"OgreAnimationState.h"
+	"OgreRenderQueue.h"
+	"OgreRenderQueueSortingGrouping.h"
+	"OgreRectangle2D.h"
+	"OgrePixelFormat.h"
+	"OgreResourceGroupManager.h"
+	"OgreTexture.h"
+	"OgreShadowCameraSetup.h"
+	"OgreShadowTextureManager.h"
+	"OgreCamera.h"
+	"OgreInstancedGeometry.h"
+	"OgreLodListener.h"
+	"OgreRenderSystem.h"
+
+1326562839 /usr/local/include/OGRE/OgreSceneNode.h
+	"OgrePrerequisites.h"
+	"OgreNode.h"
+	"OgreIteratorWrappers.h"
+	"OgreAxisAlignedBox.h"
+
+1326562839 /usr/local/include/OGRE/OgreNode.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreMatrix3.h"
+	"OgreMatrix4.h"
+	"OgreQuaternion.h"
+	"OgreString.h"
+	"OgreRenderable.h"
+	"OgreIteratorWrappers.h"
+	"OgreMesh.h"
+	"OgreUserObjectBindings.h"
+
+1326562839 /usr/local/include/OGRE/OgreSceneQuery.h
+	"OgrePrerequisites.h"
+	"OgreAxisAlignedBox.h"
+	"OgreSphere.h"
+	"OgreRay.h"
+	"OgreRenderOperation.h"
+	"OgrePlaneBoundedVolume.h"
+
+1326562839 /usr/local/include/OGRE/OgreAutoParamDataSource.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreMatrix4.h"
+	"OgreVector4.h"
+	"OgreLight.h"
+	"OgreColourValue.h"
+
+1326562839 /usr/local/include/OGRE/OgreLight.h
+	"OgrePrerequisites.h"
+	"OgreColourValue.h"
+	"OgreVector3.h"
+	"OgreVector4.h"
+	"OgreString.h"
+	"OgreMovableObject.h"
+	"OgrePlaneBoundedVolume.h"
+	"OgreShadowCameraSetup.h"
+
+1326562839 /usr/local/include/OGRE/OgreShadowCameraSetup.h
+	"OgrePrerequisites.h"
+	"OgreMovablePlane.h"
+	"OgreSharedPtr.h"
+
+1326562839 /usr/local/include/OGRE/OgreAnimationState.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreController.h"
+	"OgreIteratorWrappers.h"
+
+1326562839 /usr/local/include/OGRE/OgreController.h
+	"OgrePrerequisites.h"
+	"OgreSharedPtr.h"
+
+1326562839 /usr/local/include/OGRE/OgreRenderQueueSortingGrouping.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+	"OgreMaterial.h"
+	"OgreTechnique.h"
+	"OgrePass.h"
+	"OgreRadixSort.h"
+
+1326562839 /usr/local/include/OGRE/OgreTechnique.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+	"OgreBlendMode.h"
+	"OgreCommon.h"
+	"OgrePass.h"
+	"OgreIteratorWrappers.h"
+	"OgreRenderSystemCapabilities.h"
+	"OgreUserObjectBindings.h"
+
+1326562839 /usr/local/include/OGRE/OgrePass.h
+	"OgrePrerequisites.h"
+	"OgreGpuProgram.h"
+	"OgreColourValue.h"
+	"OgreBlendMode.h"
+	"OgreCommon.h"
+	"OgreLight.h"
+	"OgreTextureUnitState.h"
+	"OgreUserObjectBindings.h"
+
+1326562839 /usr/local/include/OGRE/OgreTextureUnitState.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreBlendMode.h"
+	"OgreMatrix4.h"
+	"OgreIteratorWrappers.h"
+	"OgreString.h"
+	"OgreTexture.h"
+
+1326562839 /usr/local/include/OGRE/OgreTexture.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreResource.h"
+	"OgreImage.h"
+
+1326562839 /usr/local/include/OGRE/OgreImage.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgrePixelFormat.h"
+	"OgreDataStream.h"
+
+1326562839 /usr/local/include/OGRE/OgrePixelFormat.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+
+1326562839 /usr/local/include/OGRE/OgreRenderSystemCapabilities.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreStringConverter.h"
+	"OgreStringVector.h"
+	"OgreResource.h"
+	"OgreLogManager.h"
+
+1326562839 /usr/local/include/OGRE/OgreStringConverter.h
+	"OgrePrerequisites.h"
+	"OgreStringVector.h"
+	"OgreColourValue.h"
+	"OgreMath.h"
+	"OgreMatrix3.h"
+	"OgreMatrix4.h"
+	"OgreQuaternion.h"
+	"OgreVector2.h"
+	"OgreVector3.h"
+	"OgreVector4.h"
+
+1326562839 /usr/local/include/OGRE/OgreRadixSort.h
+	"OgrePrerequisites.h"
+
+1326562839 /usr/local/include/OGRE/OgreRectangle2D.h
+	"OgrePrerequisites.h"
+	"OgreSimpleRenderable.h"
+
+1326562839 /usr/local/include/OGRE/OgreSimpleRenderable.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreAxisAlignedBox.h"
+	"OgreMaterial.h"
+
+1326562839 /usr/local/include/OGRE/OgreShadowTextureManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgrePixelFormat.h"
+	"OgreTexture.h"
+	"OgreIteratorWrappers.h"
+
+1326562839 /usr/local/include/OGRE/OgreInstancedGeometry.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreSimpleRenderable.h"
+	"OgreSkeleton.h"
+	"OgreSkeletonInstance.h"
+	"OgreAnimationTrack.h"
+	"OgreBone.h"
+	"OgreIteratorWrappers.h"
+	"OgreMesh.h"
+
+1326562839 /usr/local/include/OGRE/OgreSkeletonInstance.h
+	"OgrePrerequisites.h"
+	"OgreSkeleton.h"
+
+1326562839 /usr/local/include/OGRE/OgreBone.h
+	"OgrePrerequisites.h"
+	"OgreNode.h"
+
+1326562839 /usr/local/include/OGRE/OgreLodListener.h
+	"OgrePrerequisites.h"
+
+1326562839 /usr/local/include/OGRE/OgreRenderSystem.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreTextureUnitState.h"
+	"OgreCommon.h"
+	"OgreRenderOperation.h"
+	"OgreRenderSystemCapabilities.h"
+	"OgreRenderTarget.h"
+	"OgreRenderTexture.h"
+	"OgreFrameListener.h"
+	"OgreConfigOptionMap.h"
+	"OgreGpuProgram.h"
+	"OgrePlane.h"
+	"OgreIteratorWrappers.h"
+
+1326562839 /usr/local/include/OGRE/OgreRenderTarget.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreTextureManager.h"
+	"OgreViewport.h"
+	"OgreTimer.h"
+
+1326562839 /usr/local/include/OGRE/OgreTextureManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreTexture.h"
+	"OgreSingleton.h"
+
+1326562839 /usr/local/include/OGRE/OgreResourceManager.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreResourceGroupManager.h"
+	"OgreIteratorWrappers.h"
+	"OgreCommon.h"
+	"OgreDataStream.h"
+	"OgreStringVector.h"
+	"OgreScriptLoader.h"
+
+1326562839 /usr/local/include/OGRE/OgreScriptLoader.h
+	"OgrePrerequisites.h"
+	"OgreDataStream.h"
+	"OgreStringVector.h"
+
+1326562839 /usr/local/include/OGRE/OgreViewport.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreColourValue.h"
+	"OgreFrustum.h"
+
+1326562839 /usr/local/include/OGRE/OgreTimer.h
+	"OgrePrerequisites.h"
+	"OgrePlatform.h"
+	"WIN32/OgreTimerImp.h"
+	"GLX/OgreTimerImp.h"
+	"OSX/OgreTimerImp.h"
+	"iPhone/OgreTimerImp.h"
+
+1326562839 /usr/local/include/OGRE/GLX/OgreTimerImp.h
+	"../OgrePrerequisites.h"
+
+1326562839 /usr/local/include/OGRE/OgreRenderTexture.h
+	"OgrePrerequisites.h"
+	"OgreRenderTarget.h"
+
+1326562839 /usr/local/include/OGRE/OgreFrameListener.h
+	"OgrePrerequisites.h"
+
+1326562839 /usr/local/include/OGRE/OgreConfigOptionMap.h
+	"OgrePrerequisites.h"
+	"OgreStringVector.h"
+	"OgreString.h"
+
+1326562839 /usr/local/include/OGRE/OgreLodStrategyManager.h
+	"OgrePrerequisites.h"
+	"OgreLodStrategy.h"
+	"OgreSingleton.h"
+	"OgreIteratorWrappers.h"
+
+1326562839 /usr/local/include/OGRE/OgreLodStrategy.h
+	"OgrePrerequisites.h"
+	"OgreMesh.h"
+	"OgreMovableObject.h"
+	"OgreCamera.h"
+
+1326562839 /usr/local/include/OGRE/OgreWorkQueue.h
+	"OgrePrerequisites.h"
+	"OgreAtomicWrappers.h"
+	"OgreAny.h"
+	"OgreSharedPtr.h"
+
+1326562839 /usr/local/include/OGRE/OgreRenderWindow.h
+	"OgrePrerequisites.h"
+	"OgreRenderTarget.h"
+
+1326562839 /usr/local/include/OGRE/OgreConfigFile.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreStringVector.h"
+	"OgreIteratorWrappers.h"
+	"OgreDataStream.h"
+
+1326562839 /usr/local/include/OGRE/SdkTrays.h
+	"Ogre.h"
+	"OgreFontManager.h"
+	"OgreBorderPanelOverlayElement.h"
+	"OgreTextAreaOverlayElement.h"
+	<math.h>
+
+1326562839 /usr/local/include/OGRE/Ogre.h
+	"OgrePrerequisites.h"
+	"OgreAnimation.h"
+	"OgreAnimationState.h"
+	"OgreAnimationTrack.h"
+	"OgreAny.h"
+	"OgreArchive.h"
+	"OgreArchiveManager.h"
+	"OgreAxisAlignedBox.h"
+	"OgreBillboardChain.h"
+	"OgreBillboardSet.h"
+	"OgreBone.h"
+	"OgreCamera.h"
+	"OgreConfigFile.h"
+	"OgreControllerManager.h"
+	"OgreDataStream.h"
+	"OgreEntity.h"
+	"OgreException.h"
+	"OgreFrustum.h"
+	"OgreGpuProgram.h"
+	"OgreGpuProgramManager.h"
+	"OgreHardwareBufferManager.h"
+	"OgreHardwareIndexBuffer.h"
+	"OgreHardwarePixelBuffer.h"
+	"OgreHardwareOcclusionQuery.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwarePixelBuffer.h"
+	"OgreHighLevelGpuProgram.h"
+	"OgreHighLevelGpuProgramManager.h"
+	"OgreKeyFrame.h"
+	"OgreLight.h"
+	"OgreLogManager.h"
+	"OgreManualObject.h"
+	"OgreMaterial.h"
+	"OgreMaterialManager.h"
+	"OgreMaterialSerializer.h"
+	"OgreMath.h"
+	"OgreMatrix3.h"
+	"OgreMatrix4.h"
+	"OgreMesh.h"
+	"OgreMeshManager.h"
+	"OgreMeshSerializer.h"
+	"OgreOverlay.h"
+	"OgreOverlayContainer.h"
+	"OgreOverlayElement.h"
+	"OgreOverlayManager.h"
+	"OgreParticleAffector.h"
+	"OgreParticleEmitter.h"
+	"OgreParticleSystemManager.h"
+	"OgrePass.h"
+	"OgrePatchMesh.h"
+	"OgrePatchSurface.h"
+	"OgreProfiler.h"
+	"OgreRadixSort.h"
+	"OgreRenderQueueInvocation.h"
+	"OgreRenderQueueListener.h"
+	"OgreRenderObjectListener.h"
+	"OgreRenderSystem.h"
+	"OgreRenderTargetListener.h"
+	"OgreRenderTexture.h"
+	"OgreRenderWindow.h"
+	"OgreResourceBackgroundQueue.h"
+	"OgreResourceGroupManager.h"
+	"OgreRibbonTrail.h"
+	"OgreRoot.h"
+	"OgreSceneManager.h"
+	"OgreSceneManagerEnumerator.h"
+	"OgreSceneNode.h"
+	"OgreSimpleRenderable.h"
+	"OgreSkeleton.h"
+	"OgreSkeletonInstance.h"
+	"OgreSkeletonManager.h"
+	"OgreSkeletonSerializer.h"
+	"OgreStaticGeometry.h"
+	"OgreString.h"
+	"OgreStringConverter.h"
+	"OgreStringVector.h"
+	"OgreSubEntity.h"
+	"OgreSubMesh.h"
+	"OgreTechnique.h"
+	"OgreTextureManager.h"
+	"OgreTextureUnitState.h"
+	"OgreVector2.h"
+	"OgreViewport.h"
+	"OgreCompositor.h"
+	"OgreCompositorManager.h"
+	"OgreCompositorChain.h"
+	"OgreCompositorInstance.h"
+	"OgreCompositionTechnique.h"
+	"OgreCompositionPass.h"
+	"OgreCompositionTargetPass.h"
+	"OgreWindowEventUtilities.h"
+	"OgreShadowCameraSetup.h"
+	"OgreShadowCameraSetupFocused.h"
+	"OgreShadowCameraSetupLiSPSM.h"
+	"OgreShadowCameraSetupPlaneOptimal.h"
+	"OgreShadowCameraSetupPSSM.h"
+
+1326562839 /usr/local/include/OGRE/OgreAnimation.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreIteratorWrappers.h"
+	"OgreAnimable.h"
+	"OgreAnimationTrack.h"
+	"OgreAnimationState.h"
+
+1326562839 /usr/local/include/OGRE/OgreArchiveManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+
+1326562839 /usr/local/include/OGRE/OgreBillboardChain.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreResourceGroupManager.h"
+
+1326562839 /usr/local/include/OGRE/OgreBillboardSet.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreRadixSort.h"
+	"OgreCommon.h"
+	"OgreResourceGroupManager.h"
+
+1326562839 /usr/local/include/OGRE/OgreControllerManager.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreSingleton.h"
+	"OgreController.h"
+	"OgrePredefinedControllers.h"
+	"OgreTextureUnitState.h"
+	"OgreSharedPtr.h"
+
+1326562839 /usr/local/include/OGRE/OgrePredefinedControllers.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreController.h"
+	"OgreFrameListener.h"
+	"OgreGpuProgram.h"
+
+1326562839 /usr/local/include/OGRE/OgreGpuProgramManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreException.h"
+	"OgreGpuProgram.h"
+	"OgreSingleton.h"
+
+1326562839 /usr/local/include/OGRE/OgreHardwarePixelBuffer.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreSharedPtr.h"
+	"OgrePixelFormat.h"
+	"OgreImage.h"
+
+1326562839 /usr/local/include/OGRE/OgreHardwareOcclusionQuery.h
+	"OgrePrerequisites.h"
+
+1326562839 /usr/local/include/OGRE/OgreHighLevelGpuProgram.h
+	"OgrePrerequisites.h"
+	"OgreGpuProgram.h"
+
+1326562839 /usr/local/include/OGRE/OgreHighLevelGpuProgramManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+	"OgreException.h"
+	"OgreHighLevelGpuProgram.h"
+
+1326562839 /usr/local/include/OGRE/OgreManualObject.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreResourceGroupManager.h"
+
+1326562839 /usr/local/include/OGRE/OgreMaterialManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreResourceManager.h"
+	"OgreMaterial.h"
+	"OgreStringVector.h"
+	"OgreMaterialSerializer.h"
+
+1326562839 /usr/local/include/OGRE/OgreMaterialSerializer.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreBlendMode.h"
+	"OgreTextureUnitState.h"
+	"OgreGpuProgram.h"
+	"OgreStringVector.h"
+
+1326562839 /usr/local/include/OGRE/OgreMeshManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+	"OgreVector3.h"
+	"OgreHardwareBuffer.h"
+	"OgreMesh.h"
+	"OgrePatchMesh.h"
+
+1326562839 /usr/local/include/OGRE/OgrePatchMesh.h
+	"OgrePrerequisites.h"
+	"OgreMesh.h"
+	"OgrePatchSurface.h"
+
+1326562839 /usr/local/include/OGRE/OgrePatchSurface.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreString.h"
+	"OgreRenderOperation.h"
+	"OgreAxisAlignedBox.h"
+
+1326562839 /usr/local/include/OGRE/OgreMeshSerializer.h
+	"OgrePrerequisites.h"
+	"OgreMeshSerializerImpl.h"
+	"OgreSerializer.h"
+
+1326562839 /usr/local/include/OGRE/OgreMeshSerializerImpl.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSerializer.h"
+	"OgreMaterial.h"
+	"OgreMesh.h"
+	"OgreEdgeListBuilder.h"
+
+1326562839 /usr/local/include/OGRE/OgreEdgeListBuilder.h
+	"OgrePrerequisites.h"
+	"OgreVector4.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreRenderOperation.h"
+
+1326562839 /usr/local/include/OGRE/OgreOverlay.h
+	"OgrePrerequisites.h"
+	"OgreSceneNode.h"
+	"OgreIteratorWrappers.h"
+	"OgreMatrix4.h"
+
+1326562839 /usr/local/include/OGRE/OgreOverlayContainer.h
+	"OgrePrerequisites.h"
+	"OgreOverlayElement.h"
+	"OgreIteratorWrappers.h"
+
+1326562839 /usr/local/include/OGRE/OgreOverlayElement.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreRenderable.h"
+	"OgreUTFString.h"
+	"OgreStringInterface.h"
+	"OgreOverlayElementCommands.h"
+	"OgreColourValue.h"
+	"OgreRectangle.h"
+
+1326562839 /usr/local/include/OGRE/OgreUTFString.h
+	"OgrePrerequisites.h"
+	<iterator>
+	<string>
+	<stdexcept>
+
+1326562839 /usr/local/include/OGRE/OgreOverlayElementCommands.h
+	"OgrePrerequisites.h"
+	"OgreStringInterface.h"
+
+1326562839 /usr/local/include/OGRE/OgreRectangle.h
+	"OgrePrerequisites.h"
+
+1326562839 /usr/local/include/OGRE/OgreOverlayManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreStringVector.h"
+	"OgreOverlay.h"
+	"OgreScriptLoader.h"
+	"OgreFrustum.h"
+
+1326562839 /usr/local/include/OGRE/OgreParticleAffector.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreStringInterface.h"
+
+1326562839 /usr/local/include/OGRE/OgreParticleEmitter.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreVector3.h"
+	"OgreColourValue.h"
+	"OgreStringInterface.h"
+	"OgreParticleEmitterCommands.h"
+	"OgreParticle.h"
+
+1326562839 /usr/local/include/OGRE/OgreParticleEmitterCommands.h
+	"OgrePrerequisites.h"
+	"OgreStringInterface.h"
+
+1326562839 /usr/local/include/OGRE/OgreParticle.h
+	"OgrePrerequisites.h"
+	"OgreBillboard.h"
+
+1326562839 /usr/local/include/OGRE/OgreBillboard.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreColourValue.h"
+	"OgreCommon.h"
+
+1326562839 /usr/local/include/OGRE/OgreParticleSystemManager.h
+	"OgrePrerequisites.h"
+	"OgreParticleSystem.h"
+	"OgreFrameListener.h"
+	"OgreSingleton.h"
+	"OgreIteratorWrappers.h"
+	"OgreScriptLoader.h"
+	"OgreResourceGroupManager.h"
+
+1326562839 /usr/local/include/OGRE/OgreParticleSystem.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreString.h"
+	"OgreParticleIterator.h"
+	"OgreStringInterface.h"
+	"OgreMovableObject.h"
+	"OgreRadixSort.h"
+	"OgreController.h"
+	"OgreResourceGroupManager.h"
+
+1326562839 /usr/local/include/OGRE/OgreParticleIterator.h
+	"OgrePrerequisites.h"
+
+1326562839 /usr/local/include/OGRE/OgreProfiler.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreString.h"
+	"OgreOverlay.h"
+
+1326562839 /usr/local/include/OGRE/OgreRenderQueueInvocation.h
+	"OgrePrerequisites.h"
+	"OgreRenderQueueSortingGrouping.h"
+	"OgreIteratorWrappers.h"
+
+1326562839 /usr/local/include/OGRE/OgreRenderQueueListener.h
+	"OgrePrerequisites.h"
+	"OgreRenderQueue.h"
+
+1326562839 /usr/local/include/OGRE/OgreRenderObjectListener.h
+	"OgrePrerequisites.h"
+	"OgreRenderable.h"
+	"OgrePass.h"
+
+1326562839 /usr/local/include/OGRE/OgreRenderTargetListener.h
+	"OgrePrerequisites.h"
+
+1326562839 /usr/local/include/OGRE/OgreResourceBackgroundQueue.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreSingleton.h"
+	"OgreResource.h"
+	"OgreWorkQueue.h"
+
+1326562839 /usr/local/include/OGRE/OgreRibbonTrail.h
+	"OgrePrerequisites.h"
+	"OgreBillboardChain.h"
+	"OgreNode.h"
+	"OgreIteratorWrappers.h"
+	"OgreFrameListener.h"
+	"OgreControllerManager.h"
+
+1326562839 /usr/local/include/OGRE/OgreSkeletonManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+
+1326562839 /usr/local/include/OGRE/OgreSkeletonSerializer.h
+	"OgrePrerequisites.h"
+	"OgreSkeleton.h"
+	"OgreSerializer.h"
+
+1326562839 /usr/local/include/OGRE/OgreStaticGeometry.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreMesh.h"
+	"OgreLodStrategy.h"
+
+1326562839 /usr/local/include/OGRE/OgreSubEntity.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreRenderable.h"
+	"OgreHardwareBufferManager.h"
+	"OgreResourceGroupManager.h"
+
+1326562839 /usr/local/include/OGRE/OgreSubMesh.h
+	"OgrePrerequisites.h"
+	"OgreVertexIndexData.h"
+	"OgreMaterial.h"
+	"OgreRenderOperation.h"
+	"OgreVertexBoneAssignment.h"
+	"OgreProgressiveMesh.h"
+	"OgreAnimationTrack.h"
+	"OgreResourceGroupManager.h"
+
+1326562839 /usr/local/include/OGRE/OgreCompositor.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+	"OgreResource.h"
+	"OgreTexture.h"
+
+1326562839 /usr/local/include/OGRE/OgreCompositorManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreCompositor.h"
+	"OgreRectangle2D.h"
+	"OgreRenderSystem.h"
+	"OgreCompositionTechnique.h"
+
+1326562839 /usr/local/include/OGRE/OgreCompositionTechnique.h
+	"OgrePrerequisites.h"
+	"OgrePixelFormat.h"
+	"OgreIteratorWrappers.h"
+
+1326562839 /usr/local/include/OGRE/OgreCompositorChain.h
+	"OgrePrerequisites.h"
+	"OgreRenderTargetListener.h"
+	"OgreRenderQueueListener.h"
+	"OgreCompositorInstance.h"
+	"OgreCompositor.h"
+
+1326562839 /usr/local/include/OGRE/OgreCompositorInstance.h
+	"OgrePrerequisites.h"
+	"OgreMaterialManager.h"
+	"OgreTexture.h"
+	"OgreRenderQueue.h"
+	"OgreCompositionTechnique.h"
+
+1326562839 /usr/local/include/OGRE/OgreCompositionPass.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreRenderSystem.h"
+	"OgreRenderQueue.h"
+
+1326562839 /usr/local/include/OGRE/OgreCompositionTargetPass.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+
+1326562839 /usr/local/include/OGRE/OgreWindowEventUtilities.h
+	"OgrePrerequisites.h"
+	"OgrePlatform.h"
+	<windows.h>
+	<Carbon/Carbon.h>
+
+1326562839 /usr/local/include/OGRE/OgreShadowCameraSetupFocused.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetup.h"
+	"OgrePolygon.h"
+	"OgreConvexBody.h"
+
+1326562839 /usr/local/include/OGRE/OgrePolygon.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1326562839 /usr/local/include/OGRE/OgreConvexBody.h
+	"OgrePrerequisites.h"
+	"OgrePolygon.h"
+
+1326562839 /usr/local/include/OGRE/OgreShadowCameraSetupLiSPSM.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetupFocused.h"
+
+1326562839 /usr/local/include/OGRE/OgreShadowCameraSetupPlaneOptimal.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetup.h"
+
+1326562839 /usr/local/include/OGRE/OgreShadowCameraSetupPSSM.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetupLiSPSM.h"
+
+1326562839 /usr/local/include/OGRE/OgreFontManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreResourceManager.h"
+	"OgreFont.h"
+
+1326562839 /usr/local/include/OGRE/OgreFont.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreTexture.h"
+	"OgreMaterial.h"
+	"OgreCommon.h"
+
+1326562839 /usr/local/include/OGRE/OgreBorderPanelOverlayElement.h
+	"OgrePanelOverlayElement.h"
+
+1326562839 /usr/local/include/OGRE/OgrePanelOverlayElement.h
+	"OgreOverlayContainer.h"
+
+1326562839 /usr/local/include/OGRE/OgreTextAreaOverlayElement.h
+	"OgreOverlayElement.h"
+	"OgreFont.h"
+
+1326562839 /usr/local/include/OGRE/SdkCameraMan.h
+	"Ogre.h"
+	<limits>
+
+1293845859 source:/home/william/Documents/Programming/OGRE/TutorialFramework/TutorialApplication.cpp
+	"TutorialApplication.h"
+	"windows.h"
+
+1293845866 /home/william/Documents/Programming/OGRE/TutorialFramework/TutorialApplication.h
+	"BaseApplication.h"
+
+1336212057 source:/home/william/Documents/Programming/OGRE/anim_test/Application.cpp
+	"Application.hpp"
+
+1293845837 source:/home/william/Documents/Programming/OGRE/anim_test/BaseApplication.cpp
+	"BaseApplication.h"
+
+1293845859 source:/home/william/Documents/Programming/OGRE/anim_test/TutorialApplication.cpp
+	"TutorialApplication.h"
+	"windows.h"
+
+1293845866 /home/william/Documents/Programming/OGRE/anim_test/TutorialApplication.h
+	"BaseApplication.h"
+
+1336341724 source:/home/william/Documents/Programming/OGRE/anim_test/src/Application.cpp
+	"Application.hpp"
+
+1336247822 /home/william/Documents/Programming/OGRE/anim_test/include/Application.hpp
+	"BaseApplication.h"
+	<deque>
+
+1293845836 /home/william/Documents/Programming/OGRE/anim_test/include/BaseApplication.h
+	<OgreCamera.h>
+	<OgreEntity.h>
+	<OgreLogManager.h>
+	<OgreRoot.h>
+	<OgreViewport.h>
+	<OgreSceneManager.h>
+	<OgreRenderWindow.h>
+	<OgreConfigFile.h>
+	<OISEvents.h>
+	<OISInputManager.h>
+	<OISKeyboard.h>
+	<OISMouse.h>
+	<SdkTrays.h>
+	<SdkCameraMan.h>
+
+1344523019 source:/home/william/Documents/Programming/OGRE/anim_test/src/BaseApplication.cpp
+	"BaseApplication.h"
+
+1336242686 source:/home/william/Documents/Programming/OGRE/anim_test/src/main.cpp
+	<Ogre.h>
+	"platform.h"
+	"Application.hpp"
+
+1330779567 /home/william/Documents/Programming/OGRE/anim_test/include/platform.h
+	"windows.h"
+
+1344522928 /home/william/Documents/Programming/OGRE/anim_test/src/BaseApplication.h
+	<OgreCamera.h>
+	<OgreEntity.h>
+	<OgreLogManager.h>
+	<OgreRoot.h>
+	<OgreViewport.h>
+	<OgreSceneManager.h>
+	<OgreRenderWindow.h>
+	<OgreConfigFile.h>
+	<OISEvents.h>
+	<OISInputManager.h>
+	<OISKeyboard.h>
+	<OISMouse.h>
+	<SdkTrays.h>
+	<SdkCameraMan.h>
+
+1330779567 /home/william/Documents/Programming/OGRE/anim_test/src/platform.h
+	"windows.h"
+
+1336339014 /home/william/Documents/Programming/OGRE/anim_test/src/Application.hpp
+	<deque>
+	<map>
+	"BaseApplication.h"
+	"Soldier.hpp"
+
+1336340675 /home/william/Documents/Programming/OGRE/anim_test/src/Soldier.hpp
+	<OgreSceneManager.h>
+	<OgreEntity.h>
+	"Waypoint.hpp"
+
+1336341508 source:/home/william/Documents/Programming/OGRE/anim_test/src/Soldier.cpp
+	"Soldier.hpp"
+
+1336341118 source:/home/william/Documents/Programming/OGRE/anim_test/src/Waypoint.cpp
+	"Waypoint.hpp"
+
+1336341077 /home/william/Documents/Programming/OGRE/anim_test/src/Waypoint.hpp
+	<OgreSceneManager.h>
+	<OgreEntity.h>
+
+1344533448 source:/home/william/Desktop/open_war_link/src/Application.cpp
+	"Application.hpp"
+
+1344532016 /home/william/Desktop/open_war_link/src/Application.hpp
+	<deque>
+	<map>
+	<CEGUI/CEGUI.h>
+	<CEGUI/RendererModules/Ogre/CEGUIOgreRenderer.h>
+	"BaseApplication.h"
+	"Soldier.hpp"
+
+1344525585 /home/william/Desktop/open_war_link/src/BaseApplication.h
+	<OgreCamera.h>
+	<OgreEntity.h>
+	<OgreLogManager.h>
+	<OgreRoot.h>
+	<OgreViewport.h>
+	<OgreSceneManager.h>
+	<OgreRenderWindow.h>
+	<OgreConfigFile.h>
+	<OISEvents.h>
+	<OISInputManager.h>
+	<OISKeyboard.h>
+	<OISMouse.h>
+	<SdkTrays.h>
+	"OverheadCamera.hpp"
+
+1336340675 /home/william/Desktop/open_war_link/src/Soldier.hpp
+	<OgreSceneManager.h>
+	<OgreEntity.h>
+	"Waypoint.hpp"
+
+1336341077 /home/william/Desktop/open_war_link/src/Waypoint.hpp
+	<OgreSceneManager.h>
+	<OgreEntity.h>
+
+1344538025 source:/home/william/Desktop/open_war_link/src/BaseApplication.cpp
+	"BaseApplication.h"
+
+1336341508 source:/home/william/Desktop/open_war_link/src/Soldier.cpp
+	"Soldier.hpp"
+
+1336341118 source:/home/william/Desktop/open_war_link/src/Waypoint.cpp
+	"Waypoint.hpp"
+
+1336242686 source:/home/william/Desktop/open_war_link/src/main.cpp
+	<Ogre.h>
+	"platform.h"
+	"Application.hpp"
+
+1330779567 /home/william/Desktop/open_war_link/src/platform.h
+	"windows.h"
+
+1344538095 source:/home/william/Desktop/open_war_link/src/OverheadCamera.cpp
+	"OverheadCamera.hpp"
+	<iostream>
+
+1344526644 /home/william/Desktop/open_war_link/src/OverheadCamera.hpp
+	"Ogre.h"
+	<limits>
+	<OISEvents.h>
+	<OISInputManager.h>
+	<OISKeyboard.h>
+	<OISMouse.h>
+
+1344531980 /usr/local/include/CEGUI/CEGUI.h
+	"CEGUIAffector.h"
+	"CEGUIAnimation.h"
+	"CEGUIAnimationInstance.h"
+	"CEGUIAnimationManager.h"
+	"CEGUIBasicInterpolators.h"
+	"CEGUIBasicRenderedStringParser.h"
+	"CEGUIBiDiVisualMapping.h"
+	"CEGUICentredRenderedString.h"
+	"CEGUIcolour.h"
+	"CEGUIColourRect.h"
+	"CEGUICoordConverter.h"
+	"CEGUIDataContainer.h"
+	"CEGUIDefaultLogger.h"
+	"CEGUIDefaultRenderedStringParser.h"
+	"CEGUIDefaultResourceProvider.h"
+	"CEGUIDynamicModule.h"
+	"CEGUIExceptions.h"
+	"CEGUIFactoryModule.h"
+	"CEGUIFontManager.h"
+	"CEGUIGeometryBuffer.h"
+	"CEGUIGlobalEventSet.h"
+	"CEGUIImageCodec.h"
+	"CEGUIImagesetManager.h"
+	"CEGUIInputEvent.h"
+	"CEGUIInterpolator.h"
+	"CEGUIJustifiedRenderedString.h"
+	"CEGUIKeyFrame.h"
+	"CEGUILeftAlignedRenderedString.h"
+	"CEGUIMouseCursor.h"
+	"CEGUIPropertyHelper.h"
+	"CEGUIPropertySet.h"
+	"CEGUIRect.h"
+	"CEGUIRegexMatcher.h"
+	"CEGUIRenderedString.h"
+	"CEGUIRenderedStringImageComponent.h"
+	"CEGUIRenderedStringParser.h"
+	"CEGUIRenderedStringTextComponent.h"
+	"CEGUIRenderedStringWidgetComponent.h"
+	"CEGUIRenderedStringWordWrapper.h"
+	"CEGUIRenderEffect.h"
+	"CEGUIRenderEffectManager.h"
+	"CEGUIRenderer.h"
+	"CEGUIRenderingContext.h"
+	"CEGUIRenderingRoot.h"
+	"CEGUIRenderingSurface.h"
+	"CEGUIRenderingWindow.h"
+	"CEGUIRenderQueue.h"
+	"CEGUIRenderTarget.h"
+	"CEGUIRightAlignedRenderedString.h"
+	"CEGUISchemeManager.h"
+	"CEGUIScriptModule.h"
+	"CEGUISize.h"
+	"CEGUISystem.h"
+	"CEGUITexture.h"
+	"CEGUITextureTarget.h"
+	"CEGUITextUtils.h"
+	"CEGUITplWindowFactory.h"
+	"CEGUITplWindowRendererFactory.h"
+	"CEGUITplWRFactoryRegisterer.h"
+	"CEGUIVector.h"
+	"CEGUIVersion.h"
+	"CEGUIVertex.h"
+	"CEGUIWidgetModule.h"
+	"CEGUIWindowFactory.h"
+	"CEGUIWindowFactoryManager.h"
+	"CEGUIWindow.h"
+	"CEGUIWindowManager.h"
+	"CEGUIWindowRendererManager.h"
+	"CEGUIWindowRendererModule.h"
+	"CEGUIWRFactoryRegisterer.h"
+	"CEGUIXMLAttributes.h"
+	"CEGUIXMLHandler.h"
+	"CEGUIXMLParser.h"
+	"CEGUIXMLSerializer.h"
+	"falagard/CEGUIFalWidgetLookManager.h"
+	"elements/CEGUIAll.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIAffector.h
+	"CEGUIString.h"
+	"CEGUIKeyFrame.h"
+	<map>
+
+1344531980 /usr/local/include/CEGUI/CEGUIString.h
+	"CEGUIBase.h"
+	<string.h>
+	<stdexcept>
+	<cstddef>
+
+1344531980 /usr/local/include/CEGUI/CEGUIBase.h
+	<cassert>
+	"CEGUIConfig.h"
+	"CEGUIVersion.h"
+	<string>
+	"CEGUIForwardRefs.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIConfig.h
+
+1344531980 /usr/local/include/CEGUI/CEGUIVersion.h
+
+1344531980 /usr/local/include/CEGUI/CEGUIForwardRefs.h
+
+1344531980 /usr/local/include/CEGUI/CEGUIKeyFrame.h
+	"CEGUIString.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIAnimation.h
+	"CEGUIString.h"
+	<vector>
+	<map>
+
+1344531980 /usr/local/include/CEGUI/CEGUIAnimationInstance.h
+	"CEGUIEventArgs.h"
+	"CEGUIEvent.h"
+	<map>
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/CEGUIEventArgs.h
+	"CEGUIBase.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIEvent.h
+	"CEGUIString.h"
+	"CEGUIBoundSlot.h"
+	"CEGUISubscriberSlot.h"
+	"CEGUIRefCounted.h"
+	<map>
+
+1344531980 /usr/local/include/CEGUI/CEGUIBoundSlot.h
+	"CEGUIBase.h"
+	"CEGUISubscriberSlot.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUISubscriberSlot.h
+	"CEGUIBase.h"
+	"CEGUIFreeFunctionSlot.h"
+	"CEGUIFunctorCopySlot.h"
+	"CEGUIFunctorReferenceSlot.h"
+	"CEGUIFunctorPointerSlot.h"
+	"CEGUIMemberFunctionSlot.h"
+	"CEGUIFunctorReferenceBinder.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIFreeFunctionSlot.h
+	"CEGUISlotFunctorBase.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUISlotFunctorBase.h
+
+1344531980 /usr/local/include/CEGUI/CEGUIFunctorCopySlot.h
+	"CEGUISlotFunctorBase.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIFunctorReferenceSlot.h
+	"CEGUISlotFunctorBase.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIFunctorPointerSlot.h
+	"CEGUISlotFunctorBase.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIMemberFunctionSlot.h
+	"CEGUISlotFunctorBase.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIFunctorReferenceBinder.h
+
+1344531980 /usr/local/include/CEGUI/CEGUIRefCounted.h
+
+1344531980 /usr/local/include/CEGUI/CEGUIAnimationManager.h
+	"CEGUISingleton.h"
+	"CEGUIString.h"
+	<map>
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/CEGUISingleton.h
+	"CEGUIBase.h"
+	<cassert>
+
+1344531980 /usr/local/include/CEGUI/CEGUIBasicInterpolators.h
+	"CEGUIInterpolator.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIInterpolator.h
+	"CEGUIBase.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIBasicRenderedStringParser.h
+	"CEGUIRenderedStringParser.h"
+	"CEGUIRect.h"
+	"CEGUIColourRect.h"
+	"CEGUIString.h"
+	"falagard/CEGUIFalEnums.h"
+	<map>
+
+1344531980 /usr/local/include/CEGUI/CEGUIRenderedStringParser.h
+	"CEGUIRenderedString.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIRenderedString.h
+	"CEGUISize.h"
+	<vector>
+	<utility>
+
+1344531980 /usr/local/include/CEGUI/CEGUISize.h
+	"CEGUIBase.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIRect.h
+	"CEGUIBase.h"
+	"CEGUIVector.h"
+	"CEGUISize.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIVector.h
+	"CEGUIBase.h"
+	"CEGUISize.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIColourRect.h
+	"CEGUIBase.h"
+	"CEGUIcolour.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIcolour.h
+	"CEGUIBase.h"
+
+1344531980 /usr/local/include/CEGUI/falagard/CEGUIFalEnums.h
+
+1344531980 /usr/local/include/CEGUI/CEGUIBiDiVisualMapping.h
+	"CEGUIString.h"
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/CEGUICentredRenderedString.h
+	"CEGUIFormattedRenderedString.h"
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/CEGUIFormattedRenderedString.h
+	"CEGUIRenderedString.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUICoordConverter.h
+	"CEGUIUDim.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIUDim.h
+	"CEGUIRect.h"
+	"CEGUIVector.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIDataContainer.h
+	"CEGUIBase.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIDefaultLogger.h
+	"CEGUILogger.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUILogger.h
+	"CEGUIBase.h"
+	"CEGUIString.h"
+	<fstream>
+	<sstream>
+	<vector>
+	<utility>
+	"CEGUISingleton.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIDefaultRenderedStringParser.h
+	"CEGUIRenderedStringParser.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIDefaultResourceProvider.h
+	"CEGUIBase.h"
+	"CEGUIResourceProvider.h"
+	<map>
+
+1344531980 /usr/local/include/CEGUI/CEGUIResourceProvider.h
+	"CEGUIBase.h"
+	"CEGUIDataContainer.h"
+	"CEGUIString.h"
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/CEGUIDynamicModule.h
+	"CEGUIString.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIExceptions.h
+	"CEGUIBase.h"
+	"CEGUIString.h"
+	<exception>
+
+1344531980 /usr/local/include/CEGUI/CEGUIFactoryModule.h
+	"CEGUIDynamicModule.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIFontManager.h
+	"CEGUISingleton.h"
+	"CEGUINamedXMLResourceManager.h"
+	"CEGUIFont.h"
+	"CEGUIFont_xmlHandler.h"
+	"CEGUIIteratorBase.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUINamedXMLResourceManager.h
+	"CEGUIEventSet.h"
+	"CEGUIString.h"
+	"CEGUIExceptions.h"
+	"CEGUILogger.h"
+	"CEGUIInputEvent.h"
+	"CEGUISystem.h"
+	<map>
+
+1344531980 /usr/local/include/CEGUI/CEGUIEventSet.h
+	"CEGUIBase.h"
+	"CEGUIString.h"
+	"CEGUIEvent.h"
+	"CEGUIIteratorBase.h"
+	<map>
+
+1344531980 /usr/local/include/CEGUI/CEGUIIteratorBase.h
+	"CEGUIBase.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIInputEvent.h
+	"CEGUIBase.h"
+	"CEGUIEventArgs.h"
+	"CEGUIString.h"
+	"CEGUIVector.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUISystem.h
+	"CEGUIBase.h"
+	"CEGUIString.h"
+	"CEGUISingleton.h"
+	"CEGUIRenderer.h"
+	"CEGUIMouseCursor.h"
+	"CEGUIInputEvent.h"
+	"CEGUIResourceProvider.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIRenderer.h
+	"CEGUIBase.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIMouseCursor.h
+	"CEGUIBase.h"
+	"CEGUIString.h"
+	"CEGUISingleton.h"
+	"CEGUIVector.h"
+	"CEGUIRect.h"
+	"CEGUIEventSet.h"
+	"CEGUIInputEvent.h"
+	"CEGUIUDim.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIFont.h
+	"CEGUIBase.h"
+	"CEGUIPropertySet.h"
+	"CEGUIString.h"
+	"CEGUIXMLSerializer.h"
+	"CEGUIFontGlyph.h"
+	<map>
+
+1344531980 /usr/local/include/CEGUI/CEGUIPropertySet.h
+	"CEGUIBase.h"
+	"CEGUIString.h"
+	"CEGUIIteratorBase.h"
+	"CEGUIProperty.h"
+	<map>
+
+1344531980 /usr/local/include/CEGUI/CEGUIProperty.h
+	"CEGUIBase.h"
+	"CEGUIString.h"
+	"CEGUIXMLSerializer.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIXMLSerializer.h
+	"CEGUIBase.h"
+	"CEGUIString.h"
+	<vector>
+	<iostream>
+	<CEGUI/XMLSerializer.h>
+
+1344531980 /usr/local/include/CEGUI/CEGUIFontGlyph.h
+	"CEGUIImage.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIImage.h
+	"CEGUIBase.h"
+	"CEGUIString.h"
+	"CEGUIRect.h"
+	"CEGUIColourRect.h"
+	"CEGUIVector.h"
+	"CEGUISize.h"
+	"CEGUIRenderer.h"
+	"CEGUIXMLSerializer.h"
+	<map>
+
+1344531980 /usr/local/include/CEGUI/CEGUIFont_xmlHandler.h
+	"CEGUIXMLHandler.h"
+	"CEGUIString.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIXMLHandler.h
+	"CEGUIBase.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIGeometryBuffer.h
+	"CEGUIBase.h"
+	"CEGUIRenderer.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIGlobalEventSet.h
+	"CEGUIEventSet.h"
+	"CEGUISingleton.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIImageCodec.h
+	"CEGUIBase.h"
+	"CEGUIDataContainer.h"
+	"CEGUITexture.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUITexture.h
+	"CEGUIBase.h"
+	"CEGUIString.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIImagesetManager.h
+	"CEGUIBase.h"
+	"CEGUISingleton.h"
+	"CEGUINamedXMLResourceManager.h"
+	"CEGUIImageset.h"
+	"CEGUIImageset_xmlHandler.h"
+	"CEGUIIteratorBase.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIImageset.h
+	"CEGUIBase.h"
+	"CEGUIString.h"
+	"CEGUIRect.h"
+	"CEGUIColourRect.h"
+	"CEGUIImagesetManager.h"
+	"CEGUIImage.h"
+	"CEGUIIteratorBase.h"
+	"CEGUIXMLSerializer.h"
+	<map>
+
+1344531980 /usr/local/include/CEGUI/CEGUIImageset_xmlHandler.h
+	"CEGUIXMLHandler.h"
+	"CEGUIString.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIJustifiedRenderedString.h
+	"CEGUIFormattedRenderedString.h"
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/CEGUILeftAlignedRenderedString.h
+	"CEGUIFormattedRenderedString.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIPropertyHelper.h
+	"CEGUIWindow.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIWindow.h
+	"CEGUIBase.h"
+	"CEGUIString.h"
+	"CEGUIVector.h"
+	"CEGUIRect.h"
+	"CEGUISize.h"
+	"CEGUIEventSet.h"
+	"CEGUIPropertySet.h"
+	"CEGUISystem.h"
+	"CEGUIInputEvent.h"
+	"CEGUIWindowProperties.h"
+	"CEGUIUDim.h"
+	"CEGUIWindowRenderer.h"
+	"CEGUITextUtils.h"
+	"CEGUIBasicRenderedStringParser.h"
+	"CEGUIDefaultRenderedStringParser.h"
+	<vector>
+	<set>
+
+1344531980 /usr/local/include/CEGUI/CEGUIWindowProperties.h
+	"CEGUIProperty.h"
+	"CEGUIXMLSerializer.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIWindowRenderer.h
+	"CEGUIWindow.h"
+	"CEGUIProperty.h"
+	<vector>
+	<utility>
+
+1344531980 /usr/local/include/CEGUI/CEGUITextUtils.h
+	"CEGUIBase.h"
+	"CEGUIString.h"
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/CEGUIRegexMatcher.h
+
+1344531980 /usr/local/include/CEGUI/CEGUIRenderedStringImageComponent.h
+	"CEGUIRenderedStringComponent.h"
+	"CEGUIColourRect.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIRenderedStringComponent.h
+	"CEGUISize.h"
+	"CEGUIRect.h"
+	"falagard/CEGUIFalEnums.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIRenderedStringTextComponent.h
+	"CEGUIRenderedStringComponent.h"
+	"CEGUIColourRect.h"
+	"CEGUIString.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIRenderedStringWidgetComponent.h
+	"CEGUIRenderedStringComponent.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIRenderedStringWordWrapper.h
+	"CEGUIFormattedRenderedString.h"
+	"CEGUIJustifiedRenderedString.h"
+	"CEGUIVector.h"
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/CEGUIRenderEffect.h
+	"CEGUIBase.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIRenderEffectManager.h
+	"CEGUISingleton.h"
+	"CEGUIIteratorBase.h"
+	"CEGUILogger.h"
+	"CEGUIExceptions.h"
+	"CEGUIRenderEffectFactory.h"
+	<map>
+
+1344531980 /usr/local/include/CEGUI/CEGUIRenderEffectFactory.h
+
+1344531980 /usr/local/include/CEGUI/CEGUIRenderingContext.h
+	"CEGUIRenderingSurface.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIRenderingSurface.h
+	"CEGUIEventSet.h"
+	"CEGUIEventArgs.h"
+	"CEGUIRenderQueue.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIRenderQueue.h
+	"CEGUIBase.h"
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/CEGUIRenderingRoot.h
+	"CEGUIRenderingSurface.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIRenderingWindow.h
+	"CEGUIRenderingSurface.h"
+	"CEGUIVector.h"
+	"CEGUISize.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIRenderTarget.h
+	"CEGUIBase.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIRightAlignedRenderedString.h
+	"CEGUIFormattedRenderedString.h"
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/CEGUISchemeManager.h
+	"CEGUIBase.h"
+	"CEGUISingleton.h"
+	"CEGUINamedXMLResourceManager.h"
+	"CEGUIScheme.h"
+	"CEGUIScheme_xmlHandler.h"
+	"CEGUIIteratorBase.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIScheme.h
+	"CEGUIBase.h"
+	"CEGUIString.h"
+	"CEGUISchemeManager.h"
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/CEGUIScheme_xmlHandler.h
+	"CEGUIXMLHandler.h"
+	"CEGUIString.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIScriptModule.h
+	"CEGUIBase.h"
+	"CEGUIString.h"
+	"CEGUIEvent.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUITextureTarget.h
+	"CEGUIRenderTarget.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUITplWindowFactory.h
+	"CEGUIWindowFactory.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIWindowFactory.h
+	"CEGUIBase.h"
+	"CEGUIString.h"
+	"CEGUIWindow.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUITplWindowRendererFactory.h
+	"CEGUIWindowRenderer.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUITplWRFactoryRegisterer.h
+	"CEGUIWRFactoryRegisterer.h"
+	"CEGUITplWindowRendererFactory.h"
+	"CEGUIWindowRendererManager.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIWRFactoryRegisterer.h
+	"CEGUIString.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIWindowRendererManager.h
+	"CEGUISingleton.h"
+	"CEGUIWindowRenderer.h"
+	"CEGUILogger.h"
+	"CEGUIExceptions.h"
+	<map>
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/CEGUIVertex.h
+	"CEGUIVector.h"
+	"CEGUIcolour.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIWidgetModule.h
+	"CEGUIExceptions.h"
+	"CEGUIWindowFactoryManager.h"
+
+1344531980 /usr/local/include/CEGUI/CEGUIWindowFactoryManager.h
+	"CEGUIBase.h"
+	"CEGUIString.h"
+	"CEGUISingleton.h"
+	"CEGUILogger.h"
+	"CEGUIIteratorBase.h"
+	"CEGUIWindowFactory.h"
+	<map>
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/CEGUIWindowManager.h
+	"CEGUIBase.h"
+	"CEGUIString.h"
+	"CEGUISingleton.h"
+	"CEGUILogger.h"
+	"CEGUIIteratorBase.h"
+	"CEGUIEventSet.h"
+	<map>
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/CEGUIWindowRendererModule.h
+	"CEGUIBase.h"
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/CEGUIXMLAttributes.h
+	"CEGUIBase.h"
+	"CEGUIString.h"
+	<map>
+
+1344531980 /usr/local/include/CEGUI/CEGUIXMLParser.h
+	"CEGUIBase.h"
+	"CEGUIString.h"
+	"CEGUIPropertySet.h"
+
+1344531980 /usr/local/include/CEGUI/falagard/CEGUIFalWidgetLookManager.h
+	"../CEGUISingleton.h"
+	"../CEGUIString.h"
+	"../CEGUIExceptions.h"
+	"CEGUIFalWidgetLookFeel.h"
+	<map>
+
+1344531980 /usr/local/include/CEGUI/falagard/CEGUIFalWidgetLookFeel.h
+	"CEGUIFalStateImagery.h"
+	"CEGUIFalWidgetComponent.h"
+	"CEGUIFalImagerySection.h"
+	"CEGUIFalPropertyInitialiser.h"
+	"CEGUIFalPropertyDefinition.h"
+	"CEGUIFalPropertyLinkDefinition.h"
+	"CEGUIFalNamedArea.h"
+	<map>
+
+1344531980 /usr/local/include/CEGUI/falagard/CEGUIFalStateImagery.h
+	"CEGUIFalLayerSpecification.h"
+	"../CEGUIWindow.h"
+	<set>
+
+1344531980 /usr/local/include/CEGUI/falagard/CEGUIFalLayerSpecification.h
+	"CEGUIFalSectionSpecification.h"
+	"../CEGUIWindow.h"
+
+1344531980 /usr/local/include/CEGUI/falagard/CEGUIFalSectionSpecification.h
+	"../CEGUIWindow.h"
+	"../CEGUIColourRect.h"
+
+1344531980 /usr/local/include/CEGUI/falagard/CEGUIFalWidgetComponent.h
+	"CEGUIFalDimensions.h"
+	"CEGUIFalPropertyInitialiser.h"
+	"../CEGUIWindow.h"
+
+1344531980 /usr/local/include/CEGUI/falagard/CEGUIFalDimensions.h
+	"CEGUIFalEnums.h"
+	"../CEGUIString.h"
+	"../CEGUIUDim.h"
+	"../CEGUIXMLSerializer.h"
+
+1344531980 /usr/local/include/CEGUI/falagard/CEGUIFalPropertyInitialiser.h
+	"../CEGUIPropertySet.h"
+
+1344531980 /usr/local/include/CEGUI/falagard/CEGUIFalImagerySection.h
+	"CEGUIFalImageryComponent.h"
+	"CEGUIFalTextComponent.h"
+	"CEGUIFalFrameComponent.h"
+	"../CEGUIXMLSerializer.h"
+
+1344531980 /usr/local/include/CEGUI/falagard/CEGUIFalImageryComponent.h
+	"CEGUIFalComponentBase.h"
+	"../CEGUIXMLSerializer.h"
+
+1344531980 /usr/local/include/CEGUI/falagard/CEGUIFalComponentBase.h
+	"CEGUIFalDimensions.h"
+	"../CEGUIWindow.h"
+	"../CEGUIColourRect.h"
+
+1344531980 /usr/local/include/CEGUI/falagard/CEGUIFalTextComponent.h
+	"CEGUIFalComponentBase.h"
+	"../CEGUIRenderedString.h"
+	"../CEGUIRefCounted.h"
+	"../CEGUIFormattedRenderedString.h"
+
+1344531980 /usr/local/include/CEGUI/falagard/CEGUIFalFrameComponent.h
+	"CEGUIFalComponentBase.h"
+	"../CEGUIXMLSerializer.h"
+
+1344531980 /usr/local/include/CEGUI/falagard/CEGUIFalPropertyDefinition.h
+	"CEGUIFalPropertyDefinitionBase.h"
+
+1344531980 /usr/local/include/CEGUI/falagard/CEGUIFalPropertyDefinitionBase.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/falagard/CEGUIFalPropertyLinkDefinition.h
+	"CEGUIFalPropertyDefinitionBase.h"
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/falagard/CEGUIFalNamedArea.h
+	"CEGUIFalDimensions.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIAll.h
+	"CEGUICheckbox.h"
+	"CEGUIClippedContainer.h"
+	"CEGUICombobox.h"
+	"CEGUIComboDropList.h"
+	"CEGUIDragContainer.h"
+	"CEGUIEditbox.h"
+	"CEGUIFrameWindow.h"
+	"CEGUIGridLayoutContainer.h"
+	"CEGUIGroupBox.h"
+	"CEGUIGUISheet.h"
+	"CEGUIHorizontalLayoutContainer.h"
+	"CEGUIItemEntry.h"
+	"CEGUIItemListbox.h"
+	"CEGUIListbox.h"
+	"CEGUIListboxItem.h"
+	"CEGUIListboxTextItem.h"
+	"CEGUIListHeader.h"
+	"CEGUIMenubar.h"
+	"CEGUIMenuItem.h"
+	"CEGUIMultiColumnList.h"
+	"CEGUIMultiLineEditbox.h"
+	"CEGUIPopupMenu.h"
+	"CEGUIProgressBar.h"
+	"CEGUIPushButton.h"
+	"CEGUIRadioButton.h"
+	"CEGUIScrollablePane.h"
+	"CEGUIScrollbar.h"
+	"CEGUIScrolledContainer.h"
+	"CEGUISlider.h"
+	"CEGUISpinner.h"
+	"CEGUITabButton.h"
+	"CEGUITabControl.h"
+	"CEGUIThumb.h"
+	"CEGUITitlebar.h"
+	"CEGUITooltip.h"
+	"CEGUITree.h"
+	"CEGUITreeItem.h"
+	"CEGUIVerticalLayoutContainer.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUICheckbox.h
+	"../CEGUIBase.h"
+	"CEGUIButtonBase.h"
+	"CEGUICheckboxProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIButtonBase.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUICheckboxProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIClippedContainer.h
+	"../CEGUIWindow.h"
+	"../CEGUIWindowFactory.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUICombobox.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"CEGUIComboboxProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIComboboxProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIComboDropList.h
+	"CEGUIListbox.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIListbox.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"CEGUIListboxProperties.h"
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIListboxProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIDragContainer.h
+	"../CEGUIWindow.h"
+	"../CEGUIWindowFactory.h"
+	"CEGUIDragContainerProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIDragContainerProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIEditbox.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"CEGUIEditboxProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIEditboxProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIFrameWindow.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"CEGUIFrameWindowProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIFrameWindowProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIGridLayoutContainer.h
+	"CEGUILayoutContainer.h"
+	"../CEGUIWindowFactory.h"
+	"CEGUIGridLayoutContainerProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUILayoutContainer.h
+	"../CEGUIWindow.h"
+	<map>
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIGridLayoutContainerProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIGroupBox.h
+	"../CEGUIBase.h"
+	"../CEGUIWindowFactory.h"
+	"CEGUIClippedContainer.h"
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIGUISheet.h
+	"../CEGUIWindow.h"
+	"../CEGUIWindowFactory.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIHorizontalLayoutContainer.h
+	"CEGUISequentialLayoutContainer.h"
+	"../CEGUIWindowFactory.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUISequentialLayoutContainer.h
+	"CEGUILayoutContainer.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIItemEntry.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"CEGUIItemEntryProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIItemEntryProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIItemListbox.h
+	"CEGUIScrolledItemListBase.h"
+	"CEGUIItemListboxProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIScrolledItemListBase.h
+	"CEGUIItemListBase.h"
+	"CEGUIScrollbar.h"
+	"CEGUIScrolledItemListBaseProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIItemListBase.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"CEGUIItemListBaseProperties.h"
+	"CEGUIItemEntry.h"
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIItemListBaseProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIScrollbar.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"CEGUIScrollbarProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIScrollbarProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIScrolledItemListBaseProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIItemListboxProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIListboxItem.h
+	"../CEGUIBase.h"
+	"../CEGUIString.h"
+	"../CEGUIColourRect.h"
+	"../CEGUITextUtils.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIListboxTextItem.h
+	"CEGUIListboxItem.h"
+	"../CEGUIBasicRenderedStringParser.h"
+	"../CEGUIDefaultRenderedStringParser.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIListHeader.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"CEGUIListHeaderSegment.h"
+	"CEGUIListHeaderProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIListHeaderSegment.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"CEGUIListHeaderSegmentProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIListHeaderSegmentProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIListHeaderProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIMenubar.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"CEGUIMenuBase.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIMenuBase.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"CEGUIMenuBaseProperties.h"
+	"CEGUIItemListBase.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIMenuBaseProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIMenuItem.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"CEGUIItemEntry.h"
+	"CEGUIMenuItemProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIMenuItemProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIMultiColumnList.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"CEGUIListHeader.h"
+	"CEGUIMultiColumnListProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIMultiColumnListProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIMultiLineEditbox.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"../CEGUIFont.h"
+	"CEGUIMultiLineEditboxProperties.h"
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIMultiLineEditboxProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIPopupMenu.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"CEGUIPopupMenuProperties.h"
+	"CEGUIMenuBase.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIPopupMenuProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIProgressBar.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"CEGUIProgressBarProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIProgressBarProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIPushButton.h
+	"../CEGUIBase.h"
+	"CEGUIButtonBase.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIRadioButton.h
+	"../CEGUIBase.h"
+	"CEGUIButtonBase.h"
+	"CEGUIRadioButtonProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIRadioButtonProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIScrollablePane.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"CEGUIScrollablePaneProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIScrollablePaneProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIScrolledContainer.h
+	"../CEGUIWindow.h"
+	"../CEGUIWindowFactory.h"
+	"CEGUIScrolledContainerProperties.h"
+	<map>
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIScrolledContainerProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUISlider.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"CEGUISliderProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUISliderProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUISpinner.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"CEGUISpinnerProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUISpinnerProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUITabButton.h
+	"../CEGUIBase.h"
+	"CEGUIButtonBase.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUITabControl.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"CEGUITabControlProperties.h"
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUITabControlProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIThumb.h
+	"CEGUIPushButton.h"
+	"CEGUIThumbProperties.h"
+	<utility>
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIThumbProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUITitlebar.h
+	"../CEGUIWindow.h"
+	"CEGUITitlebarProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUITitlebarProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUITooltip.h
+	"../CEGUIWindow.h"
+	"CEGUITooltipProperties.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUITooltipProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUITree.h
+	"../CEGUIBase.h"
+	"../CEGUIWindow.h"
+	"../CEGUIWindowManager.h"
+	"CEGUITreeItem.h"
+	"CEGUITreeProperties.h"
+	<vector>
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUITreeItem.h
+	"../CEGUIBase.h"
+	"../CEGUIString.h"
+	"../CEGUIColourRect.h"
+	"../CEGUIBasicRenderedStringParser.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUITreeProperties.h
+	"../CEGUIProperty.h"
+
+1344531980 /usr/local/include/CEGUI/elements/CEGUIVerticalLayoutContainer.h
+	"CEGUISequentialLayoutContainer.h"
+	"../CEGUIWindowFactory.h"
+
+1344531980 /usr/local/include/CEGUI/RendererModules/Ogre/CEGUIOgreRenderer.h
+	"../../CEGUIRenderer.h"
+	"../../CEGUISize.h"
+	"../../CEGUIVector.h"
+	<vector>
+
