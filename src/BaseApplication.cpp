@@ -38,8 +38,10 @@ BaseApplication::BaseApplication(void)
 //-------------------------------------------------------------------------------------
 BaseApplication::~BaseApplication(void)
 {
-    if (mTrayMgr) delete mTrayMgr;
-    if (mCameraMan) delete mCameraMan;
+    if (mTrayMgr)
+      delete mTrayMgr;
+    if (mCameraMan)
+      delete mCameraMan;
 
     //Remove ourself as a Window listener
     Ogre::WindowEventUtilities::removeWindowEventListener(mWindow, this);
@@ -81,11 +83,11 @@ void BaseApplication::createCamera(void)
 
     // Position it at 500 in Z direction
     mCamera->setPosition(Ogre::Vector3(0,0,80));
-    // Look back along -Z
-    mCamera->lookAt(Ogre::Vector3(0,0,-300));
+    // Look back along -Y
+    mCamera->lookAt(Ogre::Vector3(0,-300, 0));
     mCamera->setNearClipDistance(5);
 
-    mCameraMan = new OgreBites::SdkCameraMan(mCamera);   // create a default camera controller
+    mCameraMan = new OverheadCamera(mCamera);   // create a default camera controller
 }
 //-------------------------------------------------------------------------------------
 void BaseApplication::createFrameListener(void)
@@ -272,96 +274,109 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
 //-------------------------------------------------------------------------------------
 bool BaseApplication::keyPressed( const OIS::KeyEvent &arg )
 {
-    if (mTrayMgr->isDialogVisible()) return true;   // don't process any more keys if dialog is up
-
-    if (arg.key == OIS::KC_F)   // toggle visibility of advanced frame stats
-    {
-        mTrayMgr->toggleAdvancedFrameStats();
-    }
-    else if (arg.key == OIS::KC_G)   // toggle visibility of even rarer debugging details
-    {
-        if (mDetailsPanel->getTrayLocation() == OgreBites::TL_NONE)
-        {
-            mTrayMgr->moveWidgetToTray(mDetailsPanel, OgreBites::TL_TOPRIGHT, 0);
-            mDetailsPanel->show();
-        }
-        else
-        {
-            mTrayMgr->removeWidgetFromTray(mDetailsPanel);
-            mDetailsPanel->hide();
-        }
-    }
-    else if (arg.key == OIS::KC_T)   // cycle polygon rendering mode
-    {
-        Ogre::String newVal;
-        Ogre::TextureFilterOptions tfo;
-        unsigned int aniso;
-
-        switch (mDetailsPanel->getParamValue(9).asUTF8()[0])
-        {
-        case 'B':
-            newVal = "Trilinear";
-            tfo = Ogre::TFO_TRILINEAR;
-            aniso = 1;
-            break;
-        case 'T':
-            newVal = "Anisotropic";
-            tfo = Ogre::TFO_ANISOTROPIC;
-            aniso = 8;
-            break;
-        case 'A':
-            newVal = "None";
-            tfo = Ogre::TFO_NONE;
-            aniso = 1;
-            break;
-        default:
-            newVal = "Bilinear";
-            tfo = Ogre::TFO_BILINEAR;
-            aniso = 1;
-        }
-
-        Ogre::MaterialManager::getSingleton().setDefaultTextureFiltering(tfo);
-        Ogre::MaterialManager::getSingleton().setDefaultAnisotropy(aniso);
-        mDetailsPanel->setParamValue(9, newVal);
-    }
-    else if (arg.key == OIS::KC_R)   // cycle polygon rendering mode
-    {
-        Ogre::String newVal;
-        Ogre::PolygonMode pm;
-
-        switch (mCamera->getPolygonMode())
-        {
-        case Ogre::PM_SOLID:
-            newVal = "Wireframe";
-            pm = Ogre::PM_WIREFRAME;
-            break;
-        case Ogre::PM_WIREFRAME:
-            newVal = "Points";
-            pm = Ogre::PM_POINTS;
-            break;
-        default:
-            newVal = "Solid";
-            pm = Ogre::PM_SOLID;
-        }
-
-        mCamera->setPolygonMode(pm);
-        mDetailsPanel->setParamValue(10, newVal);
-    }
-    else if(arg.key == OIS::KC_F5)   // refresh all textures
-    {
-        Ogre::TextureManager::getSingleton().reloadAll();
-    }
-    else if (arg.key == OIS::KC_SYSRQ)   // take a screenshot
-    {
-        mWindow->writeContentsToTimestampedFile("screenshot", ".jpg");
-    }
-    else if (arg.key == OIS::KC_ESCAPE)
-    {
-        mShutDown = true;
-    }
-
-    mCameraMan->injectKeyDown(arg);
+  // don't process any more keys if dialog is up
+  if (mTrayMgr->isDialogVisible())
     return true;
+
+  // toggle visibility of advanced frame stats
+  if (arg.key == OIS::KC_F)
+    mTrayMgr->toggleAdvancedFrameStats();
+
+  // toggle visibility of even rarer debugging details
+  else if (arg.key == OIS::KC_G)
+  {
+    if (mDetailsPanel->getTrayLocation() == OgreBites::TL_NONE)
+    {
+      mTrayMgr->moveWidgetToTray(mDetailsPanel, OgreBites::TL_TOPRIGHT, 0);
+      mDetailsPanel->show();
+    }
+    else
+    {
+      mTrayMgr->removeWidgetFromTray(mDetailsPanel);
+      mDetailsPanel->hide();
+    }
+  }
+
+  // cycle polygon rendering mode
+  else if (arg.key == OIS::KC_T)
+  {
+    Ogre::String newVal;
+    Ogre::TextureFilterOptions tfo;
+    unsigned int aniso;
+
+    switch (mDetailsPanel->getParamValue(9).asUTF8()[0])
+    {
+      case 'B':
+        newVal = "Trilinear";
+        tfo = Ogre::TFO_TRILINEAR;
+        aniso = 1;
+      break;
+
+      case 'T':
+        newVal = "Anisotropic";
+        tfo = Ogre::TFO_ANISOTROPIC;
+        aniso = 8;
+      break;
+
+      case 'A':
+        newVal = "None";
+        tfo = Ogre::TFO_NONE;
+        aniso = 1;
+      break;
+
+      default:
+        newVal = "Bilinear";
+        tfo = Ogre::TFO_BILINEAR;
+        aniso = 1;
+    }
+
+    Ogre::MaterialManager::getSingleton().setDefaultTextureFiltering(tfo);
+    Ogre::MaterialManager::getSingleton().setDefaultAnisotropy(aniso);
+    mDetailsPanel->setParamValue(9, newVal);
+  }
+
+  // cycle polygon rendering mode
+  else if (arg.key == OIS::KC_R)
+  {
+      Ogre::String newVal;
+      Ogre::PolygonMode pm;
+
+      switch (mCamera->getPolygonMode())
+      {
+        case Ogre::PM_SOLID:
+          newVal = "Wireframe";
+          pm = Ogre::PM_WIREFRAME;
+        break;
+
+        case Ogre::PM_WIREFRAME:
+          newVal = "Points";
+          pm = Ogre::PM_POINTS;
+        break;
+
+        default:
+          newVal = "Solid";
+          pm = Ogre::PM_SOLID;
+      }
+
+      mCamera->setPolygonMode(pm);
+      mDetailsPanel->setParamValue(10, newVal);
+  }
+
+  // refresh all textures
+  else if(arg.key == OIS::KC_F5)
+    Ogre::TextureManager::getSingleton().reloadAll();
+
+  // take a screenshot
+  else if (arg.key == OIS::KC_SYSRQ)
+      mWindow->writeContentsToTimestampedFile("screenshot", ".jpg");
+
+  // exit
+  else if (arg.key == OIS::KC_ESCAPE)
+      mShutDown = true;
+
+  // pass key input to camera
+  mCameraMan->injectKeyDown(arg);
+  return true;
 }
 
 bool BaseApplication::keyReleased( const OIS::KeyEvent &arg )
@@ -373,21 +388,21 @@ bool BaseApplication::keyReleased( const OIS::KeyEvent &arg )
 bool BaseApplication::mouseMoved( const OIS::MouseEvent &arg )
 {
     if (mTrayMgr->injectMouseMove(arg)) return true;
-    mCameraMan->injectMouseMove(arg);
+    //mCameraMan->injectMouseMove(arg);
     return true;
 }
 
 bool BaseApplication::mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
 {
     if (mTrayMgr->injectMouseDown(arg, id)) return true;
-    mCameraMan->injectMouseDown(arg, id);
+    //mCameraMan->injectMouseDown(arg, id);
     return true;
 }
 
 bool BaseApplication::mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
 {
     if (mTrayMgr->injectMouseUp(arg, id)) return true;
-    mCameraMan->injectMouseUp(arg, id);
+    //mCameraMan->injectMouseUp(arg, id);
     return true;
 }
 
