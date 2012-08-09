@@ -72,7 +72,7 @@ bool BaseApplication::configure(void)
 void BaseApplication::chooseSceneManager(void)
 {
     // Get the SceneManager, in this case a generic one
-    mSceneMgr = mRoot->createSceneManager("TerrainSceneManager");
+    mSceneMgr = mRoot->createSceneManager(Ogre::ST_EXTERIOR_CLOSE);
     //(Ogre::ST_GENERIC);
 }
 //-------------------------------------------------------------------------------------
@@ -82,9 +82,11 @@ void BaseApplication::createCamera(void)
     mCamera = mSceneMgr->createCamera("PlayerCam");
 
     // Position it at 500 in Z direction
-    mCamera->setPosition(Ogre::Vector3(0,0,80));
+    mCamera->setPosition(Ogre::Vector3(0, 500, 0));
     // Look back along -Y
-    mCamera->lookAt(Ogre::Vector3(0,-300, 0));
+    mCamera->pitch(Ogre::Degree(-30));
+    mCamera->yaw(Ogre::Degree(0));
+    mCamera->roll(Ogre::Degree(0));
     mCamera->setNearClipDistance(5);
 
     mCameraMan = new OverheadCamera(mCamera);   // create a default camera controller
@@ -381,15 +383,22 @@ bool BaseApplication::keyPressed( const OIS::KeyEvent &arg )
 
 bool BaseApplication::keyReleased( const OIS::KeyEvent &arg )
 {
-    mCameraMan->injectKeyUp(arg);
-    return true;
+  mCameraMan->injectKeyUp(arg);
+  // consume event
+  return true;
 }
 
 bool BaseApplication::mouseMoved( const OIS::MouseEvent &arg )
 {
-    if (mTrayMgr->injectMouseMove(arg)) return true;
-    //mCameraMan->injectMouseMove(arg);
+  // the tray may consume the event before it gets to the camera
+  if (mTrayMgr->injectMouseMove(arg))
     return true;
+
+  // pass to the camera if not consumed
+  mCameraMan->injectMouseMove(arg);
+
+  // consume event
+  return true;
 }
 
 bool BaseApplication::mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id )

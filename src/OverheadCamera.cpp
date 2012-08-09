@@ -7,9 +7,9 @@ using namespace std;
 
 OverheadCamera::OverheadCamera(Ogre::Camera* _camera) :
 camera(_camera),
-top_speed(150.0f),
+top_speed(250.0f),
 speed(Ogre::Vector3::ZERO),
-input(Ogre::Vector2::ZERO)
+input(Ogre::Vector3::ZERO)
 {
 }
 
@@ -21,21 +21,24 @@ OverheadCamera::~OverheadCamera()
 
 bool OverheadCamera::frameRenderingQueued(const Ogre::FrameEvent& evt)
 {
-  // build our acceleration vector based on keyboard input composite
-  Ogre::Vector3 delta = Ogre::Vector3::ZERO;
+  // acceleration vector to be built based on keyboard input composite
+  Ogre::Vector3 delta = Ogre::Vector3::ZERO,
+  // prepare the axes along which the camera will move
+                right = camera->getRight(),
+                forwards = camera->getDirection();
+  right.y = forwards.y = 0;
 
   // left and right
   if (input.x > 0)
-    delta += camera->getRight();
+    delta += right;
   else if (input.x < 0)
-    delta -= camera->getRight();
+    delta -= right;
 
   // forwards and backwards
   if (input.y > 0)
-    delta -= camera->getUp();
+    delta -= forwards;
   else if (input.y < 0)
-    delta += camera->getUp();
-
+    delta += forwards;
 
   // if accelerating, try to reach top speed in a certain time
   if (delta.squaredLength() != 0)
@@ -72,7 +75,7 @@ bool OverheadCamera::frameRenderingQueued(const Ogre::FrameEvent& evt)
 void OverheadCamera::injectStop()
 {
   speed = Ogre::Vector3::ZERO;
-  input = Ogre::Vector2::ZERO;
+  input = Ogre::Vector3::ZERO;
 }
 
 void OverheadCamera::injectKeyDown(const OIS::KeyEvent& evt)
@@ -101,4 +104,10 @@ void OverheadCamera::injectKeyUp(const OIS::KeyEvent& evt)
     input.y = 0;
   else if (evt.key == OIS::KC_DOWN && input.y > 0)
     input.y = 0;
+}
+
+void OverheadCamera::injectMouseMove(const OIS::MouseEvent& evt)
+{
+  // up and down
+  camera->move(Ogre::Vector3(0, -evt.state.Z.rel, 0));
 }

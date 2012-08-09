@@ -2,18 +2,20 @@
 
 using namespace Ogre;
 
-//-------------------------------------------------------------------------------------
+/// CREATION
+
+//------------------------------------------------------------------------------
 Application::Application() :
 BaseApplication(),
 soldiers()
 {
 }
-//-------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 Application::~Application()
 {
 }
 
-//-------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void Application::createScene(void)
 {
 	// Set ambient light
@@ -39,12 +41,16 @@ void Application::createScene(void)
   mCamera->pitch(Ogre::Degree(-30.0f));
   mCamera->yaw(Ogre::Degree(-15.0f));
 }
+//------------------------------------------------------------------------------
 
+/// FRAME LISTENER
+
+//------------------------------------------------------------------------------
 void Application::createFrameListener(void)
 {
 	BaseApplication::createFrameListener();
 }
-
+//------------------------------------------------------------------------------
 bool Application::frameRenderingQueued(const Ogre::FrameEvent &evt)
 {
   soldiers[0]->update(evt.timeSinceLastFrame);
@@ -52,3 +58,22 @@ bool Application::frameRenderingQueued(const Ogre::FrameEvent &evt)
 
 	return BaseApplication::frameRenderingQueued(evt);
 }
+//------------------------------------------------------------------------------
+bool Application::mouseMoved(const OIS::MouseEvent &arg)
+{
+  if(!BaseApplication::mouseMoved(arg))
+    return false;
+
+  return true;
+}
+//------------------------------------------------------------------------------
+bool Application::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
+{
+  return true;
+}
+//------------------------------------------------------------------------------
+bool Application::mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
+{
+  return true;
+}
+//------------------------------------------------------------------------------

@@ -16,7 +16,7 @@ private:
   Ogre::Camera* camera;
   Ogre::Real top_speed;
   Ogre::Vector3 speed;
-  Ogre::Vector2 input;
+  Ogre::Vector3 input;
 
   /// METHODS
 public:
@@ -35,6 +35,7 @@ public:
   virtual void injectStop();
   virtual void injectKeyDown(const OIS::KeyEvent& evt);
   virtual void injectKeyUp(const OIS::KeyEvent& evt);
+  virtual void injectMouseMove(const OIS::MouseEvent& evt);
 };
 
 #endif // OVERHEADCAMERA_HPP_INCLUDED
