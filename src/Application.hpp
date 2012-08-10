@@ -19,7 +19,6 @@ private:
   bool r_mouse, l_mouse;		            // True if the mouse buttons are down
   Ogre::Vector3 cursor_pos;             // Position of the cursor in the world
   CEGUI::Renderer *gui_renderer;		    // CEGUI renderer
-  float rotate_speed;
 
   /// METHODS
 public:

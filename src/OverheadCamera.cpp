@@ -12,9 +12,10 @@ using namespace std;
 /// CREATION, DESTRUCTION
 
 OverheadCamera::OverheadCamera(Camera* _camera) :
+rotate(false),
 camera(_camera),
 top_pan_speed(250),
-top_zoom_speed(600),
+rotate_speed(0.1),
 pan_speed(Vector3::ZERO),
 zoom_speed(Vector3::ZERO),
 input(Vector3::ZERO),
@@ -31,10 +32,7 @@ OverheadCamera::~OverheadCamera()
 bool OverheadCamera::frameRenderingQueued(const FrameEvent& evt)
 {
   // pan the camera based on keyboard input
-  pan(evt);
-
-  // zoom the camera towards the cursor
-  zoom(evt);
+  move(evt.timeSinceLastFrame);
 
   // event consumed, no error
   return true;
@@ -42,11 +40,15 @@ bool OverheadCamera::frameRenderingQueued(const FrameEvent& evt)
 
 /// CONTROL
 
-void OverheadCamera::manualStop()
+void OverheadCamera::stopPan()
 {
   pan_speed = Vector3::ZERO;
-  zoom_speed = Vector3::ZERO;
   input = Vector3::ZERO;
+}
+
+void OverheadCamera::stopZoom()
+{
+  zoom_speed = Vector3::ZERO;
 }
 
 void OverheadCamera::injectKeyDown(const OIS::KeyEvent& evt)
@@ -79,33 +81,38 @@ void OverheadCamera::injectKeyUp(const OIS::KeyEvent& evt)
 
 void OverheadCamera::injectMouseMove(const OIS::MouseEvent& evt)
 {
+  // Rotate the camera based on mouse movement when middle button is held
+  if(rotate)
+  {
+    camera->yaw(Ogre::Degree(-evt.state.X.rel * rotate_speed));
+    camera->pitch(Ogre::Degree(-evt.state.Y.rel * rotate_speed));
+  }
+
   // Calculate the direction towards the cursor
   CEGUI::Point mouse_pos = CEGUI::MouseCursor::getSingleton().getPosition();
   Ray mouse_ray =
     camera->getCameraToViewportRay(mouse_pos.d_x/float(evt.state.width),
                                    mouse_pos.d_y/float(evt.state.height));
-  zoom_direction = mouse_ray.getDirection();
 
-  // Store the mouse-wheel movement
-  input.z = evt.state.Z.rel;
-
-  // Update CEGUI with the mouse motion
-  CEGUI::System::getSingleton().injectMouseMove(evt.state.X.rel, evt.state.Y.rel);
+  // Zoom towards the cursor
+  zoom_speed += mouse_ray.getDirection() * evt.state.Z.rel * 10;
 }
 
 void OverheadCamera::injectMouseUp(const OIS::MouseEvent& evt, OIS::MouseButtonID id)
 {
-  // todo
+  if(id == OIS::MB_Middle)
+    rotate = true;
 }
 
 void OverheadCamera::injectMouseDown(const OIS::MouseEvent& evt, OIS::MouseButtonID id)
 {
-  // todo
+  if(id == OIS::MB_Middle)
+    rotate = true;
 }
 
 /// SUBROUTINES
 
-void OverheadCamera::pan(const FrameEvent& evt)
+void OverheadCamera::move(Real d_time)
 {
   // acceleration vector to be built based on keyboard input composite
   Vector3 delta = Vector3::ZERO,
@@ -130,60 +137,30 @@ void OverheadCamera::pan(const FrameEvent& evt)
   if (delta.squaredLength() != 0)
   {
     delta.normalise();
-    pan_speed += delta * top_pan_speed * evt.timeSinceLastFrame * 10;
+    pan_speed += delta * top_pan_speed * d_time * 10;
   }
   // if not accelerating, try to stop in a certain time
   else
-    pan_speed -= pan_speed * evt.timeSinceLastFrame * 10;
+    pan_speed -= pan_speed * d_time * 10;
+  zoom_speed -= zoom_speed * d_time * 5;
 
-  // tiny value represents 0
+  // set camera velocity to 0 if below the tiny value
   Ogre::Real tiny = std::numeric_limits<Real>::epsilon();
+  if (zoom_speed.squaredLength() < tiny*tiny)
+    zoom_speed = Vector3::ZERO;
 
+  if (pan_speed.squaredLength() < tiny*tiny)
+    pan_speed = Vector3::ZERO;
   // keep camera velocity below top speed
-  if (pan_speed.squaredLength() > top_pan_speed*top_pan_speed)
+  else if (pan_speed.squaredLength() > top_pan_speed*top_pan_speed)
   {
     pan_speed.normalise();
     pan_speed *= top_pan_speed;
   }
-  // set camera velocity to 0 if below the tiny value
-  else if (pan_speed.squaredLength() < tiny*tiny)
-    pan_speed = Vector3::ZERO;
 
   // move the camera
   if (pan_speed != Vector3::ZERO)
-    camera->move(pan_speed * evt.timeSinceLastFrame);
-}
-
-void OverheadCamera::zoom(const FrameEvent& evt)
-{
-  // tiny value represents 0
-  Ogre::Real tiny = std::numeric_limits<Real>::epsilon();
-
-  // if accelerating, try to reach top speed in a certain time
-  if (ABS(input.z) > tiny)
-  {
-    zoom_direction.normalise();
-    zoom_speed += zoom_direction * top_zoom_speed * evt.timeSinceLastFrame * 10 * SIGN(input.z);
-    input.z *= 0.3;
-  }
-  // if not accelerating, try to stop in a certain time
-  else
-  {
-    input.z = 0;
-    zoom_speed -= zoom_speed * evt.timeSinceLastFrame * 10;
-  }
-
-  // keep camera velocity below top speed
-  if (zoom_speed.squaredLength() > top_zoom_speed*top_zoom_speed)
-  {
-    zoom_speed.normalise();
-    zoom_speed *= top_zoom_speed;
-  }
-  // set camera velocity to 0 if below the tiny value
-  else if (zoom_speed.squaredLength() < tiny*tiny)
-    zoom_speed = Vector3::ZERO;
-
-  // move the camera
+    camera->move(pan_speed * d_time);
   if (zoom_speed != Vector3::ZERO)
-    camera->move(zoom_speed * evt.timeSinceLastFrame);
+    camera->move(zoom_speed * d_time);
 }
