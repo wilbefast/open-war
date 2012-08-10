@@ -88,8 +88,7 @@ void BaseApplication::createCamera(void)
   mCamera->setNearClipDistance(5);
 
   // create camera controller
-  mCameraMan =
-    new OverheadCamera(mCamera, mSceneMgr->createRayQuery(Ogre::Ray()));
+  mCameraMan = new OverheadCamera(mCamera);
 }
 //-------------------------------------------------------------------------------------
 void BaseApplication::createFrameListener(void)
@@ -384,7 +383,9 @@ bool BaseApplication::keyPressed( const OIS::KeyEvent &evt )
 
 bool BaseApplication::keyReleased( const OIS::KeyEvent &evt )
 {
+  // pass to the camera controller
   mCameraMan->injectKeyUp(evt);
+
   // consume event
   return true;
 }
@@ -395,7 +396,7 @@ bool BaseApplication::mouseMoved( const OIS::MouseEvent &evt )
   if (mTrayMgr->injectMouseMove(evt))
     return true;
 
-  // pass to the camera if not consumed
+  // pass to the camera controller if not consumed
   mCameraMan->injectMouseMove(evt);
 
   // consume event
@@ -404,15 +405,25 @@ bool BaseApplication::mouseMoved( const OIS::MouseEvent &evt )
 
 bool BaseApplication::mousePressed( const OIS::MouseEvent &evt, OIS::MouseButtonID id )
 {
-  if (mTrayMgr->injectMouseDown(evt, id)) return true;
-  //mCameraMan->injectMouseDown(evt, id);
+  // the tray may consume the event before it gets to the camera
+  if (mTrayMgr->injectMouseDown(evt, id))
+    return true;
+
+  // pass to the camera controller if not consumed
+  mCameraMan->injectMouseDown(evt, id);
+
   return true;
 }
 
 bool BaseApplication::mouseReleased( const OIS::MouseEvent &evt, OIS::MouseButtonID id )
 {
-  if (mTrayMgr->injectMouseUp(evt, id)) return true;
-  //mCameraMan->injectMouseUp(evt, id);
+  // the tray may consume the event before it gets to the camera
+  if (mTrayMgr->injectMouseUp(evt, id))
+    return true;
+
+  // pass to the camera controller if not consumed
+  mCameraMan->injectMouseUp(evt, id);
+
   return true;
 }
 
@@ -440,7 +451,7 @@ void BaseApplication::windowClosed(Ogre::RenderWindow* rw)
       mInputManager->destroyInputObject( mKeyboard );
 
       OIS::InputManager::destroyInputSystem(mInputManager);
-      mInputManager = 0;
+      mInputManager = NULL;
     }
   }
 }

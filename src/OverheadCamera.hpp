@@ -14,15 +14,13 @@ class OverheadCamera
   /// ATTRIBUTES
 private:
   Ogre::Camera* camera;
-  Ogre::RaySceneQuery* ray_query;
-  Ogre::Real top_speed;
-  Ogre::Vector3 speed, cursor_pos;
-  Ogre::Vector2 input;
+  Ogre::Real top_pan_speed, top_zoom_speed;
+  Ogre::Vector3 pan_speed, zoom_speed, input, zoom_direction;
 
   /// METHODS
 public:
   // creation
-  OverheadCamera(Ogre::Camera* _camera, Ogre::RaySceneQuery* _ray_query);
+  OverheadCamera(Ogre::Camera* _camera);
   virtual ~OverheadCamera();
   // modification
   void setCamera(Ogre::Camera* _camera);
@@ -33,10 +31,17 @@ public:
   // update
   virtual bool frameRenderingQueued(const Ogre::FrameEvent& evt);
   // control
-  virtual void injectStop();
+  virtual void manualStop();
   virtual void injectKeyDown(const OIS::KeyEvent& evt);
   virtual void injectKeyUp(const OIS::KeyEvent& evt);
   virtual void injectMouseMove(const OIS::MouseEvent& evt);
+  virtual void injectMouseUp(const OIS::MouseEvent& evt, OIS::MouseButtonID id);
+  virtual void injectMouseDown(const OIS::MouseEvent& evt, OIS::MouseButtonID id);
+
+  /// SUBROUTINES
+private:
+  void pan(const Ogre::FrameEvent& evt);
+  void zoom(const Ogre::FrameEvent& evt);
 };
 
 #endif // OVERHEADCAMERA_HPP_INCLUDED
