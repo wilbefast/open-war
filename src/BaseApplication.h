@@ -86,12 +86,12 @@ protected:
   virtual bool frameRenderingQueued(const Ogre::FrameEvent& evt);
 
   // OIS::KeyListener
-  virtual bool keyPressed( const OIS::KeyEvent &arg );
-  virtual bool keyReleased( const OIS::KeyEvent &arg );
+  virtual bool keyPressed( const OIS::KeyEvent &evt );
+  virtual bool keyReleased( const OIS::KeyEvent &evt );
   // OIS::MouseListener
-  virtual bool mouseMoved( const OIS::MouseEvent &arg );
-  virtual bool mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id );
-  virtual bool mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id );
+  virtual bool mouseMoved( const OIS::MouseEvent &evt );
+  virtual bool mousePressed( const OIS::MouseEvent &evt, OIS::MouseButtonID id );
+  virtual bool mouseReleased( const OIS::MouseEvent &evt, OIS::MouseButtonID id );
 
   // Ogre::WindowEventListener
   //Adjust mouse clipping area

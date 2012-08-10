@@ -2,7 +2,7 @@
 #define APPLICATION_HPP_INCLUDED
 
 #include <deque>
-#include <map>
+#include <list>
 
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/Ogre/CEGUIOgreRenderer.h>
@@ -14,13 +14,12 @@ class Application : public BaseApplication
 {
   /// ATTRIBUTES
 private:
-  std::map<unsigned int, Soldier*> soldiers;
-  Ogre::RaySceneQuery *mRaySceneQuery;  // The ray scene query pointer
+  std::list<Soldier*> soldiers;
+  Ogre::RaySceneQuery *ray_query;       // The ray scene query pointer
   bool r_mouse, l_mouse;		            // True if the mouse buttons are down
-  unsigned int count;							      // The number of robots on the screen
-  Ogre::SceneNode *current_node;	      // The newly created object
-  CEGUI::Renderer *mGUIRenderer;		    // CEGUI renderer
-  float mRotateSpeed;
+  Ogre::Vector3 cursor_pos;             // Position of the cursor in the world
+  CEGUI::Renderer *gui_renderer;		    // CEGUI renderer
+  float rotate_speed;
 
   /// METHODS
 public:
@@ -33,9 +32,9 @@ protected:
   virtual void createFrameListener();
   virtual bool frameRenderingQueued(const Ogre::FrameEvent &evt);
   // mouse listener
-  virtual bool mouseMoved(const OIS::MouseEvent &arg);
-  virtual bool mousePressed(const OIS::MouseEvent &arg,OIS::MouseButtonID id);
-  virtual bool mouseReleased(const OIS::MouseEvent &arg,OIS::MouseButtonID id);
+  virtual bool mouseMoved(const OIS::MouseEvent &evt);
+  virtual bool mousePressed(const OIS::MouseEvent &evt,OIS::MouseButtonID id);
+  virtual bool mouseReleased(const OIS::MouseEvent &evt,OIS::MouseButtonID id);
 };
 
 #endif // APPLICATION_HPP_INCLUDED

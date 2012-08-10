@@ -8,18 +8,22 @@
 
 class Soldier
 {
-  /* CONSTANTS */
+  /// CLASS VARIABLES
+private:
+  static unsigned int count;
+
+  /// CONSTANTS
 private:
   static const Ogre::Real WALK_SPEED;
 
-  /* NESTING */
+  /// NESTING
 private:
   enum State
   {
     IDLING, WALKING
   };
 
-  /* ATTRIBUTES */
+  /// ATTRIBUTES
 private:
   // current state
   State state;
@@ -34,12 +38,11 @@ private:
   Ogre::Entity *entity;
   Ogre::SceneNode *node;
 
-  /* METHODS */
+  /// METHODS
 public:
   // creation, destruction
   Soldier();
-  void attach(Ogre::SceneManager* scene_manager, const char* name,
-              Ogre::Vector3 position);
+  void attach(Ogre::SceneManager* scene_manager, Ogre::Vector3 position);
   // movement
   void nextWaypoint();
   // update

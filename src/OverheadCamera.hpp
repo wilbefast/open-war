@@ -14,14 +14,15 @@ class OverheadCamera
   /// ATTRIBUTES
 private:
   Ogre::Camera* camera;
+  Ogre::RaySceneQuery* ray_query;
   Ogre::Real top_speed;
-  Ogre::Vector3 speed;
-  Ogre::Vector3 input;
+  Ogre::Vector3 speed, cursor_pos;
+  Ogre::Vector2 input;
 
   /// METHODS
 public:
   // creation
-  OverheadCamera(Ogre::Camera* _camera);
+  OverheadCamera(Ogre::Camera* _camera, Ogre::RaySceneQuery* _ray_query);
   virtual ~OverheadCamera();
   // modification
   void setCamera(Ogre::Camera* _camera);

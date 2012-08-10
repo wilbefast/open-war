@@ -1,12 +1,17 @@
 #include "Soldier.hpp"
 
 using namespace Ogre;
+using namespace std;
 
-/* CONSTANTS */
+/// CLASS VARIABLES
+
+unsigned int Soldier::count = 0;
+
+/// CONSTANTS
 
 const Real Soldier::WALK_SPEED = 150.0f;
 
-/* CREATION, DESTRUCTION */
+/// CREATION, DESTRUCTION
 
 Soldier::Soldier() :
 state(IDLING),
@@ -20,15 +25,19 @@ node(NULL)
 {
 }
 
-void Soldier::attach(SceneManager* scene_manager, const char* name,
-                      Vector3 position)
+void Soldier::attach(SceneManager* scene_manager, Vector3 position)
 {
   // Create the entity
+  char name[16];
+  sprintf( name, "Solider%d", count++ );
   entity = scene_manager->createEntity(name, "robot.mesh");
 
   // Create the scene node
-  node = scene_manager->getRootSceneNode()->createChildSceneNode(name, position);
+  string node_name = string(name) + "Node";
+  node = scene_manager->getRootSceneNode()->createChildSceneNode(node_name,
+                                                                  position);
   node->attachObject(entity);
+  node->setScale(0.1f, 0.1f, 0.1f);
 
   // Set to the idle animation and loop
   animation = entity->getAnimationState("Idle");
@@ -41,7 +50,7 @@ void Soldier::attach(SceneManager* scene_manager, const char* name,
   waypoints.push_back(&Waypoint::three);
 }
 
-/* MOVEMENT */
+/// MOVEMENT
 
 void Soldier::nextWaypoint()
 {
@@ -84,7 +93,7 @@ void Soldier::nextWaypoint()
   }
 }
 
-/* UPDATE */
+/// UPDATE
 void Soldier::update(Real amount)
 {
   // Try to get a new destination if currently idle

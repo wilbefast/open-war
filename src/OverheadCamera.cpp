@@ -1,15 +1,18 @@
 #include "OverheadCamera.hpp"
 
-#include <iostream>
-using namespace std;
+#include <CEGUI/CEGUI.h> // for CEGUI::MouseCursor
+
+using namespace Ogre;
 
 /// CREATION, DESTRUCTION
 
-OverheadCamera::OverheadCamera(Ogre::Camera* _camera) :
+OverheadCamera::OverheadCamera(Camera* _camera, RaySceneQuery* _ray_query) :
 camera(_camera),
+ray_query(_ray_query),
 top_speed(250.0f),
-speed(Ogre::Vector3::ZERO),
-input(Ogre::Vector3::ZERO)
+speed(Vector3::ZERO),
+cursor_pos(Vector3::ZERO),
+input(Vector2::ZERO)
 {
 }
 
@@ -19,10 +22,10 @@ OverheadCamera::~OverheadCamera()
 
 /// UPDATE
 
-bool OverheadCamera::frameRenderingQueued(const Ogre::FrameEvent& evt)
+bool OverheadCamera::frameRenderingQueued(const FrameEvent& evt)
 {
   // acceleration vector to be built based on keyboard input composite
-  Ogre::Vector3 delta = Ogre::Vector3::ZERO,
+  Vector3 delta = Vector3::ZERO,
   // prepare the axes along which the camera will move
                 right = camera->getRight(),
                 forwards = camera->getDirection();
@@ -51,7 +54,7 @@ bool OverheadCamera::frameRenderingQueued(const Ogre::FrameEvent& evt)
     speed -= speed * evt.timeSinceLastFrame * 10;
 
   // tiny value represents 0
-  Ogre::Real tiny = std::numeric_limits<Ogre::Real>::epsilon();
+  Ogre::Real tiny = std::numeric_limits<Real>::epsilon();
 
   // keep camera velocity below top speed
   if (speed.squaredLength() > top_speed*top_speed)
@@ -61,10 +64,10 @@ bool OverheadCamera::frameRenderingQueued(const Ogre::FrameEvent& evt)
   }
   // set camera velocity to 0 if below the tiny value
   else if (speed.squaredLength() < tiny*tiny)
-    speed = Ogre::Vector3::ZERO;
+    speed = Vector3::ZERO;
 
   // move the camera
-  if (speed != Ogre::Vector3::ZERO)
+  if (speed != Vector3::ZERO)
     camera->move(speed * evt.timeSinceLastFrame);
 
   return true;
@@ -74,8 +77,8 @@ bool OverheadCamera::frameRenderingQueued(const Ogre::FrameEvent& evt)
 
 void OverheadCamera::injectStop()
 {
-  speed = Ogre::Vector3::ZERO;
-  input = Ogre::Vector3::ZERO;
+  speed = Vector3::ZERO;
+  input = Vector2::ZERO;
 }
 
 void OverheadCamera::injectKeyDown(const OIS::KeyEvent& evt)
@@ -108,6 +111,25 @@ void OverheadCamera::injectKeyUp(const OIS::KeyEvent& evt)
 
 void OverheadCamera::injectMouseMove(const OIS::MouseEvent& evt)
 {
-  // up and down
-  camera->move(Ogre::Vector3(0, -evt.state.Z.rel, 0));
+  // Setup the ray scene query, use CEGUI's mouse position
+  CEGUI::Point mouse_pos = CEGUI::MouseCursor::getSingleton().getPosition();
+  Ray mouse_ray =
+    camera->getCameraToViewportRay(mouse_pos.d_x/float(evt.state.width),
+                                   mouse_pos.d_y/float(evt.state.height));
+  ray_query->setRay(mouse_ray);
+
+  // Execute query and overwrite current cursor position with result
+  RaySceneQueryResult &result = ray_query->execute();
+  RaySceneQueryResult::iterator itr = result.begin();
+  if (itr != result.end() && itr->worldFragment)
+    cursor_pos = itr->worldFragment->singleIntersection;
+
+  // Zoom towards the object of interest
+  Vector3 direction = cursor_pos - camera->getPosition();
+  direction.normalise();
+  direction *= evt.state.Z.rel * 0.1f;
+  camera->move(direction);
+
+  // Update CEGUI with the mouse motion
+  CEGUI::System::getSingleton().injectMouseMove(evt.state.X.rel, evt.state.Y.rel);
 }

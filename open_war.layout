@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="src/Application.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="1880" topLine="15" />
+	<File name="resources.cfg" open="1" top="0" tabpos="4">
+		<Cursor position="1474" topLine="0" />
+	</File>
+	<File name="resources_d.cfg" open="1" top="0" tabpos="5">
+		<Cursor position="1171" topLine="13" />
+	</File>
+	<File name="src/Application.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="2420" topLine="61" />
 	</File>
 	<File name="src/Application.hpp" open="1" top="0" tabpos="2">
-		<Cursor position="183" topLine="0" />
+		<Cursor position="354" topLine="7" />
 	</File>
 	<File name="src/BaseApplication.cpp" open="1" top="0" tabpos="3">
 		<Cursor position="2787" topLine="72" />
@@ -13,7 +19,7 @@
 	<File name="src/BaseApplication.h" open="0" top="0" tabpos="2">
 		<Cursor position="1448" topLine="81" />
 	</File>
-	<File name="src/OverheadCamera.cpp" open="1" top="1" tabpos="4">
+	<File name="src/OverheadCamera.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="186" topLine="0" />
 	</File>
 	<File name="src/OverheadCamera.hpp" open="0" top="0" tabpos="0">
