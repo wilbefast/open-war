@@ -2,10 +2,10 @@
 
 #include "Application.hpp"
 
-using namespace Ogre;
 using namespace std;
+using namespace Ogre;
 
-/// CREATION
+/// CREATION, DESTRUCTION
 //------------------------------------------------------------------------------
 Application::Application() :
 BaseApplication(),
@@ -58,7 +58,6 @@ void Application::createScene(void)
 //------------------------------------------------------------------------------
 
 /// FRAME LISTENER
-
 //------------------------------------------------------------------------------
 void Application::createFrameListener(void)
 {
@@ -75,31 +74,16 @@ bool Application::frameRenderingQueued(const Ogre::FrameEvent &evt)
   if (!BaseApplication::frameRenderingQueued(evt))
    return false;
 
-  // Check for collisions with terrain only if the camera has moved
-  static Ogre::Vector3 cam_pos = mCamera->getPosition();
-  if(cam_pos != mCamera->getPosition())
-  {
-    // Get the new camera position
-    cam_pos = mCamera->getPosition();
-
-    // Prepare and perform a scene query ray-cast
-    Ogre::Ray cam_ray(Ogre::Vector3(cam_pos.x, 5000.0f, cam_pos.z),
-                      Ogre::Vector3::NEGATIVE_UNIT_Y);
-    ray_query->setRay(cam_ray);
-    Ogre::RaySceneQueryResult &result = ray_query->execute();
-    Ogre::RaySceneQueryResult::iterator itr = result.begin();
-
-    // Make sure the camera stays above the terrain
-    if (itr != result.end() && itr->worldFragment)
-    {
-      Ogre::Real terrain_h = itr->worldFragment->singleIntersection.y;
-      if ((terrain_h + 10.0f) > cam_pos.y)
-      {
-        mCamera->setPosition( cam_pos.x, terrain_h + 10.0f, cam_pos.z );
-        mCameraMan->stopZoom();
-      }
-    }
-  }
+  // Prepare to cast ray down from camera
+  Vector3 cam_pos = mCamera->getPosition();
+	Ray cam_ray(Vector3(cam_pos.x, 5000.0f, cam_pos.z), Vector3::NEGATIVE_UNIT_Y);
+  // Check for collisions with terrain
+  Vector3 collision;
+	if(getTerrainCollision(cam_ray, &collision) && cam_pos.y < collision.y + 20.0f)
+	{
+    mCamera->setPosition(cam_pos.x, collision.y + 20.0f, cam_pos.z);
+    mCameraMan->stopZoom();
+	}
 
   // Update the game objects
   for(std::list<Soldier*>::iterator i = soldiers.begin(); i != soldiers.end(); i++)
@@ -108,11 +92,22 @@ bool Application::frameRenderingQueued(const Ogre::FrameEvent &evt)
 	return true;
 }
 //------------------------------------------------------------------------------
+
+/// MOUSE LISTENER
+//------------------------------------------------------------------------------
 bool Application::mouseMoved(const OIS::MouseEvent &evt)
 {
   // Base application logic
   if(!BaseApplication::mouseMoved(evt))
     return false;
+
+  // Find point that cursor is pointing to
+  CEGUI::Point mouse_pos = CEGUI::MouseCursor::getSingleton().getPosition();
+  Ray mouse_ray =
+    mCamera->getCameraToViewportRay(mouse_pos.d_x/float(evt.state.width),
+                                    mouse_pos.d_y/float(evt.state.height));
+  getTerrainCollision(mouse_ray, &cursor_pos);
+
 
   // Update CEGUI with the mouse motion
   CEGUI::System::getSingleton().injectMouseMove(evt.state.X.rel, evt.state.Y.rel);
@@ -122,20 +117,28 @@ bool Application::mouseMoved(const OIS::MouseEvent &evt)
 //------------------------------------------------------------------------------
 bool Application::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id)
 {
+  // Base application logic
+  if(!BaseApplication::mousePressed(evt, id))
+    return false;
+
+
   // Left mouse button down
   if (id == OIS::MB_Left)
   {
     // Set mouse state
     l_mouse = true;
+  }
+
+  // Right mouse button down
+  else if (id == OIS::MB_Right)
+  {
+    // Set mouse state
+    r_mouse = true;
 
     // Create a new Soldier
     Soldier* new_soldier = new Soldier();
     new_soldier->attach(mSceneMgr, cursor_pos);
   }
-
-  // Right mouse button down
-  else if (id == OIS::MB_Right)
-    r_mouse = true;
 
   // consume event
   return true;
@@ -143,6 +146,11 @@ bool Application::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id
 //------------------------------------------------------------------------------
 bool Application::mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID id)
 {
+  // Base application logic
+  if(!BaseApplication::mouseReleased(evt, id))
+    return false;
+
+
   // Left mouse button down
   if (id == OIS::MB_Left)
     l_mouse = false;
@@ -155,3 +163,26 @@ bool Application::mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID i
   return true;
 }
 //------------------------------------------------------------------------------
+
+/// UTILITY
+//------------------------------------------------------------------------------
+bool Application::getTerrainCollision(Ray ray, Vector3* result)
+{
+  // Build and execute the query
+  ray_query->setRay(ray);
+  RaySceneQueryResult &query_result = ray_query->execute();
+  RaySceneQueryResult::iterator itr = query_result.begin();
+
+  // Get the first collision point
+  if (itr != query_result.end() && itr->worldFragment)
+  {
+    // Query can be made with result = NULL, in which case don't write there!
+    if(result)
+      (*result) = itr->worldFragment->singleIntersection;
+
+    // Report whether a collision was found or not
+    return true;
+  }
+  else
+    return false;
+}

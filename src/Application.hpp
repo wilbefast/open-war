@@ -22,10 +22,13 @@ private:
 
   /// METHODS
 public:
+  // creation, destruction
   Application();
   virtual ~Application();
 
+  /// SUBROUTINES
 protected:
+  // creation
   virtual void createScene();
   // frame listener
   virtual void createFrameListener();
@@ -34,6 +37,8 @@ protected:
   virtual bool mouseMoved(const OIS::MouseEvent &evt);
   virtual bool mousePressed(const OIS::MouseEvent &evt,OIS::MouseButtonID id);
   virtual bool mouseReleased(const OIS::MouseEvent &evt,OIS::MouseButtonID id);
+  // query
+  bool getTerrainCollision(Ogre::Ray ray, Ogre::Vector3* result = NULL);
 };
 
 #endif // APPLICATION_HPP_INCLUDED

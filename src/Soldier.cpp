@@ -15,6 +15,7 @@ const Real Soldier::WALK_SPEED = 150.0f;
 
 Soldier::Soldier() :
 state(IDLING),
+selected(false),
 distance_left(0.0f),
 direction(Vector3::ZERO),
 destination(Vector3::ZERO),
@@ -94,7 +95,8 @@ void Soldier::nextWaypoint()
 }
 
 /// UPDATE
-void Soldier::update(Real amount)
+
+void Soldier::update(Real d_time)
 {
   // Try to get a new destination if currently idle
   if(state == IDLING)
@@ -104,7 +106,7 @@ void Soldier::update(Real amount)
   else
   {
     // Move an amount dependent on the time elapsed since last frame
-    Ogre::Real move = WALK_SPEED * amount;
+    Ogre::Real move = WALK_SPEED * d_time;
     // Decrement the amount of distance left to move
     distance_left -= move;
     // Check whether we have reached our destination
@@ -121,5 +123,13 @@ void Soldier::update(Real amount)
   }
 
   // Animate an amount dependent on the elapsed time since the last frame
-  animation->addTime(amount);
+  animation->addTime(d_time);
+}
+
+/// CONTROL
+
+void Soldier::setSelected(bool _selected)
+{
+  node->showBoundingBox(_selected);
+  selected = _selected;
 }

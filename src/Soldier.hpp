@@ -1,6 +1,8 @@
 #ifndef SOLDIER_HPP_INCLUDED
 #define SOLDIER_HPP_INCLUDED
 
+#include <list>
+
 #include <OgreSceneManager.h>
 #include <OgreEntity.h>
 
@@ -27,11 +29,13 @@ private:
 private:
   // current state
   State state;
+  // control
+  bool selected;
   // direction, destination and movement
   Ogre::Real distance_left;
   Ogre::Vector3 direction;
   Ogre::Vector3 destination;
-  std::deque<Waypoint const*> waypoints;
+  std::list<Waypoint const*> waypoints;
   // animation
   Ogre::AnimationState *animation;
   // scene graph identifiers
@@ -46,7 +50,9 @@ public:
   // movement
   void nextWaypoint();
   // update
-  void update(Ogre::Real amount);
+  void update(Ogre::Real d_time);
+  // control
+  void setSelected(bool _selected);
 };
 
 #endif // SOLDIER_HPP_INCLUDED

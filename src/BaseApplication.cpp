@@ -82,8 +82,8 @@ void BaseApplication::createCamera(void)
   // Position it at 500 in Z direction
   mCamera->setPosition(Ogre::Vector3(0, 500, 0));
   // Look back along -Y
-  mCamera->pitch(Ogre::Degree(-30));
-  mCamera->yaw(Ogre::Degree(0));
+  mCamera->pitch(Ogre::Degree(-40));
+  mCamera->yaw(Ogre::Degree(-45));
   mCamera->roll(Ogre::Degree(0));
   mCamera->setNearClipDistance(5);
 

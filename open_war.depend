@@ -2691,11 +2691,11 @@
 	<OgreSceneManager.h>
 	<OgreEntity.h>
 
-1344615014 source:/home/william/Desktop/open_war_link/src/Application.cpp
+1344625023 source:/home/william/Desktop/open_war_link/src/Application.cpp
 	<iostream>
 	"Application.hpp"
 
-1344614028 /home/william/Desktop/open_war_link/src/Application.hpp
+1344620699 /home/william/Desktop/open_war_link/src/Application.hpp
 	<deque>
 	<list>
 	<CEGUI/CEGUI.h>
@@ -2719,7 +2719,8 @@
 	<SdkTrays.h>
 	"OverheadCamera.hpp"
 
-1344598834 /home/william/Desktop/open_war_link/src/Soldier.hpp
+1344622493 /home/william/Desktop/open_war_link/src/Soldier.hpp
+	<list>
 	<OgreSceneManager.h>
 	<OgreEntity.h>
 	"Waypoint.hpp"
@@ -2728,13 +2729,13 @@
 	<OgreSceneManager.h>
 	<OgreEntity.h>
 
-1344606785 source:/home/william/Desktop/open_war_link/src/BaseApplication.cpp
+1344622129 source:/home/william/Desktop/open_war_link/src/BaseApplication.cpp
 	"BaseApplication.h"
 
-1344599080 source:/home/william/Desktop/open_war_link/src/Soldier.cpp
+1344622948 source:/home/william/Desktop/open_war_link/src/Soldier.cpp
 	"Soldier.hpp"
 
-1336341118 source:/home/william/Desktop/open_war_link/src/Waypoint.cpp
+1344621410 source:/home/william/Desktop/open_war_link/src/Waypoint.cpp
 	"Waypoint.hpp"
 
 1336242686 source:/home/william/Desktop/open_war_link/src/main.cpp
@@ -2745,12 +2746,12 @@
 1330779567 /home/william/Desktop/open_war_link/src/platform.h
 	"windows.h"
 
-1344614545 source:/home/william/Desktop/open_war_link/src/OverheadCamera.cpp
+1344624533 source:/home/william/Desktop/open_war_link/src/OverheadCamera.cpp
 	"OverheadCamera.hpp"
 	<CEGUI/CEGUI.h>
 	<iostream>
 
-1344615136 /home/william/Desktop/open_war_link/src/OverheadCamera.hpp
+1344625530 /home/william/Desktop/open_war_link/src/OverheadCamera.hpp
 	"Ogre.h"
 	<limits>
 	<OISEvents.h>

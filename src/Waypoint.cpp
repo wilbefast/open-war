@@ -8,9 +8,9 @@ Waypoint Waypoint::one, Waypoint::two, Waypoint::three;
 
 void Waypoint::attach_all(SceneManager* scene_manager)
 {
-  Waypoint::one.attach(scene_manager, "wp1", Vector3(550.0f,  0.0f,  50.0f));
-  Waypoint::two.attach(scene_manager, "wp2", Vector3(-100.0f,  0.0f, -200.0f));
-  Waypoint::three.attach(scene_manager, "wp3", Vector3(250.0f,  0.0f, 400.0f));
+  Waypoint::one.attach(scene_manager, "wp1", Vector3(550.0f,  200.0f,  250.0f));
+  Waypoint::two.attach(scene_manager, "wp2", Vector3(1000.0f,  200.0f, 500.0f));
+  Waypoint::three.attach(scene_manager, "wp3", Vector3(25.0f,  200.0f, 3000.0f));
 }
 
 
