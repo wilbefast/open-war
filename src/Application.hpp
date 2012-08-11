@@ -55,7 +55,9 @@ protected:
   virtual bool mousePressed(const OIS::MouseEvent &evt,OIS::MouseButtonID id);
   virtual bool mouseReleased(const OIS::MouseEvent &evt,OIS::MouseButtonID id);
   // query
-  bool getTerrainCollision(Ogre::Ray ray, Ogre::Vector3* result = NULL);
+  Ogre::RaySceneQueryResult getUnderCursor(OIS::MouseState mouse_state);
+  Ogre::RaySceneQueryResult getBelowPosition(Ogre::Vector3 position);
+  bool getTerrainCollision(Ogre::RaySceneQueryResult in, Ogre::Vector3* out = NULL);
 };
 
 #endif // APPLICATION_HPP_INCLUDED

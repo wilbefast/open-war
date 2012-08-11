@@ -31,11 +31,11 @@ class OverheadCamera
 {
   /// CONSTANTS
 private:
-  static const Ogre::Real MIN_Y, PAN_Y_BONUS, ZOOM_Y_BONUS, BONUS_MAX_Y;
+  static const Ogre::Real MIN_Y, MAX_Y;
 
   /// ATTRIBUTES
 private:
-  bool rotate;
+  bool rotate, max_zoom_in, max_zoom_out;
   Ogre::Camera* camera;
   Ogre::Real top_speed, rotate_speed;
   Ogre::Vector3 pan_speed, zoom_speed, input, zoom_direction;
@@ -56,7 +56,8 @@ public:
   // control
   void stopPan();
   void stopZoom();
-  void stayAbove(unsigned int height, Ogre::Real d_time);
+  void stayAbove(Ogre::Real target_y, Ogre::Real d_time);
+  void stayBelow(Ogre::Real target_y, Ogre::Real d_time);
   virtual void injectKeyDown(const OIS::KeyEvent& evt);
   virtual void injectKeyUp(const OIS::KeyEvent& evt);
   virtual void injectMouseMove(const OIS::MouseEvent& evt);
@@ -66,6 +67,7 @@ public:
   /// SUBROUTINES
 private:
   void move(Ogre::Real d_time);
+  void stayOnSide(Ogre::Real target_y, Ogre::Real d_time, int side);
 };
 
 #endif // OVERHEADCAMERA_HPP_INCLUDED

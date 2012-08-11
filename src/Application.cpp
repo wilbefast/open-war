@@ -57,17 +57,6 @@ void Application::createScene(void)
   CEGUI::SchemeManager::getSingleton().create((CEGUI::utf8*)"TaharezLook.scheme");
   CEGUI::MouseCursor::getSingleton().setImage("TaharezLook", "MouseArrow");
 
-  // Create the waypoints
-  Waypoint::attach_all(mSceneMgr);
-
-  // Create the two soldiers
-  Soldier* s = new Soldier();
-	s->attach(mSceneMgr, Vector3(150.0f, 0.0f, 25.0f));
-	soldiers.push_back(s);
-	s = new Soldier();
-	s->attach(mSceneMgr, Vector3(-200.0f, 0.0f, 300.0f));
-	soldiers.push_back(s);
-
   // Set the camera to look at our handiwork
   mCamera->setPosition(90.0f, 280.0f, 535.0f);
   mCamera->pitch(Ogre::Degree(-30.0f));
@@ -79,6 +68,7 @@ void Application::createScene(void)
 //------------------------------------------------------------------------------
 void Application::createFrameListener(void)
 {
+  // Listen out from screen refreshes
 	BaseApplication::createFrameListener();
 
   // Create RaySceneQuery
@@ -92,16 +82,10 @@ bool Application::frameRenderingQueued(const Ogre::FrameEvent &evt)
   if (!BaseApplication::frameRenderingQueued(evt))
    return false;
 
-  // Prepare to cast ray down from camera
-  Vector3 cam_pos = mCamera->getPosition();
-	Ray cam_ray(Vector3(cam_pos.x, 5000.0f, cam_pos.z), Vector3::NEGATIVE_UNIT_Y);
   // Check for collisions with terrain
   Vector3 collision;
-	if(getTerrainCollision(cam_ray, &collision) && cam_pos.y < collision.y + 20.0f)
-	{
-    mCamera->setPosition(cam_pos.x, collision.y + 20.0f, cam_pos.z);
-    mCameraMan->stopZoom();
-	}
+	if(getTerrainCollision(getBelowPosition(mCamera->getPosition()), &collision))
+    mCameraMan->stayAbove(collision.y + 20.0f, evt.timeSinceLastFrame);
 
   // Update the game objects
   for(std::list<Soldier*>::iterator i = soldiers.begin(); i != soldiers.end(); i++)
@@ -120,11 +104,7 @@ bool Application::mouseMoved(const OIS::MouseEvent &evt)
     return false;
 
   // Find point that cursor is pointing to
-  CEGUI::Point mouse_pos = CEGUI::MouseCursor::getSingleton().getPosition();
-  Ray mouse_ray =
-    mCamera->getCameraToViewportRay(mouse_pos.d_x/float(evt.state.width),
-                                    mouse_pos.d_y/float(evt.state.height));
-  getTerrainCollision(mouse_ray, &cursor_pos);
+  getTerrainCollision(getUnderCursor(evt.state), &cursor_pos);
 
 
   // Update CEGUI with the mouse motion
@@ -184,23 +164,40 @@ bool Application::mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID i
 
 /// UTILITY
 //------------------------------------------------------------------------------
-bool Application::getTerrainCollision(Ray ray, Vector3* result)
+RaySceneQueryResult Application::getUnderCursor(OIS::MouseState mouse_state)
 {
-  // Build and execute the query
-  ray_query->setRay(ray);
-  RaySceneQueryResult &query_result = ray_query->execute();
-  RaySceneQueryResult::iterator itr = query_result.begin();
+  // Calculate the ray implied by the cursor's position on the screen
+  CEGUI::Point mouse_pos = CEGUI::MouseCursor::getSingleton().getPosition();
+  Ray mouse_ray =
+    mCamera->getCameraToViewportRay(mouse_pos.d_x/float(mouse_state.width),
+                                    mouse_pos.d_y/float(mouse_state.height));
 
+  // Execute the query and return the result
+  ray_query->setRay(mouse_ray);
+  return ray_query->execute();
+}
+//------------------------------------------------------------------------------
+RaySceneQueryResult Application::getBelowPosition(Vector3 position)
+{
+  // Build and execute the query and return the result
+  Ray down_ray = Ray(position, Vector3::NEGATIVE_UNIT_Y);
+  ray_query->setRay(down_ray);
+  return ray_query->execute();
+}
+//------------------------------------------------------------------------------
+bool Application::getTerrainCollision(RaySceneQueryResult in, Vector3* out)
+{
   // Get the first collision point
-  if (itr != query_result.end() && itr->worldFragment)
-  {
-    // Query can be made with result = NULL, in which case don't write there!
-    if(result)
-      (*result) = itr->worldFragment->singleIntersection;
+  for(RaySceneQueryResult::iterator itr = in.begin(); itr != in.end(); itr++)
+    // Ray intersects terrain geometry
+    if(itr->worldFragment)
+    {
+      // Query can be made with result = NULL, in which case don't write there!
+      if(out)
+        (*out) = itr->worldFragment->singleIntersection;
 
-    // Report whether a collision was found or not
-    return true;
-  }
-  else
-    return false;
+      // Report whether a collision was found or not
+      return true;
+    }
+  return false;
 }

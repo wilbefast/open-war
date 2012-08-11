@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define SIGN(x) ((x>0)?1:((x<0)?-1:0))
 #define ABS(x) ((x>0)?x:-x)
+#define SQ(x) (x*x)
 
 using namespace Ogre;
 using namespace std;
@@ -30,17 +31,17 @@ using namespace std;
 /// CONSTANTS
 
 const Real OverheadCamera::MIN_Y = 50.0f,
-           OverheadCamera::PAN_Y_BONUS = 0.003f,
-           OverheadCamera::ZOOM_Y_BONUS = 0.0045f,
-           OverheadCamera::BONUS_MAX_Y = 800;
+           OverheadCamera::MAX_Y = 1500.0f;
 
 /// CREATION, DESTRUCTION
 
 OverheadCamera::OverheadCamera(Camera* _camera) :
 rotate(false),
+max_zoom_in(false),
+max_zoom_out(false),
 camera(_camera),
-top_speed(250),
-rotate_speed(0.1),
+top_speed(700.0f),
+rotate_speed(0.1f),
 pan_speed(Vector3::ZERO),
 zoom_speed(Vector3::ZERO),
 input(Vector3::ZERO),
@@ -76,28 +77,14 @@ void OverheadCamera::stopZoom()
   zoom_speed = Vector3::ZERO;
 }
 
-void OverheadCamera::stayAbove(unsigned int target_y, Real d_time)
+void OverheadCamera::stayAbove(Real target_y, Real d_time)
 {
-  // cache
-  Vector3 camera_pos = camera->getPosition();
-  Real next_y = camera_pos.y + zoom_speed.y*d_time;
+  return stayOnSide(target_y, d_time, 1);
+}
 
-  // check for overflow
-  if(next_y < target_y)
-  {
-    if(zoom_speed.y)
-    {
-      // camera should stop smoothly just where it would have touched MIN_Y
-      Real fraction = (target_y - camera_pos.y) / (zoom_speed.y * d_time);
-      zoom_speed *= fraction;
-    }
-    else
-    {
-      // if all else fails: jerky halt more or less where it should be
-      stopZoom();
-      camera->setPosition(camera_pos.x, target_y, camera_pos.z);
-    }
-  }
+void OverheadCamera::stayBelow(Real target_y, Real d_time)
+{
+  return stayOnSide(target_y, d_time, -1);
 }
 
 void OverheadCamera::injectKeyDown(const OIS::KeyEvent& evt)
@@ -135,6 +122,10 @@ void OverheadCamera::injectMouseMove(const OIS::MouseEvent& evt)
   {
     camera->yaw(Ogre::Degree(-evt.state.X.rel * rotate_speed));
     camera->pitch(Ogre::Degree(-evt.state.Y.rel * rotate_speed));
+    /*Ogre::Real dist = (camera->getPosition() - cursor_pos).length();
+    camera->yaw(Ogre::Degree(-evt.state.X.rel * 0.25f));
+    camera->pitch(Ogre::Degree(-evt.state.Y.rel * 0.25f));
+    camera->moveRelative(Ogre::Vector3(0, 0, dist));*/
   }
 
   // Calculate the direction towards the cursor
@@ -143,9 +134,18 @@ void OverheadCamera::injectMouseMove(const OIS::MouseEvent& evt)
     camera->getCameraToViewportRay(mouse_pos.d_x/float(evt.state.width),
                                    mouse_pos.d_y/float(evt.state.height));
 
-  // Zoom towards the cursor
-  if(evt.state.Z.rel < 0 || camera->getPosition().y > MIN_Y)
-    zoom_speed += mouse_ray.getDirection() * evt.state.Z.rel * 10;
+  // Cap maximum zoom
+  bool zoom_in = evt.state.Z.rel > 0,
+       zoom_out = evt.state.Z.rel < 0;
+  if(zoom_in)
+    max_zoom_out = false;
+  else if(zoom_out)
+    max_zoom_in = false;
+
+  // Otherwise zoom towards cursor
+  if((zoom_in && !max_zoom_in) || (zoom_out && !max_zoom_out))
+      zoom_speed += mouse_ray.getDirection() * evt.state.Z.rel * 10;
+
 }
 
 void OverheadCamera::injectMouseUp(const OIS::MouseEvent& evt, OIS::MouseButtonID id)
@@ -166,11 +166,7 @@ void OverheadCamera::move(Real d_time)
 {
   // speed depends on the height of the camera
   Vector3 camera_pos = camera->getPosition();
-  Real pan_height_bonus =
-    PAN_Y_BONUS * ((camera_pos.y > BONUS_MAX_Y) ? BONUS_MAX_Y : camera_pos.y);
-  Real height_top_speed = top_speed * pan_height_bonus;
-  Real zoom_height_bonus =
-    ZOOM_Y_BONUS * ((camera_pos.y > BONUS_MAX_Y) ? BONUS_MAX_Y : camera_pos.y);
+  Real height_mod = (camera_pos.y - MIN_Y) / (MAX_Y - MIN_Y);
 
   // acceleration vector to be built based on keyboard input composite
   Vector3 delta = Vector3::ZERO,
@@ -195,7 +191,7 @@ void OverheadCamera::move(Real d_time)
   if (delta.squaredLength() != 0)
   {
     delta.normalise();
-    pan_speed += delta * height_top_speed * d_time * 10;
+    pan_speed += delta * top_speed * d_time * 10;
   }
   // if not accelerating, try to stop in a certain time
   else if(pan_speed != Vector3::ZERO)
@@ -206,24 +202,62 @@ void OverheadCamera::move(Real d_time)
 
   // set camera velocity to 0 if below the tiny value
   Ogre::Real tiny = std::numeric_limits<Real>::epsilon();
-  if (zoom_speed.squaredLength() < tiny * tiny)
+  if (zoom_speed.squaredLength() < SQ(tiny))
     zoom_speed = Vector3::ZERO;
 
-  if (pan_speed.squaredLength() < tiny * tiny)
+  if (pan_speed.squaredLength() < SQ(tiny))
     pan_speed = Vector3::ZERO;
   // keep camera velocity below top speed
-  else if (pan_speed.squaredLength() > height_top_speed * height_top_speed)
+  else if (pan_speed.squaredLength() > SQ(top_speed))
   {
     pan_speed.normalise();
-    pan_speed *= height_top_speed;
+    pan_speed *= top_speed;
   }
 
-  // stop zooming if below the minimum height (Y)
+  // stop zooming if below the minimum height
   stayAbove(MIN_Y, d_time);
+
+  // stop zooming if above the maximum height
+  stayBelow(1500, d_time);
 
   // move the camera
   if (pan_speed != Vector3::ZERO)
-    camera->move(pan_speed * d_time * pan_height_bonus);
+    camera->move(pan_speed * height_mod * d_time);
   if (zoom_speed != Vector3::ZERO)
-    camera->move(zoom_speed * d_time * zoom_height_bonus);
+    camera->move(zoom_speed * height_mod * d_time);
+}
+
+void OverheadCamera::stayOnSide(Real target_y, Real d_time, int side)
+{
+  // sign must be 1 or -1
+  if(SQ(side) != 1)
+    return;
+
+  // cache
+  Vector3 camera_pos = camera->getPosition();
+  Real next_y = camera_pos.y + zoom_speed.y*d_time;
+
+  // check for overflow
+  if(side*next_y < side*target_y)
+  {
+    if(zoom_speed.y)
+    {
+      // camera should stop smoothly just where it would have touched MIN_Y
+      Real fraction = (target_y - camera_pos.y) / (zoom_speed.y * d_time);
+      zoom_speed *= fraction;
+    }
+    else
+    {
+      // if all else fails: jerky halt more or less where it should be
+      stopZoom();
+      camera->setPosition(camera_pos.x, target_y, camera_pos.z);
+    }
+
+    if(side == 1)
+      // prevent further attempts to zoom in until we zoom out again
+      max_zoom_in = true;
+    else
+      // or vice versa
+      max_zoom_out = true;
+  }
 }

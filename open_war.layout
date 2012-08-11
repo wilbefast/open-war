@@ -1,37 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="resources.cfg" open="1" top="0" tabpos="4">
+	<File name="resources.cfg" open="0" top="0" tabpos="4">
 		<Cursor position="1474" topLine="0" />
 	</File>
-	<File name="resources_d.cfg" open="1" top="0" tabpos="5">
+	<File name="resources_d.cfg" open="0" top="0" tabpos="5">
 		<Cursor position="1171" topLine="13" />
 	</File>
-	<File name="src/Application.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="2420" topLine="61" />
+	<File name="src/Application.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="6258" topLine="181" />
 	</File>
 	<File name="src/Application.hpp" open="1" top="0" tabpos="2">
-		<Cursor position="354" topLine="7" />
+		<Cursor position="2014" topLine="40" />
 	</File>
-	<File name="src/BaseApplication.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="2787" topLine="72" />
+	<File name="src/BaseApplication.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="2744" topLine="0" />
 	</File>
 	<File name="src/BaseApplication.h" open="0" top="0" tabpos="2">
-		<Cursor position="1448" topLine="81" />
+		<Cursor position="1448" topLine="0" />
 	</File>
-	<File name="src/OverheadCamera.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="186" topLine="0" />
+	<File name="src/OverheadCamera.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="3603" topLine="122" />
 	</File>
-	<File name="src/OverheadCamera.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="333" topLine="6" />
+	<File name="src/OverheadCamera.hpp" open="1" top="0" tabpos="4">
+		<Cursor position="1117" topLine="40" />
 	</File>
 	<File name="src/Soldier.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="898" topLine="0" />
+		<Cursor position="727" topLine="0" />
 	</File>
 	<File name="src/Soldier.hpp" open="0" top="0" tabpos="4">
-		<Cursor position="637" topLine="12" />
+		<Cursor position="727" topLine="0" />
+	</File>
+	<File name="src/Waypoint.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="727" topLine="0" />
+	</File>
+	<File name="src/Waypoint.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="727" topLine="0" />
 	</File>
 	<File name="src/main.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="128" topLine="0" />
+		<Cursor position="727" topLine="0" />
+	</File>
+	<File name="src/platform.h" open="0" top="0" tabpos="0">
+		<Cursor position="727" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>
