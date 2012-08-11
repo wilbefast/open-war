@@ -58,6 +58,7 @@ protected:
   Ogre::RaySceneQueryResult getUnderCursor(OIS::MouseState mouse_state);
   Ogre::RaySceneQueryResult getBelowPosition(Ogre::Vector3 position);
   bool getTerrainCollision(Ogre::RaySceneQueryResult in, Ogre::Vector3* out = NULL);
+  Soldier* getSoldierCollision(Ogre::RaySceneQueryResult in);
 };
 
 #endif // APPLICATION_HPP_INCLUDED

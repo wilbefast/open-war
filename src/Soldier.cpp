@@ -44,7 +44,11 @@ node(NULL)
 {
 }
 
-void Soldier::attach(SoldierMap* map, SceneManager* scene_manager,
+Soldier::~Soldier()
+{
+}
+
+void Soldier::attach(SoldierMap& map, SceneManager* scene_manager,
                       Vector3 position)
 {
   // Create the Entity
@@ -53,7 +57,7 @@ void Soldier::attach(SoldierMap* map, SceneManager* scene_manager,
   entity = scene_manager->createEntity(name, "robot.mesh");
 
   // Store in the map
-  (*map)[name] = this;
+  map[name] = this;
 
   // Create the scene Node
   string node_name = string(name) + "Node";
@@ -62,7 +66,7 @@ void Soldier::attach(SoldierMap* map, SceneManager* scene_manager,
 
   // Attach Entity to Node
   node->attachObject(entity);
-  node->setScale(0.1f, 0.1f, 0.1f);
+  //node->setScale(0.1f, 0.1f, 0.1f);
 
   // Set to the idle animation and loop
   animation = entity->getAnimationState("Idle");
@@ -87,7 +91,7 @@ void Soldier::nextWaypoint()
   else
   {
     // get the next destination from the queue
-    destination = waypoints.front()->getPosition();
+    destination = waypoints.front().getPosition();
     waypoints.pop_front();
 
     // turn towards the new destination
@@ -151,4 +155,17 @@ void Soldier::setSelected(bool _selected)
 {
   node->showBoundingBox(_selected);
   selected = _selected;
+}
+
+void Soldier::addWaypoint(Waypoint new_waypoint)
+{
+  waypoints.push_back(new_waypoint);
+}
+
+
+/// QUERY
+
+bool Soldier::isSelected() const
+{
+  return selected;
 }

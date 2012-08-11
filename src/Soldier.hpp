@@ -69,13 +69,17 @@ private:
 public:
   // creation, destruction
   Soldier();
-  void attach(SoldierMap*, Ogre::SceneManager*, Ogre::Vector3 position);
+  virtual ~Soldier();
+  void attach(SoldierMap&, Ogre::SceneManager*, Ogre::Vector3 position);
   // movement
   void nextWaypoint();
   // update
   void update(Ogre::Real d_time);
   // control
   void setSelected(bool _selected);
+  void addWaypoint(Waypoint new_waypoint);
+  // query
+  bool isSelected() const;
 };
 
 #endif // SOLDIER_HPP_INCLUDED

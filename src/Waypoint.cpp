@@ -22,28 +22,14 @@ using namespace Ogre;
 
 /// CREATION, DESTRUCTION
 
-Waypoint::Waypoint() :
-entity(NULL),
-node(NULL)
+Waypoint::Waypoint(Vector3 _position) :
+position(_position)
 {
 }
-
-void Waypoint::attach(SceneManager* scene_manager, const char* name,
-                      Vector3 position)
-{
-  // Create the entity
-  entity = scene_manager->createEntity(name, "knot.mesh");
-
-  // Create the scene node
-  node = scene_manager->getRootSceneNode()->createChildSceneNode(name, position);
-  node->attachObject(entity);
-  node->setScale(0.1f, 0.1f, 0.1f);
-}
-
 
 /// QUERY
 
 Vector3 const& Waypoint::getPosition() const
 {
-  return node->getPosition();
+  return position;
 }

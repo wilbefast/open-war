@@ -385,8 +385,8 @@ bool BaseApplication::keyPressed( const OIS::KeyEvent &evt )
     Ogre::TextureManager::getSingleton().reloadAll();
 
   // take a screenshot
-  else if (evt.key == OIS::KC_SYSRQ)
-    mWindow->writeContentsToTimestampedFile("screenshot", ".jpg");
+  //else if (evt.key == OIS::KC_SYSRQ)
+    //mWindow->writeContentsToTimestampedFile("screenshot", ".jpg");
 
   // exit
   else if (evt.key == OIS::KC_ESCAPE)

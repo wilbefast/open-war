@@ -39,6 +39,10 @@ Application::~Application()
 {
   // We created the query, and we are also responsible for deleting it.
   mSceneMgr->destroyQuery(ray_query);
+
+  // Delete all the Soldiers
+  for(SoldierIter i = soldiers.begin(); i != soldiers.end(); i++)
+    delete i->second;
 }
 
 //------------------------------------------------------------------------------
@@ -127,19 +131,14 @@ bool Application::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id
     l_mouse = true;
 
     // Select Soldiers under cursor
-    RaySceneQueryResult qry = getUnderCursor(evt.state);
-
-    for(RaySceneQueryResult::iterator i = qry.begin(); i != qry.end(); i++)
-      if(i->movable)
-      {
-        SoldierIter soldier_i = soldiers.find(i->movable->getName());
-        if(soldier_i != soldiers.end())
-        {
-          Soldier* selection = soldier_i->second;
-          selection->setSelected(true);
-        }
-      }
-
+    Soldier* selection = getSoldierCollision(getUnderCursor(evt.state));
+    if(selection)
+      selection->setSelected(!selection->isSelected());
+    else
+      // Move Soldiers to empty area if nothing to select
+      for(SoldierIter i = soldiers.begin(); i != soldiers.end(); i++)
+        if(i->second->isSelected())
+          i->second->addWaypoint(cursor_pos);
   }
 
   // Right mouse button down
@@ -150,7 +149,7 @@ bool Application::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id
 
     // Create a new Soldier
     Soldier* new_soldier = new Soldier();
-    new_soldier->attach(&soldiers, mSceneMgr, cursor_pos);
+    new_soldier->attach(soldiers, mSceneMgr, cursor_pos);
   }
 
   // consume event
@@ -214,4 +213,18 @@ bool Application::getTerrainCollision(RaySceneQueryResult in, Vector3* out)
       return true;
     }
   return false;
+}
+//------------------------------------------------------------------------------
+Soldier* Application::getSoldierCollision(RaySceneQueryResult in)
+{
+  // Get the first Soldier collided with
+  for(RaySceneQueryResult::iterator i = in.begin(); i != in.end(); i++)
+    // Ray intersects movable Entity
+    if(i->movable)
+    {
+      SoldierIter soldier_i = soldiers.find(i->movable->getName());
+      if(soldier_i != soldiers.end())
+          return soldier_i->second;
+    }
+  return NULL;
 }

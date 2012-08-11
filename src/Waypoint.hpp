@@ -22,25 +22,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <list>
 
 class Waypoint;
-typedef std::list<Waypoint*> WaypointList;
+typedef std::list<Waypoint> WaypointList;
 
-#include <OgreSceneManager.h>
-#include <OgreEntity.h>
+#include <Ogre.h>
 
 class Waypoint
 {
   /// ATTRIBUTES
 private:
-  // scene graph identifiers
-  Ogre::Entity *entity;
-  Ogre::SceneNode *node;
+  Ogre::Vector3 position;
 
   /// METHODS
 public:
   // creation, destruction
-  Waypoint();
-  void attach(Ogre::SceneManager* scene_manager, const char* name,
-              Ogre::Vector3 position);
+  Waypoint(Ogre::Vector3 _position);
   // query
   Ogre::Vector3 const& getPosition() const;
 };

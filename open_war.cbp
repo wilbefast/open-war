@@ -75,6 +75,7 @@
 		<Unit filename="src/Waypoint.hpp" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/platform.h" />
+		<Unit filename="terrain.cfg" />
 		<Extensions>
 			<code_completion />
 			<debugger />
