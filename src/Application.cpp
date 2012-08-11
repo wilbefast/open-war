@@ -88,8 +88,8 @@ bool Application::frameRenderingQueued(const Ogre::FrameEvent &evt)
     mCameraMan->stayAbove(collision.y + 20.0f, evt.timeSinceLastFrame);
 
   // Update the game objects
-  for(std::list<Soldier*>::iterator i = soldiers.begin(); i != soldiers.end(); i++)
-    (*i)->update(evt.timeSinceLastFrame);
+  for(SoldierIter i = soldiers.begin(); i != soldiers.end(); i++)
+    i->second->update(evt.timeSinceLastFrame);
 
 	return true;
 }
@@ -125,6 +125,21 @@ bool Application::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id
   {
     // Set mouse state
     l_mouse = true;
+
+    // Select Soldiers under cursor
+    RaySceneQueryResult qry = getUnderCursor(evt.state);
+
+    for(RaySceneQueryResult::iterator i = qry.begin(); i != qry.end(); i++)
+      if(i->movable)
+      {
+        SoldierIter soldier_i = soldiers.find(i->movable->getName());
+        if(soldier_i != soldiers.end())
+        {
+          Soldier* selection = soldier_i->second;
+          selection->setSelected(true);
+        }
+      }
+
   }
 
   // Right mouse button down
@@ -135,7 +150,7 @@ bool Application::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id
 
     // Create a new Soldier
     Soldier* new_soldier = new Soldier();
-    new_soldier->attach(mSceneMgr, cursor_pos);
+    new_soldier->attach(&soldiers, mSceneMgr, cursor_pos);
   }
 
   // consume event
@@ -147,7 +162,6 @@ bool Application::mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID i
   // Base application logic
   if(!BaseApplication::mouseReleased(evt, id))
     return false;
-
 
   // Left mouse button down
   if (id == OIS::MB_Left)
@@ -188,13 +202,13 @@ RaySceneQueryResult Application::getBelowPosition(Vector3 position)
 bool Application::getTerrainCollision(RaySceneQueryResult in, Vector3* out)
 {
   // Get the first collision point
-  for(RaySceneQueryResult::iterator itr = in.begin(); itr != in.end(); itr++)
+  for(RaySceneQueryResult::iterator i = in.begin(); i != in.end(); i++)
     // Ray intersects terrain geometry
-    if(itr->worldFragment)
+    if(i->worldFragment)
     {
       // Query can be made with result = NULL, in which case don't write there!
       if(out)
-        (*out) = itr->worldFragment->singleIntersection;
+        (*out) = i->worldFragment->singleIntersection;
 
       // Report whether a collision was found or not
       return true;

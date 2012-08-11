@@ -19,23 +19,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef WAYPOINT_HPP_INCLUDED
 #define WAYPOINT_HPP_INCLUDED
 
+#include <list>
+
+class Waypoint;
+typedef std::list<Waypoint*> WaypointList;
+
 #include <OgreSceneManager.h>
 #include <OgreEntity.h>
 
 class Waypoint
 {
-  /* CONSTANTS */
-public:
-  static Waypoint one, two, three;
-  static void attach_all(Ogre::SceneManager* scene_manager);
-
-  /* ATTRIBUTES */
+  /// ATTRIBUTES
 private:
   // scene graph identifiers
   Ogre::Entity *entity;
   Ogre::SceneNode *node;
 
-  /* METHODS */
+  /// METHODS
 public:
   // creation, destruction
   Waypoint();

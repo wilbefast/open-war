@@ -31,7 +31,7 @@ class Application : public BaseApplication
 {
   /// ATTRIBUTES
 private:
-  std::list<Soldier*> soldiers;
+  SoldierMap soldiers;
   Ogre::RaySceneQuery *ray_query;       // The ray scene query pointer
   bool r_mouse, l_mouse;		            // True if the mouse buttons are down
   Ogre::Vector3 cursor_pos;             // Position of the cursor in the world

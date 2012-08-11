@@ -20,19 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using namespace Ogre;
 
-/* CLASS NAMESPACE */
-
-Waypoint Waypoint::one, Waypoint::two, Waypoint::three;
-
-void Waypoint::attach_all(SceneManager* scene_manager)
-{
-  Waypoint::one.attach(scene_manager, "wp1", Vector3(550.0f,  200.0f,  250.0f));
-  Waypoint::two.attach(scene_manager, "wp2", Vector3(1000.0f,  200.0f, 500.0f));
-  Waypoint::three.attach(scene_manager, "wp3", Vector3(25.0f,  200.0f, 3000.0f));
-}
-
-
-/* CREATION, DESTRUCTION */
+/// CREATION, DESTRUCTION
 
 Waypoint::Waypoint() :
 entity(NULL),
@@ -53,7 +41,7 @@ void Waypoint::attach(SceneManager* scene_manager, const char* name,
 }
 
 
-/* QUERY */
+/// QUERY
 
 Vector3 const& Waypoint::getPosition() const
 {

@@ -44,17 +44,23 @@ node(NULL)
 {
 }
 
-void Soldier::attach(SceneManager* scene_manager, Vector3 position)
+void Soldier::attach(SoldierMap* map, SceneManager* scene_manager,
+                      Vector3 position)
 {
-  // Create the entity
+  // Create the Entity
   char name[16];
-  sprintf( name, "Solider%d", count++ );
+  sprintf( name, "Soldier%d", count++ );
   entity = scene_manager->createEntity(name, "robot.mesh");
 
-  // Create the scene node
+  // Store in the map
+  (*map)[name] = this;
+
+  // Create the scene Node
   string node_name = string(name) + "Node";
   node = scene_manager->getRootSceneNode()->createChildSceneNode(node_name,
                                                                   position);
+
+  // Attach Entity to Node
   node->attachObject(entity);
   node->setScale(0.1f, 0.1f, 0.1f);
 
@@ -62,11 +68,6 @@ void Soldier::attach(SceneManager* scene_manager, Vector3 position)
   animation = entity->getAnimationState("Idle");
   animation->setLoop(true);
   animation->setEnabled(true);
-
-  // Create the walking list
-  waypoints.push_back(&Waypoint::one);
-  waypoints.push_back(&Waypoint::two);
-  waypoints.push_back(&Waypoint::three);
 }
 
 /// MOVEMENT

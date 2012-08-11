@@ -1,7 +1,7 @@
 /*
 -----------------------------------------------------------------------------
 Filename:    BaseApplication.cpp
------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 This source file is part of the
    ___                 __    __ _ _    _
@@ -12,11 +12,11 @@ This source file is part of the
       |___/
       Tutorial Framework
       http://www.ogre3d.org/tikiwiki/
------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 */
 #include "BaseApplication.h"
 
-//-------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 BaseApplication::BaseApplication(void):
   mRoot(NULL),
   mCamera(NULL),
@@ -35,7 +35,7 @@ BaseApplication::BaseApplication(void):
 {
 }
 
-//-------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 BaseApplication::~BaseApplication(void)
 {
   if (mTrayMgr)
@@ -49,7 +49,7 @@ BaseApplication::~BaseApplication(void)
   delete mRoot;
 }
 
-//-------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool BaseApplication::configure(void)
 {
   // Show the configuration dialog and initialise the system
@@ -66,31 +66,33 @@ bool BaseApplication::configure(void)
   else
     return false;
 }
-//-------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void BaseApplication::chooseSceneManager(void)
 {
-  // Get the SceneManager, in this case a generic one
+  // Create the scene manager
   mSceneMgr = mRoot->createSceneManager(Ogre::ST_EXTERIOR_CLOSE);
-  //(Ogre::ST_GENERIC);
 }
-//-------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void BaseApplication::createCamera(void)
 {
   // Create the camera
   mCamera = mSceneMgr->createCamera("PlayerCam");
-
-  // Position it at 500 in Z direction
+  // Position
   mCamera->setPosition(Ogre::Vector3(0, 500, 0));
-  // Look back along -Y
+  // Angle
   mCamera->pitch(Ogre::Degree(-40));
   mCamera->yaw(Ogre::Degree(-45));
   mCamera->roll(Ogre::Degree(0));
+  // Clipping
   mCamera->setNearClipDistance(5);
+  bool infinite_distance =
+    mRoot->getRenderSystem()->getCapabilities()->hasCapability(Ogre::RSC_INFINITE_FAR_PLANE);
+  mCamera->setFarClipDistance(infinite_distance ? 0 : 50000);
 
   // create camera controller
   mCameraMan = new OverheadCamera(mCamera);
 }
-//-------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void BaseApplication::createFrameListener(void)
 {
   Ogre::LogManager::getSingletonPtr()->logMessage("*** Initializing OIS ***");
@@ -102,26 +104,28 @@ void BaseApplication::createFrameListener(void)
   windowHndStr << windowHnd;
   pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
 
+  // Input managers and devices
   mInputManager = OIS::InputManager::createInputSystem( pl );
-
-  mKeyboard = static_cast<OIS::Keyboard*>(mInputManager->createInputObject( OIS::OISKeyboard, true ));
-  mMouse = static_cast<OIS::Mouse*>(mInputManager->createInputObject( OIS::OISMouse, true ));
-
+  mKeyboard = static_cast<OIS::Keyboard*>(
+                mInputManager->createInputObject( OIS::OISKeyboard, true ));
+  mMouse = static_cast<OIS::Mouse*>(
+                mInputManager->createInputObject( OIS::OISMouse, true ));
   mMouse->setEventCallback(this);
   mKeyboard->setEventCallback(this);
 
   //Set initial mouse clipping size
   windowResized(mWindow);
 
-  //Register as a Window listener
+  // Register as a Window listener
   Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
 
-  mTrayMgr = new OgreBites::SdkTrayManager("InterfaceName", mWindow, mMouse, this);
+  mTrayMgr =
+    new OgreBites::SdkTrayManager("InterfaceName", mWindow, mMouse, this);
   mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
   mTrayMgr->showLogo(OgreBites::TL_BOTTOMRIGHT);
   mTrayMgr->hideCursor();
 
-  // create a params panel for displaying sample details
+  // Create a params panel for displaying sample details
   Ogre::StringVector items;
   items.push_back("cam.pX");
   items.push_back("cam.pY");
@@ -135,18 +139,19 @@ void BaseApplication::createFrameListener(void)
   items.push_back("Filtering");
   items.push_back("Poly Mode");
 
-  mDetailsPanel = mTrayMgr->createParamsPanel(OgreBites::TL_NONE, "DetailsPanel", 200, items);
+  mDetailsPanel =
+    mTrayMgr->createParamsPanel(OgreBites::TL_NONE, "DetailsPanel", 200, items);
   mDetailsPanel->setParamValue(9, "Bilinear");
   mDetailsPanel->setParamValue(10, "Solid");
   mDetailsPanel->hide();
 
   mRoot->addFrameListener(this);
 }
-//-------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void BaseApplication::destroyScene(void)
 {
 }
-//-------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void BaseApplication::createViewports(void)
 {
   // Create one viewport, entire window
@@ -157,7 +162,7 @@ void BaseApplication::createViewports(void)
   mCamera->setAspectRatio(
     Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
 }
-//-------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void BaseApplication::setupResources(void)
 {
   // Load resource paths from config file
@@ -182,17 +187,17 @@ void BaseApplication::setupResources(void)
     }
   }
 }
-//-------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void BaseApplication::createResourceListener(void)
 {
 
 }
-//-------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void BaseApplication::loadResources(void)
 {
   Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
-//-------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void BaseApplication::go(void)
 {
 #ifdef _DEBUG
@@ -203,15 +208,17 @@ void BaseApplication::go(void)
   mPluginsCfg = "plugins.cfg";
 #endif
 
+  // Check for errors
   if (!setup())
     return;
 
+  // Launch
   mRoot->startRendering();
 
-  // clean up
+  // Clean up
   destroyScene();
 }
-//-------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool BaseApplication::setup(void)
 {
   mRoot = new Ogre::Root(mPluginsCfg);
@@ -241,7 +248,7 @@ bool BaseApplication::setup(void)
 
   return true;
 };
-//-------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
 {
   if(mWindow->isClosed())
@@ -258,22 +265,31 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
 
   if (!mTrayMgr->isDialogVisible())
   {
-    mCameraMan->frameRenderingQueued(evt);   // if dialog isn't up, then update the camera
-    if (mDetailsPanel->isVisible())   // if details panel is visible, then update its contents
+    // if dialog isn't up, then update the camera
+    mCameraMan->frameRenderingQueued(evt);
+    // if details panel is visible, then update its contents
+    if (mDetailsPanel->isVisible())
     {
-      mDetailsPanel->setParamValue(0, Ogre::StringConverter::toString(mCamera->getDerivedPosition().x));
-      mDetailsPanel->setParamValue(1, Ogre::StringConverter::toString(mCamera->getDerivedPosition().y));
-      mDetailsPanel->setParamValue(2, Ogre::StringConverter::toString(mCamera->getDerivedPosition().z));
-      mDetailsPanel->setParamValue(4, Ogre::StringConverter::toString(mCamera->getDerivedOrientation().w));
-      mDetailsPanel->setParamValue(5, Ogre::StringConverter::toString(mCamera->getDerivedOrientation().x));
-      mDetailsPanel->setParamValue(6, Ogre::StringConverter::toString(mCamera->getDerivedOrientation().y));
-      mDetailsPanel->setParamValue(7, Ogre::StringConverter::toString(mCamera->getDerivedOrientation().z));
+      mDetailsPanel->setParamValue(0,
+        Ogre::StringConverter::toString(mCamera->getDerivedPosition().x));
+      mDetailsPanel->setParamValue(1,
+        Ogre::StringConverter::toString(mCamera->getDerivedPosition().y));
+      mDetailsPanel->setParamValue(2,
+        Ogre::StringConverter::toString(mCamera->getDerivedPosition().z));
+      mDetailsPanel->setParamValue(4,
+        Ogre::StringConverter::toString(mCamera->getDerivedOrientation().w));
+      mDetailsPanel->setParamValue(5,
+        Ogre::StringConverter::toString(mCamera->getDerivedOrientation().x));
+      mDetailsPanel->setParamValue(6,
+        Ogre::StringConverter::toString(mCamera->getDerivedOrientation().y));
+      mDetailsPanel->setParamValue(7,
+      Ogre::StringConverter::toString(mCamera->getDerivedOrientation().z));
     }
   }
 
   return true;
 }
-//-------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool BaseApplication::keyPressed( const OIS::KeyEvent &evt )
 {
   // don't process any more keys if dialog is up

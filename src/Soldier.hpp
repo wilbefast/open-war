@@ -19,7 +19,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef SOLDIER_HPP_INCLUDED
 #define SOLDIER_HPP_INCLUDED
 
-#include <list>
+#include <map>
+#include <string>
+
+class Soldier;
+typedef std::map<std::string, Soldier*> SoldierMap;
+typedef SoldierMap::iterator SoldierIter;
 
 #include <OgreSceneManager.h>
 #include <OgreEntity.h>
@@ -53,7 +58,7 @@ private:
   Ogre::Real distance_left;
   Ogre::Vector3 direction;
   Ogre::Vector3 destination;
-  std::list<Waypoint const*> waypoints;
+  WaypointList waypoints;
   // animation
   Ogre::AnimationState *animation;
   // scene graph identifiers
@@ -64,7 +69,7 @@ private:
 public:
   // creation, destruction
   Soldier();
-  void attach(Ogre::SceneManager* scene_manager, Ogre::Vector3 position);
+  void attach(SoldierMap*, Ogre::SceneManager*, Ogre::Vector3 position);
   // movement
   void nextWaypoint();
   // update
