@@ -30,7 +30,9 @@ typedef SoldierMap::iterator SoldierIter;
 
 #include "Waypoint.hpp"
 
-class Soldier : public Ogre::Any
+class Application;
+
+class Soldier
 {
   /// CLASS VARIABLES
 private:
@@ -73,7 +75,7 @@ public:
   // movement
   void nextWaypoint();
   // update
-  void update(Ogre::Real d_time);
+  void update(Ogre::Real d_time, Application* app);
   // control
   void setSelected(bool _selected);
   void addWaypoint(Waypoint new_waypoint);

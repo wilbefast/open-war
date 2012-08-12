@@ -18,6 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Soldier.hpp"
 
+#include "Application.hpp"
+
 using namespace Ogre;
 using namespace std;
 
@@ -27,7 +29,7 @@ unsigned int Soldier::count = 0;
 
 /// CONSTANTS
 
-const Real Soldier::WALK_SPEED = 150.0f;
+const Real Soldier::WALK_SPEED = 15.0f;
 
 /// CREATION, DESTRUCTION
 
@@ -56,8 +58,7 @@ void Soldier::attach(SoldierMap& map, SceneManager* scene_manager,
   sprintf( name, "Soldier%d", count++ );
   entity = scene_manager->createEntity(name, "robot.mesh");
 
-  // Attach Soldier* to Entity and map Entity* (MovableObject*) to Soldier*
-  entity->setUserAny((*this));
+  // Map Entity* (MovableObject*) to Soldier*
   map[entity] = this;
 
   // Create the scene Node
@@ -67,7 +68,7 @@ void Soldier::attach(SoldierMap& map, SceneManager* scene_manager,
 
   // Attach Entity to Node
   node->attachObject(entity);
-  //node->setScale(0.1f, 0.1f, 0.1f);
+  node->setScale(0.1f, 0.1f, 0.1f);
 
   // Set to the idle animation and loop
   animation = entity->getAnimationState("Idle");
@@ -127,13 +128,13 @@ void Soldier::nextWaypoint()
 
 /// UPDATE
 
-void Soldier::update(Real d_time)
+void Soldier::update(Real d_time, Application* app)
 {
   // Try to get a new destination if currently idle
   if(state == IDLING)
     nextWaypoint();
 
-  // Currently has a given
+  // Currently has a destination
   else
   {
     // Move an amount dependent on the time elapsed since last frame
@@ -152,6 +153,11 @@ void Soldier::update(Real d_time)
       // Move the soldier
       node->translate(direction * move);
   }
+
+  // Stay above terrain
+  Vector3 floor;
+  if(app->getTerrainCollision(app->getBelowPosition(node->getPosition()), &floor))
+    node->setPosition(floor);
 
   // Animate an amount dependent on the elapsed time since the last frame
   animation->addTime(d_time);

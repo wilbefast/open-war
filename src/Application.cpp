@@ -67,7 +67,61 @@ void Application::createScene(void)
   mCamera->yaw(Ogre::Degree(-15.0f));
 }
 //------------------------------------------------------------------------------
+/// QUERY
+//------------------------------------------------------------------------------
+RaySceneQueryResult Application::getUnderCursor(OIS::MouseState mouse_state)
+{
+  // Calculate the ray implied by the cursor's position on the screen
+  CEGUI::Point mouse_pos = CEGUI::MouseCursor::getSingleton().getPosition();
+  Ray mouse_ray =
+    mCamera->getCameraToViewportRay(mouse_pos.d_x/float(mouse_state.width),
+                                    mouse_pos.d_y/float(mouse_state.height));
 
+  // Execute the query and return the result
+  ray_query->setRay(mouse_ray);
+  return ray_query->execute();
+}
+//------------------------------------------------------------------------------
+RaySceneQueryResult Application::getBelowPosition(Vector3 position)
+{
+  // Build and execute the query and return the result
+  position.y += 500.0f;
+  Ray down_ray = Ray(position, Vector3::NEGATIVE_UNIT_Y);
+  ray_query->setRay(down_ray);
+  return ray_query->execute();
+}
+//------------------------------------------------------------------------------
+bool Application::getTerrainCollision(RaySceneQueryResult in, Vector3* out)
+{
+  // Get the first collision point
+  for(RaySceneQueryResult::iterator i = in.begin(); i != in.end(); i++)
+    // Ray intersects terrain geometry
+    if(i->worldFragment)
+    {
+      // Query can be made with result = NULL, in which case don't write there!
+      if(out)
+        (*out) = i->worldFragment->singleIntersection;
+
+      // Report whether a collision was found or not
+      return true;
+    }
+  return false;
+}
+//------------------------------------------------------------------------------
+Soldier* Application::getSoldierCollision(RaySceneQueryResult in)
+{
+  // Get the first Soldier collided with
+  for(RaySceneQueryResult::iterator i = in.begin(); i != in.end(); i++)
+    // Ray intersects movable Entity
+    if(i->movable)
+    {
+      SoldierIter soldier_i = soldiers.find(i->movable);
+      if(soldier_i != soldiers.end())
+          return soldier_i->second;
+    }
+  return NULL;
+}
+//------------------------------------------------------------------------------
 /// FRAME LISTENER
 //------------------------------------------------------------------------------
 void Application::createFrameListener(void)
@@ -93,7 +147,7 @@ bool Application::frameRenderingQueued(const Ogre::FrameEvent &evt)
 
   // Update the game objects
   for(SoldierIter i = soldiers.begin(); i != soldiers.end(); i++)
-    i->second->update(evt.timeSinceLastFrame);
+    i->second->update(evt.timeSinceLastFrame, this);
 
 	return true;
 }
@@ -174,57 +228,3 @@ bool Application::mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID i
   return true;
 }
 //------------------------------------------------------------------------------
-
-/// UTILITY
-//------------------------------------------------------------------------------
-RaySceneQueryResult Application::getUnderCursor(OIS::MouseState mouse_state)
-{
-  // Calculate the ray implied by the cursor's position on the screen
-  CEGUI::Point mouse_pos = CEGUI::MouseCursor::getSingleton().getPosition();
-  Ray mouse_ray =
-    mCamera->getCameraToViewportRay(mouse_pos.d_x/float(mouse_state.width),
-                                    mouse_pos.d_y/float(mouse_state.height));
-
-  // Execute the query and return the result
-  ray_query->setRay(mouse_ray);
-  return ray_query->execute();
-}
-//------------------------------------------------------------------------------
-RaySceneQueryResult Application::getBelowPosition(Vector3 position)
-{
-  // Build and execute the query and return the result
-  Ray down_ray = Ray(position, Vector3::NEGATIVE_UNIT_Y);
-  ray_query->setRay(down_ray);
-  return ray_query->execute();
-}
-//------------------------------------------------------------------------------
-bool Application::getTerrainCollision(RaySceneQueryResult in, Vector3* out)
-{
-  // Get the first collision point
-  for(RaySceneQueryResult::iterator i = in.begin(); i != in.end(); i++)
-    // Ray intersects terrain geometry
-    if(i->worldFragment)
-    {
-      // Query can be made with result = NULL, in which case don't write there!
-      if(out)
-        (*out) = i->worldFragment->singleIntersection;
-
-      // Report whether a collision was found or not
-      return true;
-    }
-  return false;
-}
-//------------------------------------------------------------------------------
-Soldier* Application::getSoldierCollision(RaySceneQueryResult in)
-{
-  // Get the first Soldier collided with
-  for(RaySceneQueryResult::iterator i = in.begin(); i != in.end(); i++)
-    // Ray intersects movable Entity
-    if(i->movable)
-    {
-      SoldierIter soldier_i = soldiers.find(i->movable);
-      if(soldier_i != soldiers.end())
-          return soldier_i->second;
-    }
-  return NULL;
-}

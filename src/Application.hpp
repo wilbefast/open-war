@@ -42,6 +42,11 @@ public:
   // creation, destruction
   Application();
   virtual ~Application();
+  // query
+  Ogre::RaySceneQueryResult getUnderCursor(OIS::MouseState mouse_state);
+  Ogre::RaySceneQueryResult getBelowPosition(Ogre::Vector3 position);
+  bool getTerrainCollision(Ogre::RaySceneQueryResult in, Ogre::Vector3* out = NULL);
+  Soldier* getSoldierCollision(Ogre::RaySceneQueryResult in);
 
   /// SUBROUTINES
 protected:
@@ -54,11 +59,6 @@ protected:
   virtual bool mouseMoved(const OIS::MouseEvent &evt);
   virtual bool mousePressed(const OIS::MouseEvent &evt,OIS::MouseButtonID id);
   virtual bool mouseReleased(const OIS::MouseEvent &evt,OIS::MouseButtonID id);
-  // query
-  Ogre::RaySceneQueryResult getUnderCursor(OIS::MouseState mouse_state);
-  Ogre::RaySceneQueryResult getBelowPosition(Ogre::Vector3 position);
-  bool getTerrainCollision(Ogre::RaySceneQueryResult in, Ogre::Vector3* out = NULL);
-  Soldier* getSoldierCollision(Ogre::RaySceneQueryResult in);
 };
 
 #endif // APPLICATION_HPP_INCLUDED
