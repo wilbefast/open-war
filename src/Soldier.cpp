@@ -56,7 +56,8 @@ void Soldier::attach(SoldierMap& map, SceneManager* scene_manager,
   sprintf( name, "Soldier%d", count++ );
   entity = scene_manager->createEntity(name, "robot.mesh");
 
-  // Store in the map
+  // Attach Soldier* to Entity and map Entity* (MovableObject*) to Soldier*
+  entity->setUserAny((*this));
   map[entity] = this;
 
   // Create the scene Node
@@ -96,15 +97,22 @@ void Soldier::nextWaypoint()
 
     // turn towards the new destination
     direction = destination - node->getPosition();
-    distance_left = direction.normalise();
 
+    // ignore pitch difference
     Vector3 src = node->getOrientation() * Vector3::UNIT_X;
+    src.y = direction.y = 0;
+
+    // renormalise vectors
+    distance_left = direction.normalise();
+    src.normalise();
+
+    // be careful of situation where character is facing exactly the wrong way
     if ((1.0f + src.dotProduct(direction)) < 0.0001f)
         node->yaw(Degree(180));
     else
     {
-        Ogre::Quaternion quat = src.getRotationTo(direction);
-        node->rotate(quat);
+      Ogre::Quaternion quat = src.getRotationTo(direction);
+      node->rotate(quat);
     }
 
     // Set walking animation

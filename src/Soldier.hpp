@@ -22,16 +22,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <OgreSceneManager.h>
 #include <OgreEntity.h>
 
-#include <map>
 #include <string>
 
 class Soldier;
-typedef std::map<Ogre::MovableObject*, Soldier*> SoldierMap;
+typedef HashMap<Ogre::MovableObject*, Soldier*> SoldierMap;
 typedef SoldierMap::iterator SoldierIter;
 
 #include "Waypoint.hpp"
 
-class Soldier
+class Soldier : public Ogre::Any
 {
   /// CLASS VARIABLES
 private:
