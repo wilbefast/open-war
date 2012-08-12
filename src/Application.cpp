@@ -222,7 +222,7 @@ Soldier* Application::getSoldierCollision(RaySceneQueryResult in)
     // Ray intersects movable Entity
     if(i->movable)
     {
-      SoldierIter soldier_i = soldiers.find(i->movable->getName());
+      SoldierIter soldier_i = soldiers.find(i->movable);
       if(soldier_i != soldiers.end())
           return soldier_i->second;
     }

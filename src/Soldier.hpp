@@ -19,15 +19,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef SOLDIER_HPP_INCLUDED
 #define SOLDIER_HPP_INCLUDED
 
+#include <OgreSceneManager.h>
+#include <OgreEntity.h>
+
 #include <map>
 #include <string>
 
 class Soldier;
-typedef std::map<std::string, Soldier*> SoldierMap;
+typedef std::map<Ogre::MovableObject*, Soldier*> SoldierMap;
 typedef SoldierMap::iterator SoldierIter;
-
-#include <OgreSceneManager.h>
-#include <OgreEntity.h>
 
 #include "Waypoint.hpp"
 

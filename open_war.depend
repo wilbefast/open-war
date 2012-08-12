@@ -2691,7 +2691,7 @@
 	<OgreSceneManager.h>
 	<OgreEntity.h>
 
-1344710104 source:/home/william/Desktop/open_war_link/src/Application.cpp
+1344764757 source:/home/william/Desktop/open_war_link/src/Application.cpp
 	<iostream>
 	"Application.hpp"
 
@@ -2718,11 +2718,11 @@
 	<SdkTrays.h>
 	"OverheadCamera.hpp"
 
-1344710315 /home/william/Desktop/open_war_link/src/Soldier.hpp
-	<map>
-	<string>
+1344764836 /home/william/Desktop/open_war_link/src/Soldier.hpp
 	<OgreSceneManager.h>
 	<OgreEntity.h>
+	<map>
+	<string>
 	"Waypoint.hpp"
 
 1344710023 /home/william/Desktop/open_war_link/src/Waypoint.hpp

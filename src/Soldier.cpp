@@ -57,7 +57,7 @@ void Soldier::attach(SoldierMap& map, SceneManager* scene_manager,
   entity = scene_manager->createEntity(name, "robot.mesh");
 
   // Store in the map
-  map[name] = this;
+  map[entity] = this;
 
   // Create the scene Node
   string node_name = string(name) + "Node";
