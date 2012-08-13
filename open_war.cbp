@@ -56,6 +56,7 @@
 			<Add option="`pkg-config --libs OIS`" />
 			<Add option="`pkg-config --libs ode`" />
 			<Add option="`pkg-config --libs CEGUI-OGRE`" />
+			<Add option="-lOgreTerrain" />
 			<Add library="GL" />
 		</Linker>
 		<Unit filename="ogre.cfg" />

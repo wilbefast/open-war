@@ -2691,14 +2691,16 @@
 	<OgreSceneManager.h>
 	<OgreEntity.h>
 
-1344770090 source:/home/william/Desktop/open_war_link/src/Application.cpp
+1344799323 source:/home/william/Desktop/open_war_link/src/Application.cpp
 	<iostream>
 	"Application.hpp"
 
-1344770057 /home/william/Desktop/open_war_link/src/Application.hpp
+1344799104 /home/william/Desktop/open_war_link/src/Application.hpp
 	<list>
 	<CEGUI/CEGUI.h>
 	<CEGUI/RendererModules/Ogre/CEGUIOgreRenderer.h>
+	<OGRE/Terrain/OgreTerrain.h>
+	<OGRE/Terrain/OgreTerrainGroup.h>
 	"BaseApplication.h"
 	"Soldier.hpp"
 
@@ -2731,7 +2733,7 @@
 1344707269 source:/home/william/Desktop/open_war_link/src/BaseApplication.cpp
 	"BaseApplication.h"
 
-1344770033 source:/home/william/Desktop/open_war_link/src/Soldier.cpp
+1344780316 source:/home/william/Desktop/open_war_link/src/Soldier.cpp
 	"Soldier.hpp"
 	"Application.hpp"
 
@@ -3821,4 +3823,35 @@
 	"../../CEGUISize.h"
 	"../../CEGUIVector.h"
 	<vector>
+
+1326562839 /usr/local/include/OGRE/Terrain/OgreTerrain.h
+	"OgreTerrainPrerequisites.h"
+	"OgreCommon.h"
+	"OgreVector3.h"
+	"OgreAxisAlignedBox.h"
+	"OgreSceneManager.h"
+	"OgreTerrainMaterialGenerator.h"
+	"OgreTerrainLayerBlendMap.h"
+	"OgreWorkQueue.h"
+
+1326562839 /usr/local/include/OGRE/Terrain/OgreTerrainPrerequisites.h
+	"OgrePrerequisites.h"
+
+1326562839 /usr/local/include/OGRE/Terrain/OgreTerrainMaterialGenerator.h
+	"OgreTerrainPrerequisites.h"
+	"OgrePixelFormat.h"
+	"OgreMaterial.h"
+	"OgreTexture.h"
+
+1326562839 /usr/local/include/OGRE/Terrain/OgreTerrainLayerBlendMap.h
+	"OgreTerrainPrerequisites.h"
+	"OgreCommon.h"
+	"OgreVector3.h"
+	"OgreDataStream.h"
+
+1326562839 /usr/local/include/OGRE/Terrain/OgreTerrainGroup.h
+	"OgreTerrainPrerequisites.h"
+	"OgreTerrain.h"
+	"OgreWorkQueue.h"
+	"OgreIteratorWrappers.h"
 

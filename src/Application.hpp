@@ -24,6 +24,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/Ogre/CEGUIOgreRenderer.h>
 
+#include <OGRE/Terrain/OgreTerrain.h>
+#include <OGRE/Terrain/OgreTerrainGroup.h>
+
 #include "BaseApplication.h"
 #include "Soldier.hpp"
 
@@ -36,6 +39,10 @@ private:
   bool r_mouse, l_mouse;		            // True if the mouse buttons are down
   Ogre::Vector3 cursor_pos;             // Position of the cursor in the world
   CEGUI::Renderer *gui_renderer;		    // CEGUI renderer
+  // terrain
+  Ogre::TerrainGlobalOptions* mTerrainGlobals;
+  Ogre::TerrainGroup* mTerrainGroup;
+  bool mTerrainsImported;
 
   /// METHODS
 public:
@@ -59,6 +66,10 @@ protected:
   virtual bool mouseMoved(const OIS::MouseEvent &evt);
   virtual bool mousePressed(const OIS::MouseEvent &evt,OIS::MouseButtonID id);
   virtual bool mouseReleased(const OIS::MouseEvent &evt,OIS::MouseButtonID id);
+  // terrain
+  void defineTerrain(long x, long y);
+  void initBlendMaps(Ogre::Terrain* terrain);
+  void configureTerrainDefaults(Ogre::Light* light);
 };
 
 #endif // APPLICATION_HPP_INCLUDED
