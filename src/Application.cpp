@@ -30,7 +30,7 @@ BaseApplication(),
 soldiers(),
 ray_query(NULL),
 r_mouse(false), l_mouse(false),
-cursor_pos(Vector3::ZERO),
+focus(Vector3::ZERO),
 gui_renderer()
 {
 }
@@ -38,7 +38,7 @@ gui_renderer()
 Application::~Application()
 {
   // We created the query, and we are also responsible for deleting it.
-  mSceneMgr->destroyQuery(ray_query);
+  scene->destroyQuery(ray_query);
 
   // Delete all the Soldiers
   for(SoldierIter i = soldiers.begin(); i != soldiers.end(); i++)
@@ -46,44 +46,48 @@ Application::~Application()
 }
 
 //------------------------------------------------------------------------------
-void Application::createScene(void)
+void Application::createScene()
 {
-	// Set ambient light
-	mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
+    Ogre::MaterialManager::getSingleton().setDefaultTextureFiltering(Ogre::TFO_ANISOTROPIC);
+    Ogre::MaterialManager::getSingleton().setDefaultAnisotropy(7);
 
-  // Light
-  Ogre::Vector3 lightdir(0.55, -0.3, 0.75);
-  lightdir.normalise();
-  Ogre::Light* light = mSceneMgr->createLight("tstLight");
-  light->setType(Ogre::Light::LT_DIRECTIONAL);
-  light->setDirection(lightdir);
-  light->setDiffuseColour(Ogre::ColourValue::White);
-  light->setSpecularColour(Ogre::ColourValue(0.4, 0.4, 0.4));
-  mSceneMgr->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2));
+    Ogre::Vector3 lightdir(0.55, -0.3, 0.75);
+    lightdir.normalise();
 
-	// World geometry
-	mTerrainGlobals = OGRE_NEW Ogre::TerrainGlobalOptions();
-  mTerrainGroup = OGRE_NEW Ogre::TerrainGroup(mSceneMgr, Ogre::Terrain::ALIGN_X_Z, 513, 12000.0f);
-  mTerrainGroup->setFilenameConvention(Ogre::String("BasicTutorial3Terrain"), Ogre::String("dat"));
-  mTerrainGroup->setOrigin(Ogre::Vector3::ZERO);
-  configureTerrainDefaults(light);
-  for (long x = 0; x <= 0; ++x)
-    for (long y = 0; y <= 0; ++y)
-      defineTerrain(x, y);
-  if (mTerrainsImported)
-  {
-    Ogre::TerrainGroup::TerrainIterator ti = mTerrainGroup->getTerrainIterator();
-    while(ti.hasMoreElements())
+    Ogre::Light* light = scene->createLight("tstLight");
+    light->setType(Ogre::Light::LT_DIRECTIONAL);
+    light->setDirection(lightdir);
+    light->setDiffuseColour(Ogre::ColourValue::White);
+    light->setSpecularColour(Ogre::ColourValue(0.4, 0.4, 0.4));
+
+    scene->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2));
+
+    mTerrainGlobals = OGRE_NEW Ogre::TerrainGlobalOptions();
+
+    mTerrainGroup = OGRE_NEW Ogre::TerrainGroup(scene, Ogre::Terrain::ALIGN_X_Z, 513, 12000.0f);
+    mTerrainGroup->setFilenameConvention(Ogre::String("BasicTutorial3Terrain"), Ogre::String("dat"));
+    mTerrainGroup->setOrigin(Ogre::Vector3::ZERO);
+
+    configureTerrainDefaults(light);
+
+    for (long x = 0; x <= 0; ++x)
+        for (long y = 0; y <= 0; ++y)
+            defineTerrain(x, y);
+
+    // sync load since we want everything in place when we start
+    mTerrainGroup->loadAllTerrains(true);
+
+    if (mTerrainsImported)
     {
-      Ogre::Terrain* t = ti.getNext()->instance;
-      if(t != NULL)
-        initBlendMaps(t);
+        Ogre::TerrainGroup::TerrainIterator ti = mTerrainGroup->getTerrainIterator();
+        while(ti.hasMoreElements())
+        {
+            Ogre::Terrain* t = ti.getNext()->instance;
+            initBlendMaps(t);
+        }
     }
-  }
-  mTerrainGroup->freeTemporaryResources();
 
-  // sync load since we want everything in place when we start
-  mTerrainGroup->loadAllTerrains(true);
+    mTerrainGroup->freeTemporaryResources();
 
 	// CEGUI setup
   gui_renderer = &CEGUI::OgreRenderer::bootstrapSystem();
@@ -91,66 +95,65 @@ void Application::createScene(void)
   // Mouse
   CEGUI::SchemeManager::getSingleton().create((CEGUI::utf8*)"TaharezLook.scheme");
   CEGUI::MouseCursor::getSingleton().setImage("TaharezLook", "MouseArrow");
-
-  // Set the camera to look at our handiwork
-  mCamera->setPosition(90.0f, 280.0f, 535.0f);
-  mCamera->pitch(Ogre::Degree(-30.0f));
-  mCamera->yaw(Ogre::Degree(-15.0f));
+}
+//------------------------------------------------------------------------------
+void Application::destroyScene()
+{
+  OGRE_DELETE mTerrainGroup;
+  OGRE_DELETE mTerrainGlobals;
 }
 //------------------------------------------------------------------------------
 /// QUERY
 //------------------------------------------------------------------------------
-RaySceneQueryResult Application::getUnderCursor(OIS::MouseState mouse_state)
+Ray Application::getMouseRay(OIS::MouseState mouse_state) const
 {
   // Calculate the ray implied by the cursor's position on the screen
   CEGUI::Point mouse_pos = CEGUI::MouseCursor::getSingleton().getPosition();
-  Ray mouse_ray =
-    mCamera->getCameraToViewportRay(mouse_pos.d_x/float(mouse_state.width),
-                                    mouse_pos.d_y/float(mouse_state.height));
-
-  // Execute the query and return the result
-  ray_query->setRay(mouse_ray);
-  return ray_query->execute();
+  return camera->getCameraToViewportRay(mouse_pos.d_x/float(mouse_state.width),
+                                      mouse_pos.d_y/float(mouse_state.height));
 }
 //------------------------------------------------------------------------------
-RaySceneQueryResult Application::getBelowPosition(Vector3 position)
+bool Application::getTerrainCollision(Ray ray, Vector3* out)
 {
-  // Build and execute the query and return the result
-  position.y += 500.0f;
-  Ray down_ray = Ray(position, Vector3::NEGATIVE_UNIT_Y);
-  ray_query->setRay(down_ray);
-  return ray_query->execute();
-}
-//------------------------------------------------------------------------------
-bool Application::getTerrainCollision(RaySceneQueryResult in, Vector3* out)
-{
-  // Get the first collision point
-  for(RaySceneQueryResult::iterator i = in.begin(); i != in.end(); i++)
-    // Ray intersects terrain geometry
-    if(i->worldFragment)
-    {
-      // Query can be made with result = NULL, in which case don't write there!
+  // Perform the scene query
+  TerrainGroup::RayResult result = mTerrainGroup->rayIntersects(ray);
+  if(result.hit)
+  {
       if(out)
-        (*out) = i->worldFragment->singleIntersection;
-
-      // Report whether a collision was found or not
-      return true;
-    }
-  return false;
+        (*out) = result.position;
+  }
+  else
+    return false;
 }
 //------------------------------------------------------------------------------
-Soldier* Application::getSoldierCollision(RaySceneQueryResult in)
+bool Application::getSoldierCollision(Ray ray, Soldier** out)
 {
+  // Execute the query and return the result
+  ray_query->setRay(ray);
+  RaySceneQueryResult result = ray_query->execute();
+
   // Get the first Soldier collided with
-  for(RaySceneQueryResult::iterator i = in.begin(); i != in.end(); i++)
+  for(RaySceneQueryResult::iterator i = result.begin(); i != result.end(); i++)
+  {
     // Ray intersects movable Entity
     if(i->movable)
     {
+      // Search for Entity amongst Soldiers
       SoldierIter soldier_i = soldiers.find(i->movable);
       if(soldier_i != soldiers.end())
-          return soldier_i->second;
+      {
+        if(out)
+          (*out) = soldier_i->second;
+        return true;
+      }
     }
-  return NULL;
+  }
+  return false;
+}
+//------------------------------------------------------------------------------
+Real Application::getTerrainHeight(Vector3 position)
+{
+  return mTerrainGroup->getHeightAtWorldPosition(position);
 }
 //------------------------------------------------------------------------------
 /// FRAME LISTENER
@@ -161,7 +164,10 @@ void Application::createFrameListener(void)
 	BaseApplication::createFrameListener();
 
   // Create RaySceneQuery
-  ray_query = mSceneMgr->createRayQuery(Ogre::Ray());
+  ray_query = scene->createRayQuery(Ogre::Ray());
+
+  // Create tray label for terrain information
+  mInfoLabel = tray->createLabel(OgreBites::TL_TOP, "TInfo", "", 350);
 }
 //------------------------------------------------------------------------------
 bool Application::frameRenderingQueued(const Ogre::FrameEvent &evt)
@@ -171,10 +177,32 @@ bool Application::frameRenderingQueued(const Ogre::FrameEvent &evt)
   if (!BaseApplication::frameRenderingQueued(evt))
    return false;
 
-  // Check for collisions with terrain
-  Vector3 collision;
-	if(getTerrainCollision(getBelowPosition(mCamera->getPosition()), &collision))
-    mCameraMan->stayAbove(collision.y + 20.0f, evt.timeSinceLastFrame);
+
+  // Save the terrain
+  if (mTerrainGroup->isDerivedDataUpdateInProgress())
+  {
+      tray->moveWidgetToTray(mInfoLabel, OgreBites::TL_TOP, 0);
+      mInfoLabel->show();
+      if (mTerrainsImported)
+        mInfoLabel->setCaption("Building terrain, please wait...");
+
+      else
+        mInfoLabel->setCaption("Updating textures, patience...");
+  }
+  else
+  {
+      tray->removeWidgetFromTray(mInfoLabel);
+      mInfoLabel->hide();
+      if (mTerrainsImported)
+      {
+          mTerrainGroup->saveAllTerrains(true);
+          mTerrainsImported = false;
+      }
+  }
+
+  // Don't fly camera below the terrain
+  camera_man->stayAbove(getTerrainHeight(camera->getPosition()) + 20.0f,
+                          evt.timeSinceLastFrame);
 
   // Update the game objects
   for(SoldierIter i = soldiers.begin(); i != soldiers.end(); i++)
@@ -193,7 +221,7 @@ bool Application::mouseMoved(const OIS::MouseEvent &evt)
     return false;
 
   // Find point that cursor is pointing to
-  getTerrainCollision(getUnderCursor(evt.state), &cursor_pos);
+  getTerrainCollision(getMouseRay(evt.state), &focus);
 
 
   // Update CEGUI with the mouse motion
@@ -216,14 +244,14 @@ bool Application::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id
     l_mouse = true;
 
     // Select Soldiers under cursor
-    Soldier* selection = getSoldierCollision(getUnderCursor(evt.state));
-    if(selection)
+    Soldier* selection;
+    if(getSoldierCollision(getMouseRay(evt.state), &selection))
       selection->setSelected(!selection->isSelected());
     else
       // Move Soldiers to empty area if nothing to select
       for(SoldierIter i = soldiers.begin(); i != soldiers.end(); i++)
         if(i->second->isSelected())
-          i->second->addWaypoint(cursor_pos);
+          i->second->addWaypoint(focus);
   }
 
   // Right mouse button down
@@ -234,7 +262,7 @@ bool Application::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id
 
     // Create a new Soldier
     Soldier* new_soldier = new Soldier();
-    new_soldier->attach(soldiers, mSceneMgr, cursor_pos);
+    new_soldier->attach(soldiers, scene, focus);
   }
 
   // consume event
@@ -265,7 +293,7 @@ bool Application::mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID i
 /// FIXME
 void getTerrainImage(bool flipX, bool flipY, Ogre::Image& img)
 {
-  img.load("terrain_2.png", Ogre::ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME);
+  img.load("height_map.png", Ogre::ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME);
   if (flipX)
       img.flipAroundY();
   if (flipY)
@@ -330,7 +358,7 @@ void Application::configureTerrainDefaults(Ogre::Light* light)
   mTerrainGlobals->setCompositeMapDistance(3000);
   // Important to set these so that the terrain knows what to use for derived (non-realtime) data
   mTerrainGlobals->setLightMapDirection(light->getDerivedDirection());
-  mTerrainGlobals->setCompositeMapAmbient(mSceneMgr->getAmbientLight());
+  mTerrainGlobals->setCompositeMapAmbient(scene->getAmbientLight());
   mTerrainGlobals->setCompositeMapDiffuse(light->getDiffuseColour());
   // Configure default import settings for if we use imported image
   Ogre::Terrain::ImportData& defaultimp = mTerrainGroup->getDefaultImportSettings();
@@ -340,9 +368,14 @@ void Application::configureTerrainDefaults(Ogre::Light* light)
   defaultimp.minBatchSize = 33;
   defaultimp.maxBatchSize = 65;
   // textures
-  defaultimp.layerList.resize(2);
-  defaultimp.layerList[0].worldSize = 100;
-  defaultimp.layerList[0].textureNames.push_back("terrain_texture_2.png");
-  defaultimp.layerList[1].worldSize = 30;
-  defaultimp.layerList[1].textureNames.push_back("terrain_detail_2.png");
+    defaultimp.layerList.resize(3);
+    defaultimp.layerList[0].worldSize = 100;
+    defaultimp.layerList[0].textureNames.push_back("dirt_grayrocky_diffusespecular.dds");
+    defaultimp.layerList[0].textureNames.push_back("dirt_grayrocky_normalheight.dds");
+    defaultimp.layerList[1].worldSize = 30;
+    defaultimp.layerList[1].textureNames.push_back("grass_green-01_diffusespecular.dds");
+    defaultimp.layerList[1].textureNames.push_back("grass_green-01_normalheight.dds");
+    defaultimp.layerList[2].worldSize = 200;
+    defaultimp.layerList[2].textureNames.push_back("growth_weirdfungus-03_diffusespecular.dds");
+    defaultimp.layerList[2].textureNames.push_back("growth_weirdfungus-03_normalheight.dds");
 }

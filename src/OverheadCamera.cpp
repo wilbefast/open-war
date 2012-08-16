@@ -31,22 +31,28 @@ using namespace std;
 /// CONSTANTS
 
 const Real OverheadCamera::MIN_Y = 50.0f,
-           OverheadCamera::MAX_Y = 1500.0f;
+           OverheadCamera::MAX_Y = 6000.0f;
 
 /// CREATION, DESTRUCTION
 
 OverheadCamera::OverheadCamera(Camera* _camera) :
-rotate(false),
+orbit(false),
 max_zoom_in(false),
 max_zoom_out(false),
 camera(_camera),
-top_speed(700.0f),
-rotate_speed(0.1f),
+top_speed((MAX_Y-MIN_Y) * 0.5f),
+orbit_speed(0.3f),
 pan_speed(Vector3::ZERO),
 zoom_speed(Vector3::ZERO),
 input(Vector3::ZERO),
-zoom_direction(Vector3::ZERO)
+zoom_direction(Vector3::ZERO),
+target(NULL)
 {
+  // Set the camera to look at our handiwork
+  camera->setPosition(0.0f, MAX_Y, 0.0f);
+  camera->pitch(Ogre::Degree(-45.0f));
+  camera->yaw(Ogre::Degree(0.0f));
+  camera->roll(Ogre::Degree(0.0f));
 }
 
 OverheadCamera::~OverheadCamera()
@@ -118,14 +124,27 @@ void OverheadCamera::injectKeyUp(const OIS::KeyEvent& evt)
 void OverheadCamera::injectMouseMove(const OIS::MouseEvent& evt)
 {
   // Rotate the camera based on mouse movement when middle button is held
-  if(rotate)
+  if(orbit)
   {
-    camera->yaw(Ogre::Degree(-evt.state.X.rel * rotate_speed));
-    camera->pitch(Ogre::Degree(-evt.state.Y.rel * rotate_speed));
-    /*Ogre::Real dist = (camera->getPosition() - cursor_pos).length();
-    camera->yaw(Ogre::Degree(-evt.state.X.rel * 0.25f));
-    camera->pitch(Ogre::Degree(-evt.state.Y.rel * 0.25f));
-    camera->moveRelative(Ogre::Vector3(0, 0, dist));*/
+    // local variables
+    Vector2 rotation(-evt.state.X.rel, -evt.state.Y.rel);
+    rotation *= orbit_speed;
+
+    // set up orbit
+    Real distance = (camera->getPosition() - target->_getDerivedPosition()).length();
+    camera->setPosition(target->_getDerivedPosition());
+
+    // yaw
+    camera->yaw(Degree(rotation.x));
+    // pitch
+    Radian old_pitch = camera->getOrientation().getPitch(),
+           new_pitch = Math::Abs(Degree(rotation.y) + old_pitch);
+    if(new_pitch < Radian(Math::PI/2 - 0.1f)
+    || new_pitch > Radian(Math::PI/2 + 0.1f))
+         camera->pitch(Degree(rotation.y));
+
+    // perform orb
+    camera->moveRelative(Vector3(0, 0, distance));
   }
 
   // Calculate the direction towards the cursor
@@ -137,27 +156,37 @@ void OverheadCamera::injectMouseMove(const OIS::MouseEvent& evt)
   // Cap maximum zoom
   bool zoom_in = evt.state.Z.rel > 0,
        zoom_out = evt.state.Z.rel < 0;
-  if(zoom_in)
+  if(zoom_in || (!zoom_out && camera->getPosition().y > MIN_Y))
     max_zoom_out = false;
-  else if(zoom_out)
+  else if(zoom_out || (!zoom_in && camera->getPosition().y < MAX_Y))
     max_zoom_in = false;
 
   // Otherwise zoom towards cursor
   if((zoom_in && !max_zoom_in) || (zoom_out && !max_zoom_out))
-      zoom_speed += mouse_ray.getDirection() * evt.state.Z.rel * 10;
+      zoom_speed += mouse_ray.getDirection() * evt.state.Z.rel * 50;
 
 }
 
 void OverheadCamera::injectMouseUp(const OIS::MouseEvent& evt, OIS::MouseButtonID id)
 {
   if(id == OIS::MB_Middle)
-    rotate = false;
+  {
+    camera->setAutoTracking(false);
+    camera->setFixedYawAxis(true);
+    orbit = false;
+  }
 }
 
 void OverheadCamera::injectMouseDown(const OIS::MouseEvent& evt, OIS::MouseButtonID id)
 {
   if(id == OIS::MB_Middle)
-    rotate = true;
+  {
+    target = camera->getSceneManager()->getRootSceneNode();
+    camera->lookAt(target->getPosition());
+    camera->setAutoTracking(true, target);
+    camera->setFixedYawAxis(true);
+    orbit = true;
+  }
 }
 
 /// SUBROUTINES
@@ -218,7 +247,7 @@ void OverheadCamera::move(Real d_time)
   stayAbove(MIN_Y, d_time);
 
   // stop zooming if above the maximum height
-  stayBelow(1500, d_time);
+  stayBelow(MAX_Y, d_time);
 
   // move the camera
   if (pan_speed != Vector3::ZERO)
@@ -261,3 +290,4 @@ void OverheadCamera::stayOnSide(Real target_y, Real d_time, int side)
       max_zoom_out = true;
   }
 }
+

@@ -18,35 +18,42 @@ This source file is part of the
 
 //------------------------------------------------------------------------------
 BaseApplication::BaseApplication(void):
-  mRoot(NULL),
-  mCamera(NULL),
-  mSceneMgr(NULL),
-  mWindow(NULL),
-  mResourcesCfg(Ogre::StringUtil::BLANK),
-  mPluginsCfg(Ogre::StringUtil::BLANK),
-  mTrayMgr(NULL),
-  mCameraMan(NULL),
-  mDetailsPanel(NULL),
-  mCursorWasVisible(false),
-  mShutDown(false),
-  mInputManager(NULL),
-  mMouse(NULL),
-  mKeyboard(NULL)
+// Model
+root(NULL),
+scene(NULL),
+window(NULL),
+// View
+camera(NULL),
+camera_man(NULL),
+tray(NULL),
+panel(NULL),
+cursor_was_visible(false),
+mShutDown(false),
+// Resources
+resources_cfg(Ogre::StringUtil::BLANK),
+plugins_cfg(Ogre::StringUtil::BLANK),
+//OIS Input devices
+input(NULL),
+mouse(NULL),
+keyboard(NULL)
 {
 }
 
 //------------------------------------------------------------------------------
 BaseApplication::~BaseApplication(void)
 {
-  if (mTrayMgr)
-    delete mTrayMgr;
-  if (mCameraMan)
-    delete mCameraMan;
+  // Remove objects if they exist
+  if (tray)
+    delete tray;
+  if (camera_man)
+    delete camera_man;
 
   //Remove ourself as a Window listener
-  Ogre::WindowEventUtilities::removeWindowEventListener(mWindow, this);
-  windowClosed(mWindow);
-  delete mRoot;
+  Ogre::WindowEventUtilities::removeWindowEventListener(window, this);
+  windowClosed(window);
+
+  // Delete the root last of all
+  delete root;
 }
 
 //------------------------------------------------------------------------------
@@ -55,11 +62,11 @@ bool BaseApplication::configure(void)
   // Show the configuration dialog and initialise the system
   // You can skip this and use root.restoreConfig() to load configuration
   // settings if you were sure there are valid ones saved in ogre.cfg
-  if(mRoot->showConfigDialog())
+  if(root->showConfigDialog())
   {
     // If returned true, user clicked OK so initialise
-    // Here we choose to let the system create a default rendering window by passing 'true'
-    mWindow = mRoot->initialise(true, "TutorialApplication Render Window");
+    // Here 'true' makes the system create a default rendering window
+    window = root->initialise(true, "Open War");
 
     return true;
   }
@@ -70,27 +77,22 @@ bool BaseApplication::configure(void)
 void BaseApplication::chooseSceneManager(void)
 {
   // Create the scene manager
-  mSceneMgr = mRoot->createSceneManager(Ogre::ST_EXTERIOR_CLOSE);
+  scene = root->createSceneManager(Ogre::ST_EXTERIOR_CLOSE);
+  // scene = root->createSceneManager(Ogre::ST_EXTERIOR_REAL_FAR);
 }
 //------------------------------------------------------------------------------
 void BaseApplication::createCamera(void)
 {
   // Create the camera
-  mCamera = mSceneMgr->createCamera("PlayerCam");
-  // Position
-  mCamera->setPosition(Ogre::Vector3(0, 500, 0));
-  // Angle
-  mCamera->pitch(Ogre::Degree(-40));
-  mCamera->yaw(Ogre::Degree(-45));
-  mCamera->roll(Ogre::Degree(0));
+  camera = scene->createCamera("PlayerCam");
   // Clipping
-  mCamera->setNearClipDistance(5);
+  camera->setNearClipDistance(5);
   bool infinite_distance =
-    mRoot->getRenderSystem()->getCapabilities()->hasCapability(Ogre::RSC_INFINITE_FAR_PLANE);
-  mCamera->setFarClipDistance(infinite_distance ? 0 : 50000);
+    root->getRenderSystem()->getCapabilities()->hasCapability(Ogre::RSC_INFINITE_FAR_PLANE);
+  camera->setFarClipDistance(infinite_distance ? 0 : 50000);
 
   // create camera controller
-  mCameraMan = new OverheadCamera(mCamera);
+  camera_man = new OverheadCamera(camera);
 }
 //------------------------------------------------------------------------------
 void BaseApplication::createFrameListener(void)
@@ -100,30 +102,30 @@ void BaseApplication::createFrameListener(void)
   size_t windowHnd = 0;
   std::ostringstream windowHndStr;
 
-  mWindow->getCustomAttribute("WINDOW", &windowHnd);
+  window->getCustomAttribute("WINDOW", &windowHnd);
   windowHndStr << windowHnd;
   pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
 
   // Input managers and devices
-  mInputManager = OIS::InputManager::createInputSystem( pl );
-  mKeyboard = static_cast<OIS::Keyboard*>(
-                mInputManager->createInputObject( OIS::OISKeyboard, true ));
-  mMouse = static_cast<OIS::Mouse*>(
-                mInputManager->createInputObject( OIS::OISMouse, true ));
-  mMouse->setEventCallback(this);
-  mKeyboard->setEventCallback(this);
+  input = OIS::InputManager::createInputSystem( pl );
+  keyboard = static_cast<OIS::Keyboard*>(
+                input->createInputObject( OIS::OISKeyboard, true ));
+  mouse = static_cast<OIS::Mouse*>(
+                input->createInputObject( OIS::OISMouse, true ));
+  mouse->setEventCallback(this);
+  keyboard->setEventCallback(this);
 
   //Set initial mouse clipping size
-  windowResized(mWindow);
+  windowResized(window);
 
   // Register as a Window listener
-  Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
+  Ogre::WindowEventUtilities::addWindowEventListener(window, this);
 
-  mTrayMgr =
-    new OgreBites::SdkTrayManager("InterfaceName", mWindow, mMouse, this);
-  mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
-  mTrayMgr->showLogo(OgreBites::TL_BOTTOMRIGHT);
-  mTrayMgr->hideCursor();
+  tray =
+    new OgreBites::SdkTrayManager("InterfaceName", window, mouse, this);
+  tray->showFrameStats(OgreBites::TL_BOTTOMLEFT);
+  tray->showLogo(OgreBites::TL_BOTTOMRIGHT);
+  tray->hideCursor();
 
   // Create a params panel for displaying sample details
   Ogre::StringVector items;
@@ -139,13 +141,13 @@ void BaseApplication::createFrameListener(void)
   items.push_back("Filtering");
   items.push_back("Poly Mode");
 
-  mDetailsPanel =
-    mTrayMgr->createParamsPanel(OgreBites::TL_NONE, "DetailsPanel", 200, items);
-  mDetailsPanel->setParamValue(9, "Bilinear");
-  mDetailsPanel->setParamValue(10, "Solid");
-  mDetailsPanel->hide();
+  panel =
+    tray->createParamsPanel(OgreBites::TL_NONE, "DetailsPanel", 200, items);
+  panel->setParamValue(9, "Bilinear");
+  panel->setParamValue(10, "Solid");
+  panel->hide();
 
-  mRoot->addFrameListener(this);
+  root->addFrameListener(this);
 }
 //------------------------------------------------------------------------------
 void BaseApplication::destroyScene(void)
@@ -155,11 +157,11 @@ void BaseApplication::destroyScene(void)
 void BaseApplication::createViewports(void)
 {
   // Create one viewport, entire window
-  Ogre::Viewport* vp = mWindow->addViewport(mCamera);
+  Ogre::Viewport* vp = window->addViewport(camera);
   vp->setBackgroundColour(Ogre::ColourValue(0,0,0));
 
   // Alter the camera aspect ratio to match the viewport
-  mCamera->setAspectRatio(
+  camera->setAspectRatio(
     Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
 }
 //------------------------------------------------------------------------------
@@ -167,7 +169,7 @@ void BaseApplication::setupResources(void)
 {
   // Load resource paths from config file
   Ogre::ConfigFile cf;
-  cf.load(mResourcesCfg);
+  cf.load(resources_cfg);
 
   // Go through all sections & settings in the file
   Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
@@ -201,11 +203,11 @@ void BaseApplication::loadResources(void)
 void BaseApplication::go(void)
 {
 #ifdef _DEBUG
-  mResourcesCfg = "resources_d.cfg";
-  mPluginsCfg = "plugins_d.cfg";
+  resources_cfg = "resources_d.cfg";
+  plugins_cfg = "plugins_d.cfg";
 #else
-  mResourcesCfg = "resources.cfg";
-  mPluginsCfg = "plugins.cfg";
+  resources_cfg = "resources.cfg";
+  plugins_cfg = "plugins.cfg";
 #endif
 
   // Check for errors
@@ -213,7 +215,7 @@ void BaseApplication::go(void)
     return;
 
   // Launch
-  mRoot->startRendering();
+  root->startRendering();
 
   // Clean up
   destroyScene();
@@ -221,7 +223,7 @@ void BaseApplication::go(void)
 //------------------------------------------------------------------------------
 bool BaseApplication::setup(void)
 {
-  mRoot = new Ogre::Root(mPluginsCfg);
+  root = new Ogre::Root(plugins_cfg);
 
   setupResources();
 
@@ -236,9 +238,8 @@ bool BaseApplication::setup(void)
   // Set default mipmap level (NB some APIs ignore this)
   Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
 
-  // Create any resource listeners (for loading screens)
+  // Create any resource listeners (for loading screens) and load everything
   createResourceListener();
-  // Load resources
   loadResources();
 
   // Create the scene
@@ -251,39 +252,39 @@ bool BaseApplication::setup(void)
 //------------------------------------------------------------------------------
 bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
 {
-  if(mWindow->isClosed())
+  if(window->isClosed())
     return false;
 
   if(mShutDown)
     return false;
 
   //Need to capture/update each device
-  mKeyboard->capture();
-  mMouse->capture();
+  keyboard->capture();
+  mouse->capture();
 
-  mTrayMgr->frameRenderingQueued(evt);
+  tray->frameRenderingQueued(evt);
 
-  if (!mTrayMgr->isDialogVisible())
+  if (!tray->isDialogVisible())
   {
     // if dialog isn't up, then update the camera
-    mCameraMan->frameRenderingQueued(evt);
+    camera_man->frameRenderingQueued(evt);
     // if details panel is visible, then update its contents
-    if (mDetailsPanel->isVisible())
+    if (panel->isVisible())
     {
-      mDetailsPanel->setParamValue(0,
-        Ogre::StringConverter::toString(mCamera->getDerivedPosition().x));
-      mDetailsPanel->setParamValue(1,
-        Ogre::StringConverter::toString(mCamera->getDerivedPosition().y));
-      mDetailsPanel->setParamValue(2,
-        Ogre::StringConverter::toString(mCamera->getDerivedPosition().z));
-      mDetailsPanel->setParamValue(4,
-        Ogre::StringConverter::toString(mCamera->getDerivedOrientation().w));
-      mDetailsPanel->setParamValue(5,
-        Ogre::StringConverter::toString(mCamera->getDerivedOrientation().x));
-      mDetailsPanel->setParamValue(6,
-        Ogre::StringConverter::toString(mCamera->getDerivedOrientation().y));
-      mDetailsPanel->setParamValue(7,
-      Ogre::StringConverter::toString(mCamera->getDerivedOrientation().z));
+      panel->setParamValue(0,
+        Ogre::StringConverter::toString(camera->getDerivedPosition().x));
+      panel->setParamValue(1,
+        Ogre::StringConverter::toString(camera->getDerivedPosition().y));
+      panel->setParamValue(2,
+        Ogre::StringConverter::toString(camera->getDerivedPosition().z));
+      panel->setParamValue(4,
+        Ogre::StringConverter::toString(camera->getDerivedOrientation().w));
+      panel->setParamValue(5,
+        Ogre::StringConverter::toString(camera->getDerivedOrientation().x));
+      panel->setParamValue(6,
+        Ogre::StringConverter::toString(camera->getDerivedOrientation().y));
+      panel->setParamValue(7,
+      Ogre::StringConverter::toString(camera->getDerivedOrientation().z));
     }
   }
 
@@ -293,25 +294,25 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
 bool BaseApplication::keyPressed( const OIS::KeyEvent &evt )
 {
   // don't process any more keys if dialog is up
-  if (mTrayMgr->isDialogVisible())
+  if (tray->isDialogVisible())
     return true;
 
   // toggle visibility of advanced frame stats
   if (evt.key == OIS::KC_F)
-    mTrayMgr->toggleAdvancedFrameStats();
+    tray->toggleAdvancedFrameStats();
 
   // toggle visibility of even rarer debugging details
   else if (evt.key == OIS::KC_G)
   {
-    if (mDetailsPanel->getTrayLocation() == OgreBites::TL_NONE)
+    if (panel->getTrayLocation() == OgreBites::TL_NONE)
     {
-      mTrayMgr->moveWidgetToTray(mDetailsPanel, OgreBites::TL_TOPRIGHT, 0);
-      mDetailsPanel->show();
+      tray->moveWidgetToTray(panel, OgreBites::TL_TOPRIGHT, 0);
+      panel->show();
     }
     else
     {
-      mTrayMgr->removeWidgetFromTray(mDetailsPanel);
-      mDetailsPanel->hide();
+      tray->removeWidgetFromTray(panel);
+      panel->hide();
     }
   }
 
@@ -322,7 +323,7 @@ bool BaseApplication::keyPressed( const OIS::KeyEvent &evt )
     Ogre::TextureFilterOptions tfo;
     unsigned int aniso;
 
-    switch (mDetailsPanel->getParamValue(9).asUTF8()[0])
+    switch (panel->getParamValue(9).asUTF8()[0])
     {
       case 'B':
         newVal = "Trilinear";
@@ -350,7 +351,7 @@ bool BaseApplication::keyPressed( const OIS::KeyEvent &evt )
 
     Ogre::MaterialManager::getSingleton().setDefaultTextureFiltering(tfo);
     Ogre::MaterialManager::getSingleton().setDefaultAnisotropy(aniso);
-    mDetailsPanel->setParamValue(9, newVal);
+    panel->setParamValue(9, newVal);
   }
 
   // cycle polygon rendering mode
@@ -359,7 +360,7 @@ bool BaseApplication::keyPressed( const OIS::KeyEvent &evt )
     Ogre::String newVal;
     Ogre::PolygonMode pm;
 
-    switch (mCamera->getPolygonMode())
+    switch (camera->getPolygonMode())
     {
       case Ogre::PM_SOLID:
         newVal = "Wireframe";
@@ -376,8 +377,8 @@ bool BaseApplication::keyPressed( const OIS::KeyEvent &evt )
         pm = Ogre::PM_SOLID;
     }
 
-    mCamera->setPolygonMode(pm);
-    mDetailsPanel->setParamValue(10, newVal);
+    camera->setPolygonMode(pm);
+    panel->setParamValue(10, newVal);
   }
 
   // refresh all textures
@@ -386,21 +387,21 @@ bool BaseApplication::keyPressed( const OIS::KeyEvent &evt )
 
   // take a screenshot
   //else if (evt.key == OIS::KC_SYSRQ)
-    //mWindow->writeContentsToTimestampedFile("screenshot", ".jpg");
+    //window->writeContentsToTimestampedFile("screenshot", ".jpg");
 
   // exit
   else if (evt.key == OIS::KC_ESCAPE)
     mShutDown = true;
 
   // pass key input to camera
-  mCameraMan->injectKeyDown(evt);
+  camera_man->injectKeyDown(evt);
   return true;
 }
 
 bool BaseApplication::keyReleased( const OIS::KeyEvent &evt )
 {
   // pass to the camera controller
-  mCameraMan->injectKeyUp(evt);
+  camera_man->injectKeyUp(evt);
 
   // consume event
   return true;
@@ -409,11 +410,11 @@ bool BaseApplication::keyReleased( const OIS::KeyEvent &evt )
 bool BaseApplication::mouseMoved( const OIS::MouseEvent &evt )
 {
   // the tray may consume the event before it gets to the camera
-  if (mTrayMgr->injectMouseMove(evt))
+  if (tray->injectMouseMove(evt))
     return true;
 
   // pass to the camera controller if not consumed
-  mCameraMan->injectMouseMove(evt);
+  camera_man->injectMouseMove(evt);
 
   // consume event
   return true;
@@ -422,11 +423,11 @@ bool BaseApplication::mouseMoved( const OIS::MouseEvent &evt )
 bool BaseApplication::mousePressed( const OIS::MouseEvent &evt, OIS::MouseButtonID id )
 {
   // the tray may consume the event before it gets to the camera
-  if (mTrayMgr->injectMouseDown(evt, id))
+  if (tray->injectMouseDown(evt, id))
     return true;
 
   // pass to the camera controller if not consumed
-  mCameraMan->injectMouseDown(evt, id);
+  camera_man->injectMouseDown(evt, id);
 
   return true;
 }
@@ -434,11 +435,11 @@ bool BaseApplication::mousePressed( const OIS::MouseEvent &evt, OIS::MouseButton
 bool BaseApplication::mouseReleased( const OIS::MouseEvent &evt, OIS::MouseButtonID id )
 {
   // the tray may consume the event before it gets to the camera
-  if (mTrayMgr->injectMouseUp(evt, id))
+  if (tray->injectMouseUp(evt, id))
     return true;
 
   // pass to the camera controller if not consumed
-  mCameraMan->injectMouseUp(evt, id);
+  camera_man->injectMouseUp(evt, id);
 
   return true;
 }
@@ -450,7 +451,7 @@ void BaseApplication::windowResized(Ogre::RenderWindow* rw)
   int left, top;
   rw->getMetrics(width, height, depth, left, top);
 
-  const OIS::MouseState &ms = mMouse->getMouseState();
+  const OIS::MouseState &ms = mouse->getMouseState();
   ms.width = width;
   ms.height = height;
 }
@@ -459,15 +460,15 @@ void BaseApplication::windowResized(Ogre::RenderWindow* rw)
 void BaseApplication::windowClosed(Ogre::RenderWindow* rw)
 {
   //Only close for window that created OIS (the main window in these demos)
-  if( rw == mWindow )
+  if( rw == window )
   {
-    if( mInputManager )
+    if( input )
     {
-      mInputManager->destroyInputObject( mMouse );
-      mInputManager->destroyInputObject( mKeyboard );
+      input->destroyInputObject( mouse );
+      input->destroyInputObject( keyboard );
 
-      OIS::InputManager::destroyInputSystem(mInputManager);
-      mInputManager = NULL;
+      OIS::InputManager::destroyInputSystem(input);
+      input = NULL;
     }
   }
 }

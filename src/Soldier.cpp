@@ -50,20 +50,20 @@ Soldier::~Soldier()
 {
 }
 
-void Soldier::attach(SoldierMap& map, SceneManager* scene_manager,
+void Soldier::attach(SoldierMap& map, SceneManager* scene,
                       Vector3 position)
 {
   // Create the Entity
   char name[16];
   sprintf( name, "Soldier%d", count++ );
-  entity = scene_manager->createEntity(name, "robot.mesh");
+  entity = scene->createEntity(name, "robot.mesh");
 
   // Map Entity* (MovableObject*) to Soldier*
   map[entity] = this;
 
   // Create the scene Node
   string node_name = string(name) + "Node";
-  node = scene_manager->getRootSceneNode()->createChildSceneNode(node_name,
+  node = scene->getRootSceneNode()->createChildSceneNode(node_name,
                                                                   position);
 
   // Attach Entity to Node
@@ -155,9 +155,9 @@ void Soldier::update(Real d_time, Application* app)
   }
 
   // Stay above terrain
-  Vector3 floor;
-  if(app->getTerrainCollision(app->getBelowPosition(node->getPosition()), &floor))
-    node->setPosition(floor);
+  Vector3 floor = node->getPosition();
+  floor.y = app->getTerrainHeight(floor);
+  node->setPosition(floor);
 
   // Animate an amount dependent on the elapsed time since the last frame
   animation->addTime(d_time);

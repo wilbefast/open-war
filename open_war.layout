@@ -2,7 +2,7 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 	<File name="plugins.cfg" open="0" top="0" tabpos="5">
-		<Cursor position="69" topLine="0" />
+		<Cursor position="462" topLine="0" />
 	</File>
 	<File name="resources.cfg" open="0" top="0" tabpos="4">
 		<Cursor position="1171" topLine="10" />
@@ -10,26 +10,26 @@
 	<File name="resources_d.cfg" open="0" top="0" tabpos="5">
 		<Cursor position="1199" topLine="13" />
 	</File>
-	<File name="src/Application.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="1545" topLine="283" />
+	<File name="src/Application.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="7059" topLine="195" />
 	</File>
-	<File name="src/Application.hpp" open="1" top="0" tabpos="2">
-		<Cursor position="2411" topLine="53" />
+	<File name="src/Application.hpp" open="0" top="0" tabpos="2">
+		<Cursor position="1679" topLine="35" />
 	</File>
 	<File name="src/BaseApplication.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="2259" topLine="132" />
+		<Cursor position="2845" topLine="263" />
 	</File>
 	<File name="src/BaseApplication.h" open="0" top="0" tabpos="2">
-		<Cursor position="1274" topLine="39" />
+		<Cursor position="1375" topLine="43" />
 	</File>
 	<File name="src/OverheadCamera.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="1361" topLine="37" />
+		<Cursor position="1626" topLine="48" />
 	</File>
 	<File name="src/OverheadCamera.hpp" open="0" top="0" tabpos="4">
-		<Cursor position="1729" topLine="42" />
+		<Cursor position="1152" topLine="37" />
 	</File>
 	<File name="src/Soldier.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="1720" topLine="46" />
+		<Cursor position="2911" topLine="90" />
 	</File>
 	<File name="src/Soldier.hpp" open="0" top="0" tabpos="3">
 		<Cursor position="1860" topLine="52" />

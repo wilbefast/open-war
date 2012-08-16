@@ -32,6 +32,7 @@ This source file is part of the
 #include <OISMouse.h>
 
 #include <SdkTrays.h>
+#include <SdkCameraMan.h>
 #include "OverheadCamera.hpp"
 
 class BaseApplication :
@@ -43,24 +44,25 @@ OgreBites::SdkTrayListener
 {
   /// ATTRIBUTES
 protected:
-  Ogre::Root *mRoot;
-  Ogre::Camera* mCamera;
-  Ogre::SceneManager* mSceneMgr;
-  Ogre::RenderWindow* mWindow;
-  Ogre::String mResourcesCfg;
-  Ogre::String mPluginsCfg;
-
-  // OgreBites
-  OgreBites::SdkTrayManager* mTrayMgr;
-  OverheadCamera* mCameraMan;
-  OgreBites::ParamsPanel* mDetailsPanel;     // sample details panel
-  bool mCursorWasVisible;                    // was cursor visible before dialog appeared
+  // Model
+  Ogre::Root *root;
+  Ogre::SceneManager* scene;
+  Ogre::RenderWindow* window;
+  // View
+  Ogre::Camera* camera;
+  OverheadCamera* camera_man;
+  //OgreBites::SdkCameraMan* camera_man;
+  OgreBites::SdkTrayManager* tray;
+  OgreBites::ParamsPanel* panel;  // sample details panel
+  bool cursor_was_visible;  // was cursor visible before dialog appeared ?
   bool mShutDown;
-
+  // Resources
+  Ogre::String resources_cfg;
+  Ogre::String plugins_cfg;
   //OIS Input devices
-  OIS::InputManager* mInputManager;
-  OIS::Mouse*    mMouse;
-  OIS::Keyboard* mKeyboard;
+  OIS::InputManager* input;
+  OIS::Mouse* mouse;
+  OIS::Keyboard* keyboard;
 
 
   /// METHODS
@@ -69,6 +71,7 @@ public:
   virtual ~BaseApplication(void);
   virtual void go(void);
 
+  /// SUBROUTINES
 protected:
   virtual bool setup();
   virtual bool configure(void);
@@ -86,12 +89,12 @@ protected:
   virtual bool frameRenderingQueued(const Ogre::FrameEvent& evt);
 
   // OIS::KeyListener
-  virtual bool keyPressed( const OIS::KeyEvent &evt );
-  virtual bool keyReleased( const OIS::KeyEvent &evt );
+  virtual bool keyPressed(const OIS::KeyEvent &evt);
+  virtual bool keyReleased(const OIS::KeyEvent &evt);
   // OIS::MouseListener
-  virtual bool mouseMoved( const OIS::MouseEvent &evt );
-  virtual bool mousePressed( const OIS::MouseEvent &evt, OIS::MouseButtonID id );
-  virtual bool mouseReleased( const OIS::MouseEvent &evt, OIS::MouseButtonID id );
+  virtual bool mouseMoved(const OIS::MouseEvent &evt);
+  virtual bool mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id);
+  virtual bool mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID id);
 
   // Ogre::WindowEventListener
   //Adjust mouse clipping area

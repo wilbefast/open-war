@@ -35,10 +35,11 @@ private:
 
   /// ATTRIBUTES
 private:
-  bool rotate, max_zoom_in, max_zoom_out;
+  bool orbit, max_zoom_in, max_zoom_out;
   Ogre::Camera* camera;
-  Ogre::Real top_speed, rotate_speed;
+  Ogre::Real top_speed, orbit_speed;
   Ogre::Vector3 pan_speed, zoom_speed, input, zoom_direction;
+  Ogre::SceneNode* target;
 
   /// METHODS
 public:
@@ -63,6 +64,7 @@ public:
   virtual void injectMouseMove(const OIS::MouseEvent& evt);
   virtual void injectMouseUp(const OIS::MouseEvent& evt, OIS::MouseButtonID id);
   virtual void injectMouseDown(const OIS::MouseEvent& evt, OIS::MouseButtonID id);
+
 
   /// SUBROUTINES
 private:

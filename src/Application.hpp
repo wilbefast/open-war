@@ -37,23 +37,25 @@ private:
   SoldierMap soldiers;
   Ogre::RaySceneQuery *ray_query;       // The ray scene query pointer
   bool r_mouse, l_mouse;		            // True if the mouse buttons are down
-  Ogre::Vector3 cursor_pos;             // Position of the cursor in the world
+  Ogre::Vector3 focus;                  // Position of the cursor in the world
   CEGUI::Renderer *gui_renderer;		    // CEGUI renderer
   // terrain
   Ogre::TerrainGlobalOptions* mTerrainGlobals;
   Ogre::TerrainGroup* mTerrainGroup;
   bool mTerrainsImported;
+  OgreBites::Label* mInfoLabel;
 
   /// METHODS
 public:
   // creation, destruction
   Application();
   virtual ~Application();
+  void destroyScene();
   // query
-  Ogre::RaySceneQueryResult getUnderCursor(OIS::MouseState mouse_state);
-  Ogre::RaySceneQueryResult getBelowPosition(Ogre::Vector3 position);
-  bool getTerrainCollision(Ogre::RaySceneQueryResult in, Ogre::Vector3* out = NULL);
-  Soldier* getSoldierCollision(Ogre::RaySceneQueryResult in);
+  Ogre::Ray getMouseRay(OIS::MouseState mouse_state) const;
+  bool getTerrainCollision(Ogre::Ray ray, Ogre::Vector3* out = NULL);
+  bool getSoldierCollision(Ogre::Ray ray, Soldier** out = NULL);
+  Ogre::Real getTerrainHeight(Ogre::Vector3 position);
 
   /// SUBROUTINES
 protected:
