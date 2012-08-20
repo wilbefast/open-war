@@ -10,11 +10,11 @@
 	<File name="resources_d.cfg" open="0" top="0" tabpos="5">
 		<Cursor position="1199" topLine="13" />
 	</File>
-	<File name="src/Application.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="7059" topLine="195" />
+	<File name="src/Application.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="5097" topLine="105" />
 	</File>
-	<File name="src/Application.hpp" open="0" top="0" tabpos="2">
-		<Cursor position="1679" topLine="35" />
+	<File name="src/Application.hpp" open="1" top="0" tabpos="2">
+		<Cursor position="1888" topLine="45" />
 	</File>
 	<File name="src/BaseApplication.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="2845" topLine="263" />
@@ -23,16 +23,16 @@
 		<Cursor position="1375" topLine="43" />
 	</File>
 	<File name="src/OverheadCamera.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="1626" topLine="48" />
+		<Cursor position="3724" topLine="135" />
 	</File>
 	<File name="src/OverheadCamera.hpp" open="0" top="0" tabpos="4">
 		<Cursor position="1152" topLine="37" />
 	</File>
-	<File name="src/Soldier.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="2911" topLine="90" />
+	<File name="src/Soldier.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="4166" topLine="98" />
 	</File>
-	<File name="src/Soldier.hpp" open="0" top="0" tabpos="3">
-		<Cursor position="1860" topLine="52" />
+	<File name="src/Soldier.hpp" open="1" top="0" tabpos="4">
+		<Cursor position="1860" topLine="22" />
 	</File>
 	<File name="src/Waypoint.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="945" topLine="13" />
