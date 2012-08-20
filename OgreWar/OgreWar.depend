@@ -3856,3 +3856,74 @@
 	"OgreWorkQueue.h"
 	"OgreIteratorWrappers.h"
 
+1345156188 source:/home/william/Desktop/open_war_link/OgreWar/src/Application.cpp
+	<iostream>
+	"Application.hpp"
+
+1345155851 /home/william/Desktop/open_war_link/OgreWar/src/Application.hpp
+	<list>
+	<CEGUI/CEGUI.h>
+	<CEGUI/RendererModules/Ogre/CEGUIOgreRenderer.h>
+	<OGRE/Terrain/OgreTerrain.h>
+	<OGRE/Terrain/OgreTerrainGroup.h>
+	"BaseApplication.h"
+	"Soldier.hpp"
+
+1345041348 /home/william/Desktop/open_war_link/OgreWar/src/BaseApplication.h
+	<OgreCamera.h>
+	<OgreEntity.h>
+	<OgreLogManager.h>
+	<OgreRoot.h>
+	<OgreViewport.h>
+	<OgreSceneManager.h>
+	<OgreRenderWindow.h>
+	<OgreConfigFile.h>
+	<OISEvents.h>
+	<OISInputManager.h>
+	<OISKeyboard.h>
+	<OISMouse.h>
+	<SdkTrays.h>
+	<SdkCameraMan.h>
+	"OverheadCamera.hpp"
+
+1345043938 /home/william/Desktop/open_war_link/OgreWar/src/OverheadCamera.hpp
+	"Ogre.h"
+	<limits>
+	<OISEvents.h>
+	<OISInputManager.h>
+	<OISKeyboard.h>
+	<OISMouse.h>
+
+1344769563 /home/william/Desktop/open_war_link/OgreWar/src/Soldier.hpp
+	<OgreSceneManager.h>
+	<OgreEntity.h>
+	<string>
+	"Waypoint.hpp"
+
+1344710023 /home/william/Desktop/open_war_link/OgreWar/src/Waypoint.hpp
+	<list>
+	<Ogre.h>
+
+1345041273 source:/home/william/Desktop/open_war_link/OgreWar/src/BaseApplication.cpp
+	"BaseApplication.h"
+
+1345154461 source:/home/william/Desktop/open_war_link/OgreWar/src/OverheadCamera.cpp
+	"OverheadCamera.hpp"
+	<CEGUI/CEGUI.h>
+	<iostream>
+
+1345156413 source:/home/william/Desktop/open_war_link/OgreWar/src/Soldier.cpp
+	"Soldier.hpp"
+	"Application.hpp"
+
+1344710140 source:/home/william/Desktop/open_war_link/OgreWar/src/Waypoint.cpp
+	"Waypoint.hpp"
+
+1344625971 source:/home/william/Desktop/open_war_link/OgreWar/src/main.cpp
+	<Ogre.h>
+	"platform.h"
+	"Application.hpp"
+
+1344626006 /home/william/Desktop/open_war_link/OgreWar/src/platform.h
+	"windows.h"
+
