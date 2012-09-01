@@ -121,6 +121,7 @@ bool Application::getTerrainCollision(Ray ray, Vector3* out)
   {
       if(out)
         (*out) = result.position;
+      return true;
   }
   else
     return false;

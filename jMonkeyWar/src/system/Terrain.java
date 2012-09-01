@@ -63,18 +63,16 @@ public class Terrain extends AbstractControl implements Cloneable
   public static float getHeight(Vector2f position)
   {
     // Search for a TerrainQuad that corresponds to the specified position
-    for(Spatial spatial : node.getChildren())
+    for(Spatial spatial : Terrain.node.getChildren())
     {
       Terrain terrain = spatial.getControl(Terrain.class);
       if(terrain != null)
       {
-        System.out.println("found a terrain");
         float result = terrain.quad.getHeight(position);
         if(result != Float.NaN)
           return result;
       }
     }
-    System.out.println("COULDN'T FIND FUCK at " + position);
     // Return NaN if no TerrainQuad underlies the requested position
     return Float.NaN;
   }
@@ -158,10 +156,13 @@ public class Terrain extends AbstractControl implements Cloneable
     quad.setMaterial(material);
     quad.setLocalScale(2f, 1f, 2f);
     Terrain.node.attachChild(quad);
-
+    
     /** 5. The LOD (level of detail) depends on were the camera is: */
     TerrainLodControl lod = new TerrainLodControl(quad, war.getCamera());
     quad.addControl(lod);
+    
+    /** ATTACH THE TERRAIN CONTROL TO THE TERRAIN */
+    quad.addControl(this);
   }
 
   /* -------------------- query -------------------- */

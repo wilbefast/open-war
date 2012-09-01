@@ -30,7 +30,7 @@ public class Main
 {
     public static void main(String[] args) 
     {
-      SimpleApplication app = new HelloCollision();
+      SimpleApplication app = new HelloAssets();
       AppSettings settings = new AppSettings(true);
       settings.setFrameRate(60);
       settings.setTitle("Tutorial");

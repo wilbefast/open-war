@@ -72,6 +72,7 @@ public class Monkey extends AbstractControl implements Cloneable
   {
     // Load Spatial from file
     Spatial spatial = war.getAssetManager().loadModel("Models/Oto/Oto.mesh.xml");
+    
     // Set up Spatial and attach to the scene graph
     node.attachChild(spatial);
     spatial.setLocalTranslation(position);
@@ -83,7 +84,7 @@ public class Monkey extends AbstractControl implements Cloneable
   
   /* 
    * ---------------------------------------------------------------------------
-   * ATTRIBUTES
+   * NESTING
    * ---------------------------------------------------------------------------
    */
 
@@ -133,8 +134,6 @@ public class Monkey extends AbstractControl implements Cloneable
   {
     if(selected)
       waypoints.add(waypoint);
-    
-    System.out.println(waypoint + " at height " + Terrain.getHeight(new Vector2f(waypoint.x, waypoint.z)));
 
   }
   
@@ -208,8 +207,8 @@ public class Monkey extends AbstractControl implements Cloneable
     
     // Always stay above terrain
     Vector3f pos = spatial.getLocalTranslation();
-    //float terrain_h = Terrain.getHeight(new Vector2f(pos.x, pos.z));
-    //spatial.setLocalTranslation(pos.x, terrain_h, pos.z);
+    float terrain_h = Terrain.getHeight(new Vector2f(pos.x, pos.z));
+    spatial.setLocalTranslation(pos.x, terrain_h, pos.z);
   }
 
   @Override

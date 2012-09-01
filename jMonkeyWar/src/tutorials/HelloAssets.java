@@ -23,6 +23,8 @@ public class HelloAssets extends SimpleApplication
     mat = new Material(assetManager, "Common/MatDefs/Misc/ShowNormals.j3md");
     teapot.setMaterial(mat);
     rootNode.attachChild(teapot);
+    
+    flyCam.setMoveSpeed(5.0f);
 
     /** Create a wall */
     Box box = new Box(Vector3f.ZERO, 2.5f,2.5f,1.0f);
